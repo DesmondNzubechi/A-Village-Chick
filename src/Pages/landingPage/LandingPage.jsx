@@ -16,7 +16,6 @@ export const LandingPage = () => {
         <Quote/>
         <BookingSection/>
         <Newsletter/>
-        <Footer/>
         </div>
         </>
     )

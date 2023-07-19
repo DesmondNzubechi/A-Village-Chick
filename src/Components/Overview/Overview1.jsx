@@ -10,7 +10,7 @@ export const Overview1 = () => {
 <div className="flex flex-col md:flex-row justify-around items-center gap-5">
 <div data-aos='fade-up' data-aos-duration='1000' className="  flex flex-col gap-5 ">
 <h1 className="text-slate-900 capitalize md:hidden md:text-[45px] leading-[45px] md:leading-[50px] text-[40px]   font-myfont">Invest in your relationship with yourself</h1>
-        <img src={HeroImg} alt="" className="rounded" srcset="" />
+        <img src={HeroImg} alt="" className="rounded" srcSet="" />
        </div>
   <div data-aos='fade-up' data-aos-duration='1000' className="flex-start flex flex-col gap-4">
     <h1 className="text-slate-900 hidden md:flex md:text-[45px] leading-[45px] md:leading-[50px] text-[40px] capitalize  font-myfont">Invest in your relationship with yourself</h1>

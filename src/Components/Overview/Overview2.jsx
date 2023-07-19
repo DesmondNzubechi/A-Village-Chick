@@ -9,7 +9,7 @@ export const Overview2 = () => {
         <div className="  py-[50px] min-h-[100vh] ">
 <div className="flex flex-col md:flex-row-reverse justify-around items-center gap-5">
 <div data-aos='fade-up' data-aos-duration='1000' className="  flex flex-col gap-5 ">
-        <img src={HeroImg} alt="" className="rounded" srcset="" />
+        <img src={HeroImg} alt="" className="rounded" srcSet="" />
        </div>
   <div data-aos='fade-up' data-aos-duration='1000' className="flex-start flex flex-col gap-4">
     <h1 className="text-slate-900  md:text-[45px] leading-[45px] md:leading-[50px] text-[40px] capitalize  font-myfont">Improve your relationship with others</h1>

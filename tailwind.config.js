@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'fonty': ['Foldit', 'cursive'],
+        'instrument': ['Instrument Serif', 'serif'],
+        'serif': ['Nanum Myeongjo', 'serif'],
+        'poppins' : ['Poppins', 'sans-serif'],
+      },
       colors:{
         'Tp' : 'rgba(0, 0, 0, .8)',
         'bgT'  : 'rgba(0, 0, 0, .3)',
