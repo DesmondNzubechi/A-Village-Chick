@@ -39,7 +39,7 @@ const [sideLink, setSideLink] = useState('left-[-1000px]');
                             setSideLink('left-[-1000px]')
                         }} >
                             <NavLink  to={links.link} style={({isActive}) => {
-return isActive ? {color: 'pink', } : {}
+return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fontWeight: 'bold'} : {}
 }} className="xl:text-[17px]  font-poppins text-white  text-[25px] " >
                              {links.linkName}
                             </NavLink>

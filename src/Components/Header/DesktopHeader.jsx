@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { HiOutlineXMark } from 'react-icons/hi2';
+
 export const Navlink = [
     {link: '/', linkName: 'Home'},
     {link: '/blog', linkName: 'Blog'},

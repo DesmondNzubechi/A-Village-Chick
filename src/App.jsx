@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
 import { DesktopHeader } from './Components/Header/DesktopHeader'
 import { MobileHeader } from './Components/Header/MobileHeader'
+import { About } from './Pages/About/About'
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route path='/' element={<LandingPage/>} />
       <Route path='/blog' element={<Blog/>} />
+      <Route path='/about' element={<About/>} />
     </Routes>
     <Footer/>
     </BrowserRouter>
