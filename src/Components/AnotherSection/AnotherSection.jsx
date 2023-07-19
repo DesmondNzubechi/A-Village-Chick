@@ -1,8 +1,8 @@
 import React from "react";
-import logo1 from '../../assets/images/logo1.png';
-import logo2 from '../../assets/images/logo2.png';
-import logo3 from '../../assets/images/logo3.png';
-import logo4 from '../../assets/images/logo4.png';
+import logo1 from '../../assets/images/Logo1.png';
+import logo2 from '../../assets/images/Logo2.png';
+import logo3 from '../../assets/images/Logo3.png';
+import logo4 from '../../assets/images/Logo4.png';
 
 export const AnotherSection = () => {
     const logos = [logo1, logo2, logo3, logo4]
