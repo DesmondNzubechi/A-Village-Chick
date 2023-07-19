@@ -1,6 +1,8 @@
 import React from "react";
 import blogImg from '../../assets/images/session.avif';
-
+import { useContext } from "react";
+import { Context } from "../../Components/Context/Context";
+import { Link } from "react-router-dom";
 const BlogContent = [
     {
         date: '3/11/19',
@@ -33,6 +35,7 @@ const BlogContent = [
 ]
 
 export const BlogPost = () => {
+    const {readMoreClicked, newsHeadline} = useContext(Context);
     return(
             <div className="grid grid-cols-1 py-[70px] px-[40px] md:grid-cols-2 gap-[100px]">
                 {
@@ -41,10 +44,10 @@ export const BlogPost = () => {
                                 <a href="">
                                 <img src={post.postImg} alt="" />
                                 </a>
-                            <p className="font-poppins">{post.date}</p>
+                             <p className="font-poppins">{post.date}</p>
                             <h1 className="font-poppins capitalize font-bold">{post.headline}</h1>
                             <p className="text-[20px]  font-poppins ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-                            <a href="" className="text-[20px]  font-poppins bg-slate-900  p-1 text-slate-50 rounded-[1px] hover:bg-slate-800  ">Read More</a>
+                            <Link  onClick={() => readMoreClicked(post)} className="text-[20px]  font-poppins bg-slate-900  p-1 text-slate-50 rounded-[1px] hover:bg-slate-800  ">Read More</Link>
                         </div>
                     })
                 }

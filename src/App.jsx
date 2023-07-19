@@ -9,18 +9,30 @@ import { Route, Routes } from 'react-router-dom'
 import { DesktopHeader } from './Components/Header/DesktopHeader'
 import { MobileHeader } from './Components/Header/MobileHeader'
 import { About } from './Pages/About/About'
+import { ContactUs } from './Pages/Contact/Contact'
+import { NewsContext } from './Components/Context/Context'
+//import { FullNewsDetail } from './Components/Fullnews/Fullnews'
+//import { useContext } from 'react'
+//import { Context } from './Components/Context/Context'
+
 function App() {
+  //const {newsHeadline} = useContext(Context);
+
   return (
     <>
     <BrowserRouter>
-    <DesktopHeader/>
+    <NewsContext>
+    <DesktopHeader/> 
     <MobileHeader/>
     <Routes>
       <Route path='/' element={<LandingPage/>} />
       <Route path='/blog' element={<Blog/>} />
       <Route path='/about' element={<About/>} />
+      <Route path='/contact' element={<ContactUs/>} />
+
     </Routes>
     <Footer/>
+    </NewsContext>
     </BrowserRouter>
    
     </>
