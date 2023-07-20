@@ -11,13 +11,14 @@ import { MobileHeader } from './Components/Header/MobileHeader'
 import { About } from './Pages/About/About'
 import { ContactUs } from './Pages/Contact/Contact'
 import { NewsContext } from './Components/Context/Context'
-//import { FullNewsDetail } from './Components/Fullnews/Fullnews'
-//import { useContext } from 'react'
-//import { Context } from './Components/Context/Context'
+import { FullNewsDetail } from './Components/Fullnews/Fullnews'
+import { useContext } from 'react'
+import { Context } from './Components/Context/Context'
+
+
+
 
 function App() {
-  //const {newsHeadline} = useContext(Context);
-
   return (
     <>
     <BrowserRouter>

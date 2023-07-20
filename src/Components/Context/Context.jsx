@@ -5,10 +5,10 @@ export const Context = createContext();
 export const NewsContext = (props) => {
 
     const [fullNews, setFullNews] = useState(JSON.parse(localStorage.getItem('fullNews')) || [])
-    const [newsHeadline, setNewsHeadline] = useState(localStorage.getItem('newsHeadline') || '')
+   /* const [newsHeadline, setNewsHeadline] = useState(localStorage.getItem('newsHeadline') || '')*/
     useEffect(() => {
         localStorage.setItem('fullNews', JSON.stringify(fullNews));
-        localStorage.setItem('newsHeadline', newsHeadline)
+       // localStorage.setItem('newsHeadline', newsHeadline)
     }, [])
  
     console.log(fullNews);
@@ -18,7 +18,7 @@ export const NewsContext = (props) => {
     }
 
     return(
-    <Context.Provider value={{readMoreClicked, newsHeadline, fullNews}}>
+    <Context.Provider value={{readMoreClicked,  fullNews}}>
     {props.children}
     </Context.Provider>
     )
