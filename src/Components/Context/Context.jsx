@@ -12,12 +12,12 @@ export const NewsContext = (props) => {
         localStorage.setItem('subscriptionDetails', JSON.stringify(subscriptionDetails));
        // localStorage.setItem('newsHeadline', newsHeadline)
     }, [fullNews, subscriptionDetails])
-    const readMoreClicked = (news) => {
-        setFullNews(news)
-        setNewsHeadline(news.headline)
+
+    const readMoreClicked = (post) => {
+        setFullNews([post])
     };
     const Subscribe = (sub) => {
-      setSubscriptionDetails(sub);
+      setSubscriptionDetails([sub]);
     }
 
     return(

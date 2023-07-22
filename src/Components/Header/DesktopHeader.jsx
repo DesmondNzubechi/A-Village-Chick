@@ -22,7 +22,7 @@ export const DesktopHeader = () => {
                         {
                          Navlink.map(links => {
                 return(
-                        <li >
+                        <li key={links.linkName}>
                             <NavLink  to={links.link} style={({isActive}) => {
 return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fontWeight: 'bold'} : {}
 }} className=" text-[22px] font-poppins " >

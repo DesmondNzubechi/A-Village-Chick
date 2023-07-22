@@ -12,7 +12,7 @@ import { FullNewsDetail } from './Components/Fullnews/Fullnews'
 import { useContext } from 'react'
 import { Context } from './Components/Context/Context'
 import { GetStarted } from './Components/Get started/GetStarted'
-
+import { Subscribe } from './Components/Subscribe/Subscribe'
 
 
 function App() {
@@ -28,7 +28,8 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
       <Route path='/get started' element={<GetStarted/>} />
-      <Route path={`News/${fullNews.headline}`} element={<FullNewsDetail/>} />
+      <Route path={`/News/${fullNews.headline}`} element={<FullNewsDetail/>} />
+      <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>
     </BrowserRouter>

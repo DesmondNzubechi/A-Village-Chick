@@ -7,24 +7,19 @@ import { Link } from "react-router-dom";
  
 export const FullNewsDetail = () => {
 const {fullNews} = useContext(Context);
-
+  console.log(fullNews)
     return(
         <div className="py-[200px] ">
             <div>
-                {fullNews.map(news => {
-                    
-                       return <div>
-                            <h1>{news.headline}</h1>
+                 <div key={fullNews.headline}>
+                            <h1>{fullNews.headline}</h1>
                             <div>
-                                <p>{news.date}</p>
-                            <img src={news.postImg} alt="" />
+                                <p>{fullNews.date}</p>
+                            <img src={fullNews.postImg} alt="" />
                             </div>
-                            <p>{news.fullContent}</p>
+                            <p>{fullNews.fullContent}</p>
 
                         </div>
-                   
-})}
-                <Link to={`blog`}><BsArrowLeft/>Back</Link>
             </div>
         </div>
     )

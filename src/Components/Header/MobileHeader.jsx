@@ -31,7 +31,7 @@ const [sideLink, setSideLink] = useState('left-[-1000px]');
                         {
                          Navlink.map(links => {
                 return(
-                        <li  onClick={() => {
+                        <li key={links.linkName}  onClick={() => {
                             setIcons({
                                 hideicon: false,
                                 showIcon: true,

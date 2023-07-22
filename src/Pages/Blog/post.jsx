@@ -36,18 +36,19 @@ const BlogContent = [
 
 export const BlogPost = () => {
     const {readMoreClicked, fullNews} = useContext(Context);
+    console.log(fullNews)
     return(
             <div className="grid grid-cols-1 py-[70px] px-[40px] md:grid-cols-2 gap-[100px]">
                 {
                     BlogContent.map(post => {
-                        return <div className="flex items-start flex-col gap-[20px] ">
-                                <a href="">
+                        return <div key={post.headline} className="flex items-start flex-col gap-[20px] ">
+                                <Link to={`/News/${fullNews.headline}`}>
                                 <img src={post.postImg} alt="" />
-                                </a>
+                                </Link>
                              <p className="font-poppins">{post.date}</p>
                             <h1 className="font-poppins capitalize font-bold">{post.headline}</h1>
                             <p className="text-[20px]  font-poppins ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-                            <Link to={`/News/${fullNews.headline}`} onClick={readMoreClicked(post)} className="text-[20px]  font-poppins bg-slate-900  p-1 text-slate-50 rounded-[1px] hover:bg-slate-800  ">Read More</Link>
+                            <Link to={`/News/${fullNews.headline}`} onClick={() => readMoreClicked(post)} className="text-[20px]  font-poppins bg-slate-900  p-1 text-slate-50 rounded-[1px] hover:bg-slate-800  ">Read More</Link>
                         </div>
                     })
                 }
