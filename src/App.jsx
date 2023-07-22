@@ -20,9 +20,9 @@ function App() {
   return (
     <>
     <BrowserRouter>
-    <ScrollToTop/>
     <DesktopHeader/> 
     <MobileHeader/>
+    <ScrollToTop/>
     <Routes>
       <Route path='/' element={<LandingPage/>} />
       <Route path='/blog' element={<Blog/>} />
@@ -32,6 +32,7 @@ function App() {
       <Route path={`/News/${fullNews.headline}`} element={<FullNewsDetail/>} />
       <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
     </Routes>
+    
     <Footer/>
     </BrowserRouter>
    

@@ -29,7 +29,7 @@ const {fullNews, readMoreClicked} = useContext(Context);
     <h1 className="uppercase font-bold text-[30px] md:text-[50px] ">more news</h1>
 {BlogContent.map((news) => {
           
-          return <div className="flex w-full  items-start  rounded shadow-2xl px-[20px] py-5  gap-4">
+          return <div key={news.headline} className="flex w-full  items-start  rounded shadow-2xl px-[20px] py-5  gap-4">
           <div className="">
           <img className=" max-w-[100px]   rounded " src={news.postImg} alt="" />
           </div>
