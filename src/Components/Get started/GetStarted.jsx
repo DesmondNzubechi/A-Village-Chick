@@ -1,24 +1,25 @@
 import React from "react";
 import backgroundImage from '../../assets/images/session.avif'
+import imgS from '../../assets/images/heroImg.avif'
 import { Link } from "react-router-dom";
 import { Context } from "../Context/Context";
 import { useContext } from "react";
 const getStarted = [ 
   {
     getStartedPic: backgroundImage,
-    getStartedHeading: 'curated selection of high-quality products that will transform',
+    getStartedHeading: ' selection of  that will transform',
+    getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
+    getStartedAmount: '$90.97 every month',
+  },
+  {
+    getStartedPic: imgS,
+    getStartedHeading: 'curated selection of high-quality  will transform',
     getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
     getStartedAmount: '$90.97 every month',
   },
   {
     getStartedPic: backgroundImage,
-    getStartedHeading: 'curated selection of high-quality products that will transform',
-    getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
-    getStartedAmount: '$90.97 every month',
-  },
-  {
-    getStartedPic: backgroundImage,
-    getStartedHeading: 'curated selection of high-quality products that will transform',
+    getStartedHeading: 'curated  products that will transform',
     getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
     getStartedAmount: '$90.97 every month',
   },
@@ -49,7 +50,7 @@ export const GetStarted = () => {
        <div className="grid lg:grid-cols-3 gap-[50px] md:grid-cols-2 grid-cols-1 ">
         {
          getStarted.map(get => {
-          return (<div><Link key={get.getStartedHeading} to={`/Subscribe/${get.getStartedHeading}`} onClick={Subscribe(get)} className="flex font-poppins flex-col gap-2">
+          return (<div><Link key={get.getStartedHeading} to={`/Subscribe/${get?.getStartedHeading}`} onClick={() => Subscribe(get)} className="flex font-poppins flex-col gap-2">
             <img className="rounded  " src={get.getStartedPic} alt="" />
             <h1 className="font-bold text-[15px] md:text-[17px] capitalize text-center">{get.getStartedHeading}</h1>
             <p className="text-center text-[15px] md:text-[17px] "> {get.getStartedAmount} </p>

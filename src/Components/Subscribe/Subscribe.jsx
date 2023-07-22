@@ -5,12 +5,12 @@ import AboutImg from '../../assets/images/session.avif';
 import { Link } from "react-router-dom";
 
 export const Subscribe = () => {
-   const {subscriptionDetails, fullNews} = useContext(Context);
+   const {subscriptionDetails} = useContext(Context);
    console.log(subscriptionDetails)
     return(
         <div>
             {/*
-                subscriptionDetails.map(subbing => {
+                subscriptionDetails.map(subscriptionDetails => {
                     return(*/
                         <div className="bg-slate-100  m-0 pt-[150px] md:pt-[250px] pb-[100px] gap-[50px] items-center px-[40px] flex flex-col md:flex-row justify-center rounded">
 <div>

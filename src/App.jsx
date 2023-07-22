@@ -16,7 +16,7 @@ import { Subscribe } from './Components/Subscribe/Subscribe'
 import { ScrollToTop } from './Components/ScrollTop/Scrolltop'
 
 function App() {
-  const {subscriptionDetails, fullNews} = useContext(Context);
+  const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
     <>
     <BrowserRouter>
@@ -29,7 +29,7 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
       <Route path='/get started' element={<GetStarted/>} />
-      <Route path={`/News/${fullNews.headline}`} element={<FullNewsDetail/>} />
+      <Route path={`/news/${article.headline}`} element={<FullNewsDetail/>} />
       <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
     </Routes>
     
