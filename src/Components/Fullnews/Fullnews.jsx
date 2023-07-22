@@ -24,7 +24,7 @@ const {fullNews} = useContext(Context);
                         </div>
                    
 })}
-                <Link to='/nb'><BsArrowLeft/>Back</Link>
+                <Link to={`blog`}><BsArrowLeft/>Back</Link>
             </div>
         </div>
     )
