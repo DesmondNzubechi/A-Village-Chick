@@ -5,7 +5,7 @@ import AboutImg from '../../assets/images/session.avif';
 import { Link } from "react-router-dom";
 
 export const Subscribe = () => {
-   const {subscriptionDetails} = useContext(Context);
+   const {subscriptionDetails, fullNews} = useContext(Context);
    console.log(subscriptionDetails)
     return(
         <div>

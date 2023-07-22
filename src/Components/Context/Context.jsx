@@ -14,10 +14,10 @@ export const NewsContext = (props) => {
     }, [fullNews, subscriptionDetails])
 
     const readMoreClicked = (post) => {
-        setFullNews([post])
+        setFullNews(post)
     };
     const Subscribe = (sub) => {
-      setSubscriptionDetails([sub]);
+      setSubscriptionDetails(sub);
     }
 
     return(

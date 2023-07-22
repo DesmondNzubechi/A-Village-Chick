@@ -25,7 +25,7 @@ const getStarted = [
 ]
 
 export const GetStarted = () => {
-  const {Subscribe} = useContext(Context);
+  const {Subscribe, } = useContext(Context);
 
     return(
       
@@ -49,7 +49,7 @@ export const GetStarted = () => {
        <div className="grid lg:grid-cols-3 gap-[50px] md:grid-cols-2 grid-cols-1 ">
         {
          getStarted.map(get => {
-          return (<div><Link key={get.getStartedHeading} to={`Subscribe`} onClick={Subscribe(get)} className="flex font-poppins flex-col gap-2">
+          return (<div><Link key={get.getStartedHeading} to={`/Subscribe/${get.getStartedHeading}`} onClick={Subscribe(get)} className="flex font-poppins flex-col gap-2">
             <img className="rounded  " src={get.getStartedPic} alt="" />
             <h1 className="font-bold text-[15px] md:text-[17px] capitalize text-center">{get.getStartedHeading}</h1>
             <p className="text-center text-[15px] md:text-[17px] "> {get.getStartedAmount} </p>

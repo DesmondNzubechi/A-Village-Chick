@@ -13,13 +13,14 @@ import { useContext } from 'react'
 import { Context } from './Components/Context/Context'
 import { GetStarted } from './Components/Get started/GetStarted'
 import { Subscribe } from './Components/Subscribe/Subscribe'
-
+import { ScrollToTop } from './Components/ScrollTop/Scrolltop'
 
 function App() {
   const {subscriptionDetails, fullNews} = useContext(Context);
   return (
     <>
     <BrowserRouter>
+    <ScrollToTop/>
     <DesktopHeader/> 
     <MobileHeader/>
     <Routes>

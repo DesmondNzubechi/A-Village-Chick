@@ -3,7 +3,7 @@ import blogImg from '../../assets/images/session.avif';
 import { useContext } from "react";
 import { Context } from "../../Components/Context/Context";
 import { Link } from "react-router-dom";
-const BlogContent = [
+export const BlogContent = [
     {
         date: '3/11/19',
         postImg: blogImg,
