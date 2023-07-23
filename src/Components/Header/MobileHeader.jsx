@@ -3,14 +3,15 @@ import { NavLink, Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { HiOutlineXMark } from 'react-icons/hi2';
 import {IoMdArrowDropdown} from 'react-icons/io';
-
+import { useContext } from "react";
+import { Context } from "../Context/Context";
 
 export const Navlink = [
     {link: '/', linkName: 'Home'},
     {link: '/blog', linkName: 'Blog'},
     {link: '/about', linkName: 'About'},
     {link: '/contact', linkName: 'Contact'},
-    {link: '/login', linkName: 'Login'},
+   ,
 ]
 
 
@@ -21,7 +22,7 @@ const [icons, setIcons] = useState({
 });
 const [sideLink, setSideLink] = useState('left-[-1000px]');
 
-
+const {setAccount, account} = useContext(Context);
   return(
     <div className="flex md:hidden z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0  px-[20px] py-[10px] justify-between bg-black">
         <div>
@@ -31,12 +32,12 @@ const [sideLink, setSideLink] = useState('left-[-1000px]');
                         {
                          Navlink.map(links => {
                 return(
-                        <li key={links.linkName}  onClick={() => {
+                        <li key={links.linkName}  onClick={(e) => {
                             setIcons({
                                 hideicon: false,
                                 showIcon: true,
                             });
-                            setSideLink('left-[-1000px]')
+                            setSideLink('left-[-1000px]');
                         }} >
                             <NavLink  to={links.link} style={({isActive}) => {
 return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fontWeight: 'bold'} : {}
@@ -45,7 +46,26 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                             </NavLink>
                         </li> )})  }
                         <li>
-                          <Link to='/get started' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Get Started</Link>
+                          <Link onClick={() => {
+            setIcons({
+                hideicon: false,
+                showIcon: true,
+            });
+            setSideLink('left-[-1000px]');
+            setAccount({
+                login: true,
+                signup: false,
+            })
+        }} to='/' className=" font-bold p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Login</Link>
+                        </li>
+                        <li>
+                          <Link onClick={() => {
+            setIcons({
+                hideicon: false,
+                showIcon: true,
+            });
+            setSideLink('left-[-1000px]')
+        }} to='/get started' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Get Started</Link>
                         </li>
                         </ul>
         <div className="flex flex-row items-center">

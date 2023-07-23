@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars } from 'react-icons/fa';
 import { HiOutlineXMark } from 'react-icons/hi2';
-
+import { useContext } from "react";
+import { Context } from "../Context/Context";
 export const Navlink = [
     {link: '/', linkName: 'Home'},
     {link: '/blog', linkName: 'Blog'},
@@ -11,7 +12,7 @@ export const Navlink = [
 ]
 
 export const DesktopHeader = () => {
-
+  const {account, setAccount} = useContext(Context);
 
   return(
     <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-slate-900">
@@ -30,7 +31,12 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                             </NavLink>
                         </li> )})  }
                         <li className="px-[40px] flex flex-row gap-2 ">
-                        <Link to='/login' className="  p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>
+                        <Link onClick={() => {
+                    setAccount({
+                        login: true,
+                        signup: false,
+                    })
+                  }} className="  p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>
                         <Link to='/get started' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Get Started</Link>
                         </li>
                         </ul>

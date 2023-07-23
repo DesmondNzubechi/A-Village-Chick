@@ -14,7 +14,8 @@ import { Context } from './Components/Context/Context'
 import { GetStarted } from './Components/Get started/GetStarted'
 import { Subscribe } from './Components/Subscribe/Subscribe'
 import { ScrollToTop } from './Components/ScrollTop/Scrolltop'
-
+import { SignUp } from './Components/Account/Signup'
+import { Login } from './Components/Account/Login'
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -22,6 +23,8 @@ function App() {
     <BrowserRouter>
     <DesktopHeader/> 
     <MobileHeader/>
+    <SignUp/>
+    <Login/>
     <ScrollToTop/>
     <Routes>
       <Route path='/' element={<LandingPage/>} />
