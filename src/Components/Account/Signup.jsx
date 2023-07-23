@@ -15,16 +15,16 @@ export const SignUp = () => {
                     signup: false
                 })
             }
-        }} className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
-            <div className="bg-white font-poppins rounded p-[50px] ">
-                <div className="flex flex-col relative gap-5">
+        }} className="py-[100px] flex-row z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
+          
+                <form action=""  className="flex flex-col  bg-white font-poppins rounded p-[40px] relative gap-5">
                     <h1 className="text-center text-[20px] font-semibold ">Create Account!</h1>
                     <p onClick={() => {
                     setAccount({
                         login: false,
                         signup: false,
                     })
-                  }} className="absolute right-[-30px] p top-[-40px] bg-slate-900 px-[15px] py-[5px] hover:bg-red-500 cursor-pointer rounded-full text-white font-bold text-[20px] ">x</p>
+                  }} className="absolute right-[5px] p top-[3px] bg-slate-900 px-[15px] py-[5px] hover:bg-red-500 cursor-pointer rounded-full text-white font-bold text-[20px] ">x</p>
                     <div className="flex md:flex-row gap-2 flex-col">
                    <input type="text"placeholder="Firstname" className="outline-0  text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                    <input type="text" placeholder="Lastname" className="outline-0  text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
@@ -38,10 +38,9 @@ export const SignUp = () => {
                         signup: false,
                     })
                   }}>Log in</Link></p>
-                </div>
+                </form>
              
                
-            </div>
         </span>
     )
 }
