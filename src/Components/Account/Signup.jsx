@@ -8,10 +8,23 @@ export const SignUp = () => {
     const { account, setAccount,} = useContext(Context);
     return(
         account.signup &&
-        <div className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
+        <span onClick={(e) => {
+            if (e.target.tagName === 'SPAN') {
+                setAccount({
+                    login: false,
+                    signup: false
+                })
+            }
+        }} className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
             <div className="bg-white font-poppins rounded p-[50px] ">
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col relative gap-5">
                     <h1 className="text-center text-[20px] font-semibold ">Create Account!</h1>
+                    <p onClick={() => {
+                    setAccount({
+                        login: false,
+                        signup: false,
+                    })
+                  }} className="absolute right-[-30px] p top-[-40px] bg-slate-900 px-[15px] py-[5px] hover:bg-red-500 cursor-pointer rounded-full text-white font-bold text-[20px] ">x</p>
                     <div className="flex md:flex-row gap-2 flex-col">
                    <input type="text"placeholder="Firstname" className="outline-0  text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                    <input type="text" placeholder="Lastname" className="outline-0  text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
@@ -29,6 +42,6 @@ export const SignUp = () => {
              
                
             </div>
-        </div>
+        </span>
     )
 }

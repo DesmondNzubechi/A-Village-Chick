@@ -8,8 +8,21 @@ export const Login = () => {
     const {account, setAccount,} = useContext(Context)
     return(
         account.login &&
-        <div className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
-            <div className="bg-white font-poppins rounded p-[50px] ">
+        <span onClick={(e) => {
+            if (e.target.tagName === 'SPAN') {
+                setAccount({
+                    login: false,
+                    signup: false
+                })
+            }
+        }} className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
+            <div className="bg-white relative font-poppins rounded p-[50px] ">
+                <p onClick={() => {
+                    setAccount({
+                        login: false,
+                        signup: false,
+                    })
+                  }} className="absolute right-[20px] p top-1 bg-slate-900 px-[15px] py-[5px] hover:bg-red-500 cursor-pointer rounded-full text-white font-bold text-[20px] ">x</p>
                 <div className="flex flex-col gap-5">
                     <h1 className="text-center text-[20px] font-semibold ">Welcome back!</h1>
                     <input className="outline-0  border font-[300] text-[20px] p-2 rounded " type="text" placeholder="email address" name="email" id="" />
@@ -25,6 +38,6 @@ export const Login = () => {
              
                
             </div>
-        </div>
+        </span>
     )
 }

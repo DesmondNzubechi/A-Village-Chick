@@ -6,7 +6,7 @@ export const NewsContext = (props) => {
 
     /*const [fullNews, setFullNews] = useState(JSON.parse(localStorage.getItem('fullNews')) || []);*/
     const [article, setArticle] = useState(JSON.parse(localStorage.getItem('article')) || {})
-    const [account, setAccount] = useState(JSON.parse(localStorage.getItem('accont')) || {
+    const [account, setAccount] = useState(JSON.parse(localStorage.getItem('account')) || {
         login: false,
         signup: false,
     })
@@ -20,7 +20,7 @@ export const NewsContext = (props) => {
         localStorage.setItem('subscriptionDetails', JSON.stringify(subscriptionDetails));
         localStorage.setItem('account', JSON.stringify(account));
        // localStorage.setItem('newsHeadline', newsHeadline)
-    }, [subscriptionDetails, article])
+    }, [subscriptionDetails, article, account])
 
     const readMoreClicked = (post) => {
         setArticle(post)
