@@ -26,7 +26,7 @@ export const SignUp = () => {
                         signup: false,
                     })
                   }} className="absolute right-[5px] p top-[3px] bg-slate-900 px-[15px] py-[5px] hover:bg-red-500 cursor-pointer rounded-full text-white font-bold text-[20px] ">x</p>
-                    <div className="flex md:flex-row gap-2 flex-col">
+                    <div className="flex justify-center w-full md:flex-row gap-2 flex-col">
                    <input type="text" placeholder="Firstname" className="outline-0 w-full text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                    <input type="text" placeholder="Lastname" className="outline-0 w-full   text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                     </div>
