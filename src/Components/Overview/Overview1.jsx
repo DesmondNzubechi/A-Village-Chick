@@ -1,6 +1,6 @@
 import React from "react";
 import HeroImg from '../../assets/images/heroImg.avif';
-
+import { Link } from "react-router-dom";
 
 export const Overview1 = () => {
 
@@ -17,7 +17,7 @@ export const Overview1 = () => {
     <div className="text-slate-300 font-fonty max-w-[700px] flex flex-col gap-2 ">
     <p className="md:text-[20px] text-slate-800 text-[18px] font-poppins  ">We all have a tendency to put others first, but in doing so, we can sometimes neglect our relationship with ourselves. Let me be your advocate and show you a kinder, gentler way to treat the most important person in your life.</p>
   </div>
-  <button className="text-start bg-slate-900 text-slate-50 text-[30px] rounded-[1px] hover:bg-slate-800 w-fit p-3">Learn more</button>
+  <Link to='/get started' className="text-start bg-slate-900 text-slate-50 text-[30px] rounded-[1px] hover:bg-slate-800 w-fit p-3">Learn more</Link>
   </div>
 </div>
         </div>

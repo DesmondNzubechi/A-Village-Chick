@@ -1,6 +1,6 @@
 import React from "react";
 import HeroImg from '../../assets/images/heroImg.avif';
-
+import { Link } from "react-router-dom";
 
 export const Overview2 = () => {
 
@@ -16,7 +16,7 @@ export const Overview2 = () => {
     <div className="text-slate-300 font-fonty max-w-[700px] flex flex-col gap-2 ">
     <p className="md:text-[20px] font-poppins text-slate-800 text-[18px] ">Be your best self, alone and with others, and cultivate deep and lasting friendships and relationships. </p>
   </div>
-  <button className="text-start bg-slate-900 text-slate-50 text-[30px] rounded-[1px] hover:bg-slate-800 w-fit p-3">Learn more</button>
+  <Link to='/get started' className="text-start bg-slate-900 text-slate-50 text-[30px] rounded-[1px] hover:bg-slate-800 w-fit p-3">Learn more</Link>
   </div>
 </div>
         </div>
