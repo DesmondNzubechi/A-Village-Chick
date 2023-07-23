@@ -30,7 +30,7 @@ export const SignUp = () => {
                    <input type="text" placeholder="Firstname" className="outline-0 w-full text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                    <input type="text" placeholder="Lastname" className="outline-0 w-full   text-[20px] font-[300]  bg-transparent border p-2 rounded "  name="" id="" />
                     </div>
-                    <input className="outline-0 font-[300] border bg-transparent  text-[20px] p-2 rounded " type="email" placeholder="email address" name="email" id="" />
+                    <input className="outline-0 font-[300] border bg-transparent w-full  text-[20px] p-2 rounded " type="email" placeholder="email address" name="email" id="" />
                   <input className="outline-0 w-full font-[300]  bg-transparent border text-[20px] p-2 rounded " placeholder="Pasword" type="password" name="" id="" />
                   <button  className="bg-slate-900 hover:bg-slate-600 text-slate-50 text-[20px] p-2 w-full rounded ">Signup</button>
                   <p className="text-center">Already have an account? <Link className="font-bold underline" onClick={() => {
