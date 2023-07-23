@@ -17,7 +17,8 @@ export const SignUp = () => {
             }
         }} className="py-[100px] flex-row z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
           
-                <form action=""  className="flex flex-col items-center bg-white font-poppins rounded p-[40px] relative gap-5">
+                <form action=""  className="flex flex-col items-center bg-white font-poppins justify-center rounded p-[50px] relative gap-5">
+                
                     <h1 className="text-center text-[20px] font-semibold ">Create Account!</h1>
                     <p onClick={() => {
                     setAccount({

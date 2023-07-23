@@ -16,7 +16,7 @@ export const Login = () => {
                 })
             }
         }} className="py-[100px] z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
-                  <form action=""  className="flex flex-col items-center justify-center  bg-white font-poppins rounded p-[40px] relative gap-5">
+                  <form action=""  className="flex flex-col items-center justify-center  bg-white font-poppins rounded p-[50px] relative gap-5">
                   <p onClick={() => {
                     setAccount({
                         login: false,
