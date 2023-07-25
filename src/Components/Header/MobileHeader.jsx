@@ -22,7 +22,7 @@ const [icons, setIcons] = useState({
 });
 const [sideLink, setSideLink] = useState('left-[-1000px]');
 
-const {setAccount, account} = useContext(Context);
+const {setAccount, account, signedInUser} = useContext(Context);
   return(
     <div className="flex md:hidden z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0  px-[20px] py-[10px] justify-between bg-black">
         <div>
@@ -45,8 +45,9 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                              {links.linkName}
                             </NavLink>
                         </li> )})  }
+
                         <li>
-                          <Link onClick={() => {
+                        { !signedInUser && <Link onClick={() => {
             setIcons({
                 hideicon: false,
                 showIcon: true,
@@ -56,16 +57,18 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                 login: true,
                 signup: false,
             })
-        }} to='/' className=" font-bold p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Login</Link>
-                        </li>
-                        <li>
-                          <Link onClick={() => {
+        }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Login</Link>}
+         {signedInUser && <Link onClick={() => {
             setIcons({
                 hideicon: false,
                 showIcon: true,
             });
             setSideLink('left-[-1000px]')
-        }} to='/get started' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Get Started</Link>
+            setAccount({
+                ...account,
+                account: true,
+            })
+        }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
                         </li>
                         </ul>
         <div className="flex flex-row items-center">

@@ -12,7 +12,7 @@ export const Navlink = [
 ]
 
 export const DesktopHeader = () => {
-  const {account, setAccount} = useContext(Context);
+  const {account, setAccount, signedInUser} = useContext(Context);
 
   return(
     <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-slate-900">
@@ -31,13 +31,20 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                             </NavLink>
                         </li> )})  }
                         <li className="px-[40px] flex flex-row gap-2 ">
-                        <Link onClick={() => {
+                       {!signedInUser && <Link onClick={() => {
                     setAccount({
                         login: true,
                         signup: false,
+                        account:false
                     })
-                  }} className="  p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>
-                        <Link to='/get started' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Get Started</Link>
+                  }} className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>}
+                        {signedInUser && <Link onClick={() => {
+                    setAccount({
+                        login: false,
+                        signup: false,
+                        account:true
+                    })
+                  }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
                         </li>
                         </ul>
     </div>

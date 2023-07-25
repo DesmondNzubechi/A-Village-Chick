@@ -14,6 +14,7 @@ export default {
       },
       colors:{
         'Tp' : 'rgba(0, 0, 0, .8)',
+        'spin' : 'rgba(0, 0, 0, .96)',
         'bgT'  : 'rgba(0, 0, 0, .3)',
       }
     },

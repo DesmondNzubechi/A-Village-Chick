@@ -17,6 +17,8 @@ import { ScrollToTop } from './Components/ScrollTop/Scrolltop'
 import { SignUp } from './Components/Account/Signup'
 import { Login } from './Components/Account/Login'
 import { PostNews } from './Components/PostNews/PostNews'
+import { AddReview } from './Components/Reviews/AddReview'
+import {UserProfile} from './Components/Account/Profile'
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -26,6 +28,7 @@ function App() {
     <MobileHeader/>
     <SignUp/>
     <Login/>
+    <UserProfile/>
     <ScrollToTop/>
     <Routes>
       <Route path='/' element={<LandingPage/>} />
@@ -33,11 +36,10 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
       <Route path='/get started' element={<GetStarted/>} />
-      <Route path='/post-news' element={<PostNews/>} />
+      <Route path='/post-news' element={<AddReview/>} />
       <Route path={`/news/${article.headline}`} element={<FullNewsDetail/>} />
       <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
     </Routes>
-    
     <Footer/>
     </BrowserRouter>
    
