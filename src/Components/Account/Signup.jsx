@@ -5,7 +5,7 @@ import { useContext } from "react";
 import {PulseLoader} from 'react-spinners';
 
 export const SignUp = () => {
-    const { account, setAccount, spin, setSpin, signUpInputs, signedInUser, setSignUpInput} = useContext(Context);
+    const { account, SignUpNewUser, setAccount, spin, setSpin, errorMessage, signUpInputs, signedInUser, setSignUpInput} = useContext(Context);
     return(
         account.signup && !signedInUser &&
         <span onClick={(e) => {
@@ -23,6 +23,7 @@ export const SignUp = () => {
           <form action=""  className="flex flex-col items-center justify-center  bg-white font-poppins rounded p-[50px] relative gap-5">
                 
                     <h1 className="text-center text-[20px] font-semibold ">Create Account!</h1>
+                    <p className="text-[15px] my-[-15px] text-red-500 uppercase">{errorMessage}</p>
                     <p onClick={() => {
                     setAccount({
                         login: false,
@@ -60,7 +61,7 @@ export const SignUp = () => {
                     <input
                      onChange={(e) => {
                       setSignUpInput({
-                        ...signUpInputs,
+                      ...signUpInputs,
                         email: e.target.value,
                       })
                      }}
@@ -72,7 +73,7 @@ export const SignUp = () => {
                         password: e.target.value,
                       })
                      }} className="outline-0 w-full font-[300]  bg-transparent border text-[20px] p-2 rounded " placeholder="Pasword" type="password" name="" id="" />
-                  <button  className="bg-slate-900 hover:bg-slate-600 text-slate-50 text-[20px] p-2 w-full rounded ">Signup</button>
+                  <button type="button" onClick={() => SignUpNewUser()}  className="bg-slate-900 hover:bg-slate-600 text-slate-50 text-[20px] p-2 w-full rounded ">Signup</button>
                   <p className="text-center">Already have an account? <Link className="font-bold underline" onClick={() => {
                     setAccount({
                         login: true,

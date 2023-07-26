@@ -1,13 +1,15 @@
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../Config/Firebase";
+import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 
 export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
    const [spin, setSpin] = useState(false);
+   const [errorMessage, setErrorMessage] = useState('');
     const [loginInputs, setLoginInputs] = useState({
       email: '',
       password: '',
@@ -39,24 +41,48 @@ export const NewsContext = (props) => {
     }
 
  const [signedInUser, setSignedInUser] = useState({});
+
     const SignIn = async () => {
+      setSpin(true);
       try {
-        await signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password)
+        await signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password);
+        setSpin(false);
         setAccount({
           login: false,
           signup: false,
           account: true,
         })
       } catch (error) {
-        console.log(error)
+        setSpin(false);
+        setErrorMessage(error.message);
+        console.log("Authentication error:", error.message)
       }
     }
     const SignUpNewUser = async () => {
+      if (signUpInputs.email  === '' || signUpInputs.firstname === '' || signUpInputs.lastname === '' || signUpInputs.username === '') {
+        return setErrorMessage('Please fill in all the field');
+      } 
+      setSpin(true);
+      const userRef =  collection(db, 'users');
       try {
-        await createUserWithEmailAndPassword(auth,  signUpInputs.email, signUpInputs.password);
+        await createUserWithEmailAndPassword(auth, signUpInputs.email, signUpInputs.password);
+        await addDoc(userRef, {
+          email: signUpInputs.email,
+          firstname: signUpInputs.firstname,
+          lastname: signUpInputs.lastname,
+          username: signUpInputs.username,
+        })
+        setSpin(false);
+        setAccount({
+          login: false,
+          signup: false,
+          account: true,
+        })
         
       } catch (error) {
-        console.log(error);
+        setSpin(false);
+        setErrorMessage(error.message);
+        console.log("Authentication error:", error.message)
       }
     }
     const SignUserOut = async () => {
@@ -71,7 +97,6 @@ export const NewsContext = (props) => {
         
       }
     }
-
     useEffect(() => {
       /* localStorage.setItem('fullNews', JSON.stringify(fullNews));*/
       localStorage.setItem('article', JSON.stringify(article));
@@ -84,7 +109,7 @@ export const NewsContext = (props) => {
    }, [subscriptionDetails, article, account, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, SignUserOut,  signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, SignUserOut,  signedInUser /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )
