@@ -36,7 +36,7 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
       <Route path='/get started' element={<GetStarted/>} />
-      <Route path='/post-news' element={<AddReview/>} />
+      <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/news/${article.headline}`} element={<FullNewsDetail/>} />
       <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
     </Routes>

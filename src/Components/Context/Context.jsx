@@ -24,7 +24,7 @@ export const NewsContext = (props) => {
 
     /*const [fullNews, setFullNews] = useState(JSON.parse(localStorage.getItem('fullNews')) || []);*/
     const [article, setArticle] = useState(JSON.parse(localStorage.getItem('article')) || {})
-    const [account, setAccount] = useState(JSON.parse(localStorage.getItem('account')) || {
+    const [account, setAccount] = useState(JSON.parse(localStorage.getItem('account')) || { 
         login: false,
         signup: false,
         account: false,
@@ -41,7 +41,7 @@ export const NewsContext = (props) => {
     }
 
  const [signedInUser, setSignedInUser] = useState({});
-
+///LODIN USER
     const SignIn = async () => {
       setSpin(true);
       try {
@@ -58,6 +58,10 @@ export const NewsContext = (props) => {
         console.log("Authentication error:", error.message)
       }
     }
+
+    
+
+    //REGISTERING NEW USER
     const SignUpNewUser = async () => {
       if (signUpInputs.email  === '' || signUpInputs.firstname === '' || signUpInputs.lastname === '' || signUpInputs.username === '') {
         return setErrorMessage('Please fill in all the field');
@@ -85,6 +89,8 @@ export const NewsContext = (props) => {
         console.log("Authentication error:", error.message)
       }
     }
+
+    //SIGNOUT USER
     const SignUserOut = async () => {
       try {
         await signOut(auth);
@@ -97,6 +103,8 @@ export const NewsContext = (props) => {
         
       }
     }
+
+
     useEffect(() => {
       /* localStorage.setItem('fullNews', JSON.stringify(fullNews));*/
       localStorage.setItem('article', JSON.stringify(article));

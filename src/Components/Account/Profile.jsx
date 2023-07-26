@@ -40,7 +40,7 @@ useEffect(() => {
     }
     localStorage.setItem('profile', JSON.stringify(profile));
     getUser();
-}, [userInfo])
+}, [])
     return(
         account.account && signedInUser &&
         <div className="flex flex-row font-poppins itmes-center bg-Tp fixed top-0 bottom-0 w-full z-[100] ">

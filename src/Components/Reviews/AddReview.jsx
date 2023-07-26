@@ -2,12 +2,13 @@ import React from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useState } from "react";
+import { db } from "../Config/Firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 export const AddReview = () => {
-    const [value, setValue] = useState('');
-
     return(
-        <div className="py-[100px]   font-poppins flex justify-center items-center pt-[160px] ">        
+        <div className="py-[100px]   font-poppins flex justify-center items-center pt-[160px] ">   
+        <div>     
         <div>
             <h1 className="text-center mb-[40px] font-bold uppercase">Add Review</h1>
             <div className="flex flex-col gap-5">
@@ -17,7 +18,15 @@ export const AddReview = () => {
                <button className="bg-slate-900 shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Add review</button>
                 </div> 
             </div>
-       
+            <div className="flex my-[30px] flex-col gap-4">
+        {/*  <ReactQuill
+          className="max-w-[500px]"
+            value={contents}
+            onChange={contentChange}
+    />*/}
+    
+    </div>
+            </div>
         </div>
       
         </div>

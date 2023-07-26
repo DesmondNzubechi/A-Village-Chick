@@ -1,31 +1,125 @@
-import React from "react";
-
-
+import React, { useEffect } from "react";
+import { db, storage } from "../Config/Firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
+import ReactQuill from "react-quill";
+import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 export const PostNews = () => {
+
+  const [contents, setContents] = useState('');
+//IMAGE INFO
+const [imgInfo, setImgInfo] = useState({
+  imgFile: [],
+  imgName: '',
+})
+
+  ///NEWS CONTENTS
+  const [newsContents, setNewsContents] = useState({
+    newsImg: [],
+    newsHeadline: '',
+    newsOverview: '',
+    fullNews: ''
+  })
+  console.log(newsContents)
+  const uploadNewsImg = async () => {
+   if (imgInfo.imgName === '') {
+    alert('select img first');
+    return;
+   }
+    const folderRef = ref(storage,  'newsImg')
+    try {
+      const imgRef = ref(folderRef, imgInfo.imgName)
+    const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
+    const url = await getDownloadURL(imgUpload.ref);
+    setNewsContents({...newsContents, newsImg: [...newsContents.newsImg, url]});
+    alert('sup')
+    } catch (error) {
+      alert(error)
+    }
+
+  }
+useEffect(() => {
+  localStorage.setItem('newsContents', JSON.stringify(newsContents));
+}, [newsContents])
+
+
+  const postNews = async () => {
+      const newsRef = collection(db, 'news');
+      try {
+         await addDoc(newsRef, {
+          newsImg: newsContents.newsImg,
+          newsHeadline: newsHeadline.newsImg,
+          newsOverview: newsOverview.newsImg,
+          fullNews:  fullNews.newsImg,
+         })
+          alert('su');
+      } catch (error) {
+          console.log(error);
+          alert(error)
+      }
+  }
+
+
     return(
-        <div className="py-[100px] pt-[160px] px-[40px] font-poppins justify-center flex flex-row ">
-            <div className="flex flex-col gap-5">
+        <div on className="py-[100px] pt-[160px] px-[40px] font-poppins justify-center overflow-x-hidden flex flex-row ">
+            <div className="grid grid-cols-1 gap-5">
               <div className="flex flex-col gap-5 md:flex-row  ">
                 <div className="flex flex-col gap-0 ">
-                    <label className="uppercase font-[600] text-[20px] " htmlFor="headline">news headline :</label>
+                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news headline :</label>
                     <input type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
-                    <label className="uppercase font-[600] text-[20px] " htmlFor="headline">news image/video :</label>
-                    <input type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">News overview:</label>
+                    <input type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
-                    <label className="uppercase font-[600] text-[20px] " htmlFor="headline">Date :</label>
-                    <input type="date" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news image:</label>
+                    <input onChange={(e) => {
+                      setImgInfo({
+                        imgFile: e.target.files[0],
+                        imgName: e.target.files[0].name,
+                      });
+                    }} accept="image/*" type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    <button onClick={ uploadNewsImg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">uppload image</button>
                 </div>
+              { /* <div className="flex flex-col gap-0 ">
+                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">Date :</label>
+                    <input type="date" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+    </div>*/}
               </div>
-              <div className="flex gap-0 flex-col">
+              <div className="flex flex-col gap-0 ">
+                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news content :</label>
+              <ReactQuill
+       className="md:max-w-[700px] max-w-[500px] min-h-[40vh] lg:max-w-[1100px] "
+        onChange={(e) => {
+          setNewsContents({...newsContents, fullNews: e})
+        }}
+        modules={{
+          toolbar: {
+            container: [
+              ['bold', 'italic', 'underline', 'strike'], // Basic formatting button
+              [{ 'font': [] }],
+             [{ 'align': [] }],
+              [{ 'color': [] }, { 'background': [] }],    
+              ['blockquote', 'code-block'],
+              [{ 'size': ['small', false, 'large', 'huge'] }],  
+              [{ header: 1 }, { header: 2 }], // Header formatting buttons
+              [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
+             ['link', /*'image', 'video'*/], // Link and media buttons
+            ], 
+            },
+          }}
+        />
+        </div>
+         <button onClick={() => postNews()} className="bg-slate-900 w-fit  my-[50px] shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Upload News</button>
+     
+             {/* <div className="flex gap-0 flex-col">
                 <label className="uppercase font-[600] text-[20px] "  htmlFor="full content">Full content</label>
                 <textarea className="min-h-[40vh] p-4 outline-0 border w-full shadow rounded " name="" id="" cols="30" rows="10"></textarea>
               </div>
               <div>
                 <button className="bg-slate-900 shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Post News</button>
-              </div>
+    </div>*/}
             </div>
         </div>
     )
