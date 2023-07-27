@@ -35,8 +35,8 @@ export const getStarted = [
 export const GetStarted = () => {
   const {Subscribe, fetchedNews } = useContext(Context);
   const allNews  = [ ...fetchedNews ];
-  const newsStorage = collection(db, 'news');
-  useEffect(() => {
+  //const newsStorage = collection(db, 'news');
+  /*useEffect(() => {
     const getNews = async () => {
       try {
         const newsData = await getDocs(newsStorage);
@@ -46,7 +46,7 @@ export const GetStarted = () => {
       }
     }
     getNews();
-  }, [])
+  }, [])*/
 
     return(
       
