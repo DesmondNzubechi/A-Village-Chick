@@ -8,8 +8,13 @@ import { BlogContent } from "../../Pages/Blog/post";
 export const FullNewsDetail = () => {
   
   const {article /*fullNews,setFullNews*/ , readMoreClicked} = useContext(Context);
+
+  useEffect(() => {
+    localStorage.setItem('article', JSON.stringify(article))
+  }, [])
  console.log(article)
     return(
+       // !article &&
         <div className="py-[200px] grid gap-[50px]  md:grid-cols-3 font-poppins px-[40px] ">
             <div className="md:col-span-2">
                  <div className="flex flex-col gap-5 ">

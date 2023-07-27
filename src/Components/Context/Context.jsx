@@ -2,12 +2,13 @@ import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, getDocs, collection } from "firebase/firestore";
 
 export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
+   const [fetchedNews, setFetchedNews] = useState([]);
    const [spin, setSpin] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
     const [loginInputs, setLoginInputs] = useState({
@@ -29,6 +30,20 @@ export const NewsContext = (props) => {
         signup: false,
         account: false,
     })
+
+    //FETCH NEWS FROM DATABASE
+    const newsStorage = collection(db, 'news');
+    useEffect(() => {
+      const getNews = async () => {
+        try {
+          const newsData = await getDocs(newsStorage);
+          setFetchedNews(newsData.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        } catch (error) {
+          alert(error)
+        }
+      }
+      getNews();
+    }, [])
     //console.log(fullNews)
     const [subscriptionDetails, setSubscriptionDetails] = useState(JSON.parse(localStorage.getItem('subscriptionDetails')) || {})
    /* const [newsHeadline, setNewsHeadline] = useState(localStorage.getItem('newsHeadline') || '')*/
@@ -37,9 +52,11 @@ export const NewsContext = (props) => {
         setArticle(post)
     };
     const Subscribe = (sub) => {
-      setSubscriptionDetails(sub);
+     setSubscriptionDetails(sub);
+    // setArticle({...sub})
     }
 
+    console.log(article)
  const [signedInUser, setSignedInUser] = useState({});
 ///LODIN USER
     const SignIn = async () => {
@@ -117,7 +134,7 @@ export const NewsContext = (props) => {
    }, [subscriptionDetails, article, account, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, SignUserOut,  signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )

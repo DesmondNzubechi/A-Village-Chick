@@ -32,13 +32,13 @@ function App() {
     <ScrollToTop/>
     <Routes>
       <Route path='/' element={<LandingPage/>} />
-      <Route path='/blog' element={<Blog/>} />
+     {/* <Route path='/blog' element={<Blog/>} />*/}
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
-      <Route path='/get started' element={<GetStarted/>} />
+      <Route path='/blog' element={<GetStarted/>} />
       <Route path='/post-news' element={<PostNews/>} />
-      <Route path={`/news/${article.headline}`} element={<FullNewsDetail/>} />
-      <Route path={`/subscribe/${subscriptionDetails.getStartedHeading}`} element={<Subscribe/>} />
+      <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
+      <Route path={`/blog/${subscriptionDetails.headline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>
     </BrowserRouter>

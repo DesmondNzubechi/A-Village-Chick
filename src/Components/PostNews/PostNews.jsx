@@ -6,12 +6,21 @@ import ReactQuill from "react-quill";
 import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 export const PostNews = () => {
 
-  const [contents, setContents] = useState('');
+  //const [contents, setContents] = useState('');
 //IMAGE INFO
 const [imgInfo, setImgInfo] = useState({
   imgFile: [],
   imgName: '',
 })
+
+const currentDate = new Date();
+    const options = {
+        year: 'numeric',
+        month: 'long', // 'short' for abbreviated name, 'long' for full name
+        day: 'numeric',
+        weekday: 'long', // 'short' for abbreviated name, 'long' for full name
+      };
+      const fullDate = currentDate.toLocaleString(undefined, options);
 
   ///NEWS CONTENTS
   const [newsContents, setNewsContents] = useState({
@@ -44,13 +53,21 @@ useEffect(() => {
 
 
   const postNews = async () => {
+
+    if (newsContents.newsImg.length === 0) {
+      const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
+      if (!shouldProceed) {
+        return; // Function will stop if user clicks 'No'
+      }
+    }
       const newsRef = collection(db, 'news');
       try {
          await addDoc(newsRef, {
           newsImg: newsContents.newsImg,
-          newsHeadline: newsHeadline.newsImg,
-          newsOverview: newsOverview.newsImg,
-          fullNews:  fullNews.newsImg,
+          newsHeadline: newsContents.newsHeadline,
+          newsOverview: newsContents.newsOverview,
+          fullNews:  newsContents.fullNews,
+          date: fullDate,
          })
           alert('su');
       } catch (error) {
@@ -66,11 +83,11 @@ useEffect(() => {
               <div className="flex flex-col gap-5 md:flex-row  ">
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news headline :</label>
-                    <input type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    <input onChange={(e) => setNewsContents({...newsContents, newsHeadline: e.target.value })} type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">News overview:</label>
-                    <input type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
+                    <input onChange={(e) => setNewsContents({...newsContents, newsOverview: e.target.value })} type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news image:</label>
@@ -82,7 +99,7 @@ useEffect(() => {
                     }} accept="image/*" type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
                     <button onClick={ uploadNewsImg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">uppload image</button>
                 </div>
-              { /* <div className="flex flex-col gap-0 ">
+              {/* <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">Date :</label>
                     <input type="date" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
     </div>*/}
@@ -99,13 +116,14 @@ useEffect(() => {
             container: [
               ['bold', 'italic', 'underline', 'strike'], // Basic formatting button
               [{ 'font': [] }],
-             [{ 'align': [] }],
+              [{ 'align': [] }],
               [{ 'color': [] }, { 'background': [] }],    
               ['blockquote', 'code-block'],
               [{ 'size': ['small', false, 'large', 'huge'] }],  
               [{ header: 1 }, { header: 2 }], // Header formatting buttons
               [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
-             ['link', /*'image', 'video'*/], // Link and media buttons
+             ['link',  /*'image', 'video'*/], // Link and media buttons
+             ['uppercase', 'capitalize', 'lowercase'] ,
             ], 
             },
           }}

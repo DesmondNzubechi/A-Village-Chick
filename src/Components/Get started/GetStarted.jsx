@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import backgroundImage from '../../assets/images/session.avif'
 import imgS from '../../assets/images/heroImg.avif'
 import { Link } from "react-router-dom";
 import { Context } from "../Context/Context";
 import { useContext } from "react";
-const getStarted = [ 
-  {
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Config/Firebase";
+import { data } from "autoprefixer";
+import { BlogContent } from "../../Pages/Blog/post";
+
+
+export const getStarted = [ 
+  ...BlogContent,
+  /*{
     getStartedPic: backgroundImage,
     getStartedHeading: ' selection of  that will transform',
     getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
@@ -22,11 +29,24 @@ const getStarted = [
     getStartedHeading: 'curated  products that will transform',
     getStartedFullDescription: 'Welcome to HomeDecor , your one-stop shop for stylish furniture and home decor. We offer a carefully curated selection of high-quality products that will transform your house into a beautiful and inviting home. At HomeDecor, we understand the importance of creating a space that truly reflects your personal style.',
     getStartedAmount: '$90.97 every month',
-  },
+  },*/
 ]
 
 export const GetStarted = () => {
-  const {Subscribe, } = useContext(Context);
+  const {Subscribe, fetchedNews } = useContext(Context);
+  const allNews  = [ ...fetchedNews ];
+  const newsStorage = collection(db, 'news');
+  useEffect(() => {
+    const getNews = async () => {
+      try {
+        const newsData = await getDocs(newsStorage);
+        setFetchedNews(newsData.docs.map((doc) => ({...doc.data(), id: doc.id})));
+      } catch (error) {
+        alert(error)
+      }
+    }
+    getNews();
+  }, [])
 
     return(
       
@@ -49,11 +69,13 @@ export const GetStarted = () => {
         </div>
        <div className="grid lg:grid-cols-3 gap-[50px] md:grid-cols-2 grid-cols-1 ">
         {
-         getStarted.map(get => {
-          return (<div><Link key={get.getStartedHeading} to={`/Subscribe/${get?.getStartedHeading}`} onClick={() => Subscribe(get)} className="flex font-poppins flex-col gap-2">
-            <img className="rounded  " src={get.getStartedPic} alt="" />
-            <h1 className="font-bold text-[15px] md:text-[17px] capitalize text-center">{get.getStartedHeading}</h1>
-            <p className="text-center text-[15px] md:text-[17px] "> {get.getStartedAmount} </p>
+        allNews.map(get => {
+          return (<div><Link key={get.getStartedHeading} to={`/blog/${get?.headline}`} onClick={() => Subscribe(get)} className="flex font-poppins items-start flex-col h-full gap-5">
+            <img className="rounded  max-w-[400px] h-full " src={get.newsImg} alt="" />
+            <p className="text-center text-[15px] md:text-[17px] "> {get.date} </p>
+            <h1 className="font-bold text-[15px] md:text-[17px] capitalize ">{get.headline}</h1>
+            <p className=" text-[15px] md:text-[17px] ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
+            <button className="text-[20px] font-poppins bg-slate-900 p-1 text-slate-50 rounded-[1px] hover:bg-slate-800">Readmore</button>
           </Link>
           </div>)
          })
