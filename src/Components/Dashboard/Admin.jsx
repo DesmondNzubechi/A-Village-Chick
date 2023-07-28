@@ -17,8 +17,20 @@ import {MdPictureAsPdf, MdReviews} from 'react-icons/md';
 import { DashboardView } from "../Dasshboard view/Dashboardview";
 import { PostNews } from "../PostNews/PostNews";
 import { AddReview } from "../Reviews/AddReview";
+import { AddQuotes } from "../Quote/AddQuotes";
+import { Users } from "./Users/Users";
+import { AllNews } from "./AllNews/Allnews";
+import { EditNews } from "./EditNews/EditNews";
+import { useContext } from "react";
+import { Context } from "../Context/Context";
+
+
+
+
+
+
 export const Admindashboard = () => {
-  const [displaying, setDisplaying] = useState(<DashboardView/>);
+  const {displaying, setDisplaying} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
     const [sideLinks, setSideLinks] = useState({
         nextIc: true,
@@ -62,10 +74,12 @@ const [logoutB, setLogoutB] = useState(false);
                 <ul className="flex flex-col px-[5px] pt-[100px] gap-[30px]">
                     <li ><Link onClick={() => setDisplaying(<DashboardView/>)}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className="text-slate-600 text-[17px] md:text-[30px] " />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins font-semibold   `}>Dashboard</span> </Link></li>
                     <li><Link onClick={() => setDisplaying(<PostNews/>)} className="flex-row flex items-center gap-x-2  "><BsNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Post News</span> </Link></li>
-                    <li><Link onClick={() => setDisplaying(<PostNews/>)} className="flex-row flex items-center gap-x-2  "><FaNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>All News</span> </Link></li>
+                    <li><Link onClick={() => {
+                        setDisplaying(<AllNews/>);
+                        }} className="flex-row flex items-center gap-x-2  "><FaNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>All News</span> </Link></li>
                     
                     <li><Link onClick={() => setDisplaying(<AddReview/>)}  className="flex-row flex items-center gap-x-2  "><MdReviews className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Reviews</span>  </Link></li>
-                    <li><Link onClick={() => setDisplaying(<AddReview/>)}  className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Quotes</span>  </Link></li>
+                    <li><Link onClick={() => setDisplaying(<AddQuotes/>)}  className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Quotes</span>  </Link></li>
                     <li><Link onClick={() => setDisplaying(<Users/>)}  className="flex-row flex items-center gap-x-2  "><FaUsers className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Users</span> </Link></li>
                     <li><Link onClick={() => setDisplaying(<UserProfile/>)} className="flex-row flex items-center gap-x-2  "><FaUserCircle className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Profile</span> </Link></li>
                 </ul>

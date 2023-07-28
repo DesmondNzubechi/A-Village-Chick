@@ -4,6 +4,7 @@ import {MdPictureAsPdf} from 'react-icons/md';
 import bgImg from '../../assets/images/session.avif';
 import {FaUsers} from 'react-icons/fa';
 import { Users } from "../Dashboard/Users/Users";
+import { Link } from "react-router-dom";
 export const DashboardView = () => {
     return( 
         <div className="flex overflow-x-hidden flex-col gap-[50px]">
@@ -38,6 +39,22 @@ export const DashboardView = () => {
                 </div>
              </div>
              <Users/>
+{/*
+             <div className="flex flex-row font-poppins justify-center items-center">
+              <div className="flex flex-col p-3 shadow-xl gap-3">
+               <div className="max-w-[300px]"><img src={bgImg} alt="" className="rounded" /></div>
+               <p>Friday, July 28, 2023</p>
+               <div>
+               <h1 className="text-start max-w-[300px] font-semibold uppercase w-full">Men will always be men no matter what happens</h1>
+               </div>
+               <div className="flex flex-row gap-5 justify-start ">
+                <Link className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-slate-700 bg-gray-100 ">Edit </Link>
+                <Link className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-green-500 bg-green-100 ">View</Link>
+                <Link className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-red-500 bg-red-100 ">Delete</Link>
+               </div>
+  </div>
+             </div>
+  */}
         </div>
     )
 }

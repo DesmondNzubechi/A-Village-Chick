@@ -3,12 +3,14 @@ import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
-
+import { DashboardView } from "../Dasshboard view/Dashboardview";
 export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
    const [fetchedNews, setFetchedNews] = useState([]);
+   const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
+   const [displaying, setDisplaying] = useState(<DashboardView/>);
    const [spin, setSpin] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
     const [loginInputs, setLoginInputs] = useState({
@@ -127,6 +129,7 @@ export const NewsContext = (props) => {
       localStorage.setItem('article', JSON.stringify(article));
        localStorage.setItem('subscriptionDetails', JSON.stringify(subscriptionDetails));
        localStorage.setItem('account', JSON.stringify(account));
+       localStorage.setItem('editNews', JSON.stringify(editNews))
       // localStorage.setItem('newsHeadline', newsHeadline)
       onAuthStateChanged(auth, (currentUser) => {
         setSignedInUser(currentUser)
@@ -134,7 +137,7 @@ export const NewsContext = (props) => {
    }, [subscriptionDetails, article, account, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )
