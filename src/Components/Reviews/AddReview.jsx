@@ -7,7 +7,7 @@ import { addDoc, collection } from "firebase/firestore";
 
 export const AddReview = () => {
     return(
-        <div className="py-[100px]   font-poppins flex justify-center items-center pt-[160px] ">   
+        <div className="py-[20px] px-[40px]  font-poppins flex justify-center items-center pt-[20px] ">   
         <div>     
         <div>
             <h1 className="text-center mb-[40px] font-bold uppercase">Add Review</h1>

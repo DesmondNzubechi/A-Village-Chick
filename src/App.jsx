@@ -19,6 +19,7 @@ import { Login } from './Components/Account/Login'
 import { PostNews } from './Components/PostNews/PostNews'
 import { AddReview } from './Components/Reviews/AddReview'
 import {UserProfile} from './Components/Account/Profile'
+import { Admindashboard } from './Components/Dashboard/Admin'
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -38,6 +39,7 @@ function App() {
       <Route path='/blog' element={<GetStarted/>} />
       <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
+      <Route path='/admin' element={<Admindashboard/>} />
       <Route path={`/blog/${subscriptionDetails.headline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>

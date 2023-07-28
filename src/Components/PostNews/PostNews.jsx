@@ -78,16 +78,16 @@ useEffect(() => {
 
 
     return(
-        <div on className="py-[100px] pt-[160px] px-[40px] font-poppins justify-center overflow-x-hidden flex flex-row ">
+        <div on className="py-[20px] shadow rounded-[30px] m-[20px] px-[40px] font-poppins justify-center bg-gray-50 overflow-x-hidden flex flex-row ">
             <div className="grid grid-cols-1 gap-5">
               <div className="flex flex-col gap-5 md:flex-row  ">
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news headline :</label>
-                    <input onChange={(e) => setNewsContents({...newsContents, newsHeadline: e.target.value })} type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    <input onChange={(e) => setNewsContents({...newsContents, newsHeadline: e.target.value })} type="text" className="p-4 bg-transparent capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">News overview:</label>
-                    <input onChange={(e) => setNewsContents({...newsContents, newsOverview: e.target.value })} type="text" className="p-4 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
+                    <input onChange={(e) => setNewsContents({...newsContents, newsOverview: e.target.value })} type="text" className="p-4 bg-transparent capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news image:</label>
@@ -97,7 +97,7 @@ useEffect(() => {
                         imgName: e.target.files[0].name,
                       });
                     }} accept="image/*" type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
-                    <button onClick={ uploadNewsImg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">uppload image</button>
+                    <button onClick={ uploadNewsImg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">upload image</button>
                 </div>
               {/* <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">Date :</label>
@@ -107,7 +107,7 @@ useEffect(() => {
               <div className="flex flex-col gap-0 ">
                     <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news content :</label>
               <ReactQuill
-       className="md:max-w-[700px] max-w-[500px] min-h-[40vh] lg:max-w-[1100px] "
+       className="md:max-w-[700px] rounded-[30px] max-w-[500px] min-h-[30vh] lg:max-w-[1100px] "
         onChange={(e) => {
           setNewsContents({...newsContents, fullNews: e})
         }}
@@ -129,7 +129,7 @@ useEffect(() => {
           }}
         />
         </div>
-         <button onClick={() => postNews()} className="bg-slate-900 w-fit  my-[50px] shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Upload News</button>
+         <button onClick={() => postNews()} className="bg-slate-900 w-fit  mt-[100px] md:mt-[50px] shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Upload News</button>
      
              {/* <div className="flex gap-0 flex-col">
                 <label className="uppercase font-[600] text-[20px] "  htmlFor="full content">Full content</label>
