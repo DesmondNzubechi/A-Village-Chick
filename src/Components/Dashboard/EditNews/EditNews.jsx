@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { db, storage } from "../../Config/Firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 import { Context } from "../../Context/Context";
 import { useContext } from "react";
 import 'react-quill/dist/quill.snow.css';
-
+import { doc } from "firebase/firestore";
 export const EditNews = () => {
 
   //const [contents, setContents] = useState('');
@@ -59,7 +59,7 @@ useEffect(() => {
 }, [newsContents])
 
 
-  const postNews = async () => {
+  const updateNews = async (newsId) => {
 
     if (newsContents.newsImg.length === 0) {
       const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
@@ -67,9 +67,9 @@ useEffect(() => {
         return; // Function will stop if user clicks 'No'
       }
     }
-      const newsRef = collection(db, 'news');
+      const newsRef = doc(db, 'news', newsId);
       try {
-         await addDoc(newsRef, {
+         await updateDoc(newsRef, {
           newsImg: editNews.newsImg,
           newsHeadline: editNews.newsHeadline,
           newsOverview: editNews.newsOverview,
@@ -131,14 +131,14 @@ useEffect(() => {
               [{ 'size': ['small', false, 'large', 'huge'] }],  
               [{ header: 1 }, { header: 2 }], // Header formatting buttons
               [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
-             ['link',  /*'image', 'video'*/], // Link and media buttons
+             ['link',  'image', 'video'], // Link and media buttons
              ['uppercase', 'capitalize', 'lowercase'] ,
             ], 
             },
           }}
         />
         </div>
-         <button onClick={() => postNews()} className="bg-slate-900 w-fit  mt-[100px] md:mt-[50px] shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Update News</button>
+         <button onClick={() => updateNews(editNews.id)} className="bg-slate-900 w-fit  mt-[100px] md:mt-[50px] shadow py-2 px-5 rounded text-slate-50 text-[20px] hover:bg-slate-700 ">Update News</button>
      
              {/* <div className="flex gap-0 flex-col">
                 <label className="uppercase font-[600] text-[20px] "  htmlFor="full content">Full content</label>

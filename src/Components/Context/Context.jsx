@@ -4,6 +4,11 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { useNavigate } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
 import { DashboardView } from "../Dasshboard view/Dashboardview";
+import { EditNews } from "../Dashboard/EditNews/EditNews";
+import { PostNews } from "../PostNews/PostNews";
+import { AllNews } from "../Dashboard/AllNews/Allnews";
+import { Users } from "../Dashboard/Users/Users";
+
 export const Context = createContext();
 
 export const NewsContext = (props) => {
@@ -11,7 +16,15 @@ export const NewsContext = (props) => {
    const [allUser, setAllUser] = useState([]);
    const [fetchedNews, setFetchedNews] = useState([]);
    const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
-   const [displaying, setDisplaying] = useState(<DashboardView/>);
+   const [displaying, setDisplaying] = useState(JSON.parse(localStorage.getItem('displaying')) || {
+    dashboardView: true,
+    editNews: false,
+    postNews: false,
+    allNews: false,
+    users: false,
+    addReview: false,
+    addQuote: false,
+   });
    const [spin, setSpin] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
     const [loginInputs, setLoginInputs] = useState({
@@ -142,6 +155,7 @@ export const NewsContext = (props) => {
         }
         getUser();
       /* localStorage.setItem('fullNews', JSON.stringify(fullNews));*/
+      localStorage.setItem('displaying', JSON.stringify(displaying))
       localStorage.setItem('article', JSON.stringify(article));
        localStorage.setItem('subscriptionDetails', JSON.stringify(subscriptionDetails));
        localStorage.setItem('account', JSON.stringify(account));
@@ -150,7 +164,7 @@ export const NewsContext = (props) => {
       onAuthStateChanged(auth, (currentUser) => {
         setSignedInUser(currentUser)
       })
-   }, [subscriptionDetails, article, account, signedInUser])
+   }, [subscriptionDetails, article, account, displaying, signedInUser])
 
     return(
     <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>

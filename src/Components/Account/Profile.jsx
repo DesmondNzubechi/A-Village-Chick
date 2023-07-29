@@ -5,6 +5,8 @@ import { Context } from "../Context/Context";
 import {BiArrowBack} from 'react-icons/bi';
 import { db } from "../Config/Firebase";
 import { collection, doc,  getDocs } from "firebase/firestore";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../Config/Firebase";
 import { data } from "autoprefixer";
 export const UserProfile = () => {
     const { account, setAccount, signedInUser , SignUserOut} = useContext(Context);
@@ -25,13 +27,25 @@ export const UserProfile = () => {
       };
       const fullDate = currentDate.toLocaleString(undefined, options);
 
+      const resetPassword = async () => {
+        const confirmResetPassword = confirm('Are You Sure You wan To Reset Your Password?');
+        if (!confirmResetPassword) {
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, signedInUser.email);
+            alert('Check Your Email For Reset Password Link');
+        } catch (error) {
+            alert(error)
+        }
+      }
 useEffect(() => {
     const getUser = async () => {
     try {
         const user = await getDocs(userStorage)
         setAllUser(user.docs.map((doc) => ({...doc.data(), id: doc.id})));
         const filterUser = allUser.filter(user => {
-            return user.email === signedInUser?.email
+            return user.email.toLocaleLowerCase() === signedInUser?.email.toLocaleLowerCase()
         });
         setUserInfo(filterUser);
     } catch (error) {
@@ -74,12 +88,16 @@ useEffect(() => {
                  <div className="flex flex-row gap-3">
                    <span className=" text-[18px] md:text-[25px]">Email:</span>  <p className=" text-[18px] md:text-[25px]">Nzubechukwu@gmail.com</p>
                 </div>*/}
+                <div className="flex flex-row gap-4">
                 <button onClick={() => {
                     setProfile({
                         mainPro:false,
                         editPro: true,
                     })
-                }} className="bg-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[20px] rounded ">Edit Profile</button>
+                }} className="bg-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Edit Profile</button>
+                 <button onClick={resetPassword} className="bg-slate-300 text-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Reset password</button>
+                </div>
+
                 </div>
 }
 {profile.editPro &&

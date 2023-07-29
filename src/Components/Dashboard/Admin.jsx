@@ -72,23 +72,79 @@ const [logoutB, setLogoutB] = useState(false);
              <div className="bg-white z-[100] shadow-2xl rounded-[15px]  bottom-0 p-1 md:p-5 fixed top-[70px] left-0 h-[100%]">
              <div>
                 <ul className="flex flex-col px-[5px] pt-[100px] gap-[30px]">
-                    <li ><Link onClick={() => setDisplaying(<DashboardView/>)}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className="text-slate-600 text-[17px] md:text-[30px] " />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins font-semibold   `}>Dashboard</span> </Link></li>
-                    <li><Link onClick={() => setDisplaying(<PostNews/>)} className="flex-row flex items-center gap-x-2  "><BsNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Post News</span> </Link></li>
-                    <li><Link onClick={() => {
-                        setDisplaying(<AllNews/>);
-                        }} className="flex-row flex items-center gap-x-2  "><FaNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>All News</span> </Link></li>
+                    <li ><Link onClick={() => setDisplaying({
+                        dashboardView: true,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                    })}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className="text-slate-600 text-[17px] md:text-[30px] " />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins font-semibold   `}>Dashboard</span> </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: true,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                    })}className="flex-row flex items-center gap-x-2  "><BsNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Post News</span> </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: true,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                    })} className="flex-row flex items-center gap-x-2  "><FaNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>All News</span> </Link></li>
                     
-                    <li><Link onClick={() => setDisplaying(<AddReview/>)}  className="flex-row flex items-center gap-x-2  "><MdReviews className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Reviews</span>  </Link></li>
-                    <li><Link onClick={() => setDisplaying(<AddQuotes/>)}  className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Quotes</span>  </Link></li>
-                    <li><Link onClick={() => setDisplaying(<Users/>)}  className="flex-row flex items-center gap-x-2  "><FaUsers className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Users</span> </Link></li>
-                    <li><Link onClick={() => setDisplaying(<UserProfile/>)} className="flex-row flex items-center gap-x-2  "><FaUserCircle className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Profile</span> </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: true,
+                        addQuote: false,
+                    })}  className="flex-row flex items-center gap-x-2  "><MdReviews className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Reviews</span>  </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                         dashboardView: false,
+                         editNews: false,
+                         postNews: false,
+                         allNews: false,
+                         users: false,
+                         addReview: false,
+                         addQuote: true,
+                    })} className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Quotes</span>  </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: true,
+                        addReview: false,
+                        addQuote: false,
+                         })} className="flex-row flex items-center gap-x-2  "><FaUsers className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Users</span> </Link></li>
+                    <li><Link className="flex-row flex items-center gap-x-2  "><FaUserCircle className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Profile</span> </Link></li>
                 </ul>
             </div>
             </div>
             
             <div className="py-[10px] relative flex justify-center  ml-[30px] ">
               <div>
-              {displaying}
+              
+              {  displaying.dashboardView && <DashboardView/>}
+             {   displaying.editNews && <EditNews/>}
+               { displaying.postNews && <PostNews/>}
+               { displaying.allNews && <AllNews/>}
+               {  displaying.users && <Users/>}
+             {   displaying.addReview && <AddReview/>}
+               { displaying.addQuote && <AddQuotes/>}
+               {/* displaying.allNews && <AllNews/>*/}
+
+              
               </div>
             </div>
             </div>

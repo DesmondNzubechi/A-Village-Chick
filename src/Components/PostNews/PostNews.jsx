@@ -4,15 +4,16 @@ import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
-export const PostNews = () => {
 
+
+export const PostNews = () => {
   //const [contents, setContents] = useState('');
 //IMAGE INFO
 const [imgInfo, setImgInfo] = useState({
   imgFile: [],
   imgName: '',
 })
-
+const [fileType, setFileType] = useState('image');
 const currentDate = new Date();
     const options = {
         year: 'numeric',
@@ -25,11 +26,13 @@ const currentDate = new Date();
   ///NEWS CONTENTS
   const [newsContents, setNewsContents] = useState({
     newsImg: [],
+    newsVideo: [],
     newsHeadline: '',
     newsOverview: '',
     fullNews: ''
   })
   console.log(newsContents)
+
   const uploadNewsImg = async () => {
    if (imgInfo.imgName === '') {
     alert('select img first');
@@ -40,7 +43,12 @@ const currentDate = new Date();
       const imgRef = ref(folderRef, imgInfo.imgName)
     const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
     const url = await getDownloadURL(imgUpload.ref);
-    setNewsContents({...newsContents, newsImg: [...newsContents.newsImg, url]});
+    if (fileType === 'video') {
+      setNewsContents({...newsContents, newsVideo: [...newsContents.newsVideo, url]});
+    } else {
+      setNewsContents({...newsContents, newsImg: [...newsContents.newsImg, url]});
+    }
+
     alert('sup')
     } catch (error) {
       alert(error)
@@ -62,13 +70,23 @@ useEffect(() => {
     }
       const newsRef = collection(db, 'news');
       try {
-         await addDoc(newsRef, {
-          newsImg: newsContents.newsImg,
-          newsHeadline: newsContents.newsHeadline,
-          newsOverview: newsContents.newsOverview,
-          fullNews:  newsContents.fullNews,
-          date: fullDate,
-         })
+        if (fileType === 'video') {
+          await addDoc(newsRef, {
+            newsVideo: newsContents.newsVideo,
+            newsHeadline: newsContents.newsHeadline,
+            newsOverview: newsContents.newsOverview,
+            fullNews:  newsContents.fullNews,
+            date: fullDate,
+           })
+        } else {
+          await addDoc(newsRef, {
+            newsImg: newsContents.newsImg,
+            newsHeadline: newsContents.newsHeadline,
+            newsOverview: newsContents.newsOverview,
+            fullNews:  newsContents.fullNews,
+            date: fullDate,
+           })
+        }
           alert('su');
       } catch (error) {
           console.log(error);
@@ -90,13 +108,17 @@ useEffect(() => {
                     <input onChange={(e) => setNewsContents({...newsContents, newsOverview: e.target.value })} type="text" className="p-4 bg-transparent capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
-                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news image:</label>
+                   {/* <label className="capitalize font-[600] text-[17px] " htmlFor="headline">image/Video:</label>*/}
+                    <select onChange={(e) => setFileType(e.target.value)} className="rounded outline-0 p-1" name="" id="">
+                      <option value="image">News Image</option>
+                      <option value="video">News Video</option>
+                    </select>
                     <input onChange={(e) => {
                       setImgInfo({
                         imgFile: e.target.files[0],
                         imgName: e.target.files[0].name,
                       });
-                    }} accept="image/*" type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
+                    }} accept={`${fileType}/*`} type="file" className="p-4 file:bg-transparent file:border-0 capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News headline" id="" />
                     <button onClick={ uploadNewsImg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">upload image</button>
                 </div>
               {/* <div className="flex flex-col gap-0 ">
@@ -122,7 +144,7 @@ useEffect(() => {
               [{ 'size': ['small', false, 'large', 'huge'] }],  
               [{ header: 1 }, { header: 2 }], // Header formatting buttons
               [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
-             ['link',  /*'image', 'video'*/], // Link and media buttons
+             ['link',  'image', 'video'], // Link and media buttons
              ['uppercase', 'capitalize', 'lowercase'] ,
             ], 
             },
