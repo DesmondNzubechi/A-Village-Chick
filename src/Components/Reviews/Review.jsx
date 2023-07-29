@@ -36,9 +36,9 @@ export const Reviews = () => {
         const reviewData = await getDocs(reviewStorage);
         const allReview = reviewData.docs.map((doc) => ({...doc.data()}))
         setReview(allReview);
-        alert('succ')
+       
       } catch (error) {
-        alert(error)
+       
       }
     } 
     getReviews()
