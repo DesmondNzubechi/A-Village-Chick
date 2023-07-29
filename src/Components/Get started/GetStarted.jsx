@@ -73,12 +73,12 @@ export const GetStarted = () => {
           return (<div><Link key={get.getStartedHeading} to={`/blog/${get?.headline}`} onClick={() => Subscribe(get)} className="flex font-poppins items-start flex-col h-full gap-5">
            
             
-            {news?.newsVideo && <video className="rounded  max-w-[400px] h-full " controls>
-    <source  src={news.newsVideo} type="video/mp4" />
+            {get?.newsVideo && <video className="rounded  max-w-[400px] h-full " controls>
+    <source  src={get.newsVideo} type="video/mp4" />
                         </video>}
                  
                 
-                  {news?.newsImg  &&  <img src={news.newsImg} alt="" className="rounded  max-w-[400px] h-full " />}
+                  {get?.newsImg  &&  <img src={get.newsImg} alt="" className="rounded  max-w-[400px] h-full " />}
             <p className="text-center text-[15px] md:text-[17px] "> {get.date} </p>
             <h1 className="font-bold text-[15px] md:text-[17px] capitalize ">{get.headline}</h1>
             <p className=" text-[15px] md:text-[17px] ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
