@@ -8,6 +8,7 @@ export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
+   const [allUser, setAllUser] = useState([]);
    const [fetchedNews, setFetchedNews] = useState([]);
    const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
    const [displaying, setDisplaying] = useState(<DashboardView/>);
@@ -125,6 +126,21 @@ export const NewsContext = (props) => {
 
 
     useEffect(() => {
+      //FETCHING USERS FROM DATABASE
+      const userStorage = collection(db, 'users');
+      const getUser = async () => {
+        try {
+            const user = await getDocs(userStorage)
+            setAllUser(user.docs.map((doc) => ({...doc.data(), id: doc.id})));
+           // const filterUser = allUser.filter(user => {
+             //   return user.email === signedInUser?.email
+            //});
+           // setUserInfo(filterUser);
+        } catch (error) {
+            console.log(error);
+        }
+        }
+        getUser();
       /* localStorage.setItem('fullNews', JSON.stringify(fullNews));*/
       localStorage.setItem('article', JSON.stringify(article));
        localStorage.setItem('subscriptionDetails', JSON.stringify(subscriptionDetails));
@@ -137,7 +153,7 @@ export const NewsContext = (props) => {
    }, [subscriptionDetails, article, account, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )

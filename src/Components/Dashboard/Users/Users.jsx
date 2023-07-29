@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { Context } from "../../Context/Context";
+import { useContext } from "react";
 
 const usersInfo = [
     {
@@ -44,6 +45,7 @@ const usersInfo = [
 export const Users = () => {
 
      const [searchUser, setSearchedUser] = useState([]);
+     const {allUser} = useContext(Context);
     console.log(searchUser);
 
     return(
@@ -54,8 +56,8 @@ export const Users = () => {
                 <div className="flex items-center w-full justify-center">
                     <input onChange={(e) => {
                         const value = e.target.value;
-                        const findUser = usersInfo.filter(user => {
-                            return  user.Firstname.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||  user.Lastname.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||  user.Username.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || user.email.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || user.date.toLocaleLowerCase().includes(value.toLocaleLowerCase());
+                        const findUser = allUser.filter(user => {
+                            return  user.firstname.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||  user.lastname.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||  user.username.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || user.email.toLocaleLowerCase().includes(value.toLocaleLowerCase()) /*|| user.date.toLocaleLowerCase().includes(value.toLocaleLowerCase());*/
                         });
                         setSearchedUser(findUser);
                     }} type="text" placeholder="Search for a user" className=" outline-0 w-full p-[20px] rounded  " name="" id="" />
@@ -75,10 +77,10 @@ export const Users = () => {
          { 
 searchUser.length !== 0 &&     searchUser.map(user => {
     return <tr className="">
-                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px] text-slate-500 py-1 px-2 ">{user.Firstname} {user.Lastname}
+                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px] text-slate-500 py-1 px-2 ">{user.firstname} {user.lastname}
 
                        </td>
-                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.Username}</td>
+                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.username}</td>
                         <td class=" bg-white rounded ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.date} 
                         </td>
                         <td class=" bg-white rounded ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.email} 
@@ -97,12 +99,12 @@ searchUser.length !== 0 &&     searchUser.map(user => {
 })
 }
 {
-           searchUser.length == 0 &&     usersInfo.map(user => {
+           searchUser.length == 0 &&     allUser.map(user => {
                     return <tr className="">
-                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px] text-slate-500 py-1 px-2 ">{user.Firstname} {user.Lastname}
+                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px] text-slate-500 py-1 px-2 ">{user.firstname} {user.lastname}
 
                        </td>
-                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.Username}</td>
+                        <td class=" bg-white rounded  ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.username}</td>
                         <td class=" bg-white rounded ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.date} 
                         </td>
                         <td class=" bg-white rounded ... text-[10px] md:text-[14px]  text-slate-500 py-1 px-2 ">{user.email} 

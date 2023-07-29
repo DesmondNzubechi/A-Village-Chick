@@ -30,7 +30,7 @@ import { Context } from "../Context/Context";
 
 
 export const Admindashboard = () => {
-  const {displaying, setDisplaying} = useContext(Context);
+  const {displaying, setDisplaying, allUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
     const [sideLinks, setSideLinks] = useState({
         nextIc: true,

@@ -5,7 +5,10 @@ import bgImg from '../../assets/images/session.avif';
 import {FaUsers} from 'react-icons/fa';
 import { Users } from "../Dashboard/Users/Users";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../Context/Context";
 export const DashboardView = () => {
+  const {allUser, fetchedNews} = useContext(Context);
     return( 
         <div className="flex overflow-x-hidden flex-col gap-[50px]">
             {/*<div>
@@ -23,13 +26,13 @@ export const DashboardView = () => {
                 <div className="text-center bg-gray-50  px-[50px] rounded py-[10px] flex flex-col items-center">
                     <FaUsers className=" text-[50px] "/>
                   <h1 className="uppercase font-bold ">Total Users</h1>
-                  <p className="text-[20px] font-semibold ">1</p>
+                  <p className="text-[20px] font-semibold ">{allUser.length}</p>
                 </div>
 
                 <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
                     <BsNewspaper className=" text-[50px] "/>
                   <h1 className="uppercase font-bold ">Total News</h1>
-                  <p className="text-[20px] font-semibold ">1</p>
+                  <p className="text-[20px] font-semibold ">{fetchedNews.length}</p>
                 </div>
 
                 <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">

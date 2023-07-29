@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../Context/Context";
 import { useContext } from "react";
-
+import {PulseLoader} from 'react-spinners';
 
 export const Login = () => {
     const {account, setAccount, spin, errorMessage, setSpin, signedInUser , loginInputs, setLoginInputs, SignIn} = useContext(Context)
