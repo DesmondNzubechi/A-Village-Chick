@@ -50,7 +50,7 @@ export const GetStarted = () => {
 
     return(
       
-      <>
+      <div className="overflow-x-hidden">
         <div  
         style={{ backgroundImage: `url(${backgroundImage})` }}
       className={`min-h-[70vh] font-poppins relative after:left-0 after:right-0 after:absolute after:top-0 after:h-full  bg-center flex items-center after:w-full after:bg-bgT pt-[50px]  px-[30px] bg-cover z-[1]  `}>
@@ -73,12 +73,12 @@ export const GetStarted = () => {
           return (<div><Link key={get.getStartedHeading} to={`/blog/${get?.headline}`} onClick={() => Subscribe(get)} className="flex font-poppins items-start flex-col h-full gap-5">
            
             
-            {get?.newsVideo && <video className="rounded  max-w-[400px] h-full " controls>
+            {get?.newsVideo && <video className="rounded  md:max-w-[400px] h-full " controls>
     <source  src={get.newsVideo} type="video/mp4" />
                         </video>}
                  
                 
-                  {get?.newsImg  &&  <img src={get.newsImg} alt="" className="rounded  max-w-[400px] h-full " />}
+                  {get?.newsImg  &&  <img src={get.newsImg} alt="" className="rounded  md:max-w-[400px] h-full " />}
             <p className="text-center text-[15px] md:text-[17px] "> {get.date} </p>
             <h1 className="font-bold text-[15px] md:text-[17px] capitalize ">{get.headline}</h1>
             <p className=" text-[15px] md:text-[17px] ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
@@ -89,6 +89,6 @@ export const GetStarted = () => {
         }
        </div>
       </div>
-    </>
+    </div>
     )
 }
