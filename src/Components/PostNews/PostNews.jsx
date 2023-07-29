@@ -4,7 +4,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
-
+import { serverTimestamp, Timestamp } from "firebase/firestore";
 
 export const PostNews = () => {
   //const [contents, setContents] = useState('');
@@ -77,6 +77,7 @@ useEffect(() => {
             newsOverview: newsContents.newsOverview,
             fullNews:  newsContents.fullNews,
             date: fullDate,
+            createTime: new Date().getTime(),
            })
         } else {
           await addDoc(newsRef, {
@@ -85,6 +86,7 @@ useEffect(() => {
             newsOverview: newsContents.newsOverview,
             fullNews:  newsContents.fullNews,
             date: fullDate,
+            createTime: new Date().getTime(),
            })
         }
           alert('su');

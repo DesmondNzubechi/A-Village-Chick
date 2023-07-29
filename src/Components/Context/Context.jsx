@@ -8,13 +8,13 @@ import { EditNews } from "../Dashboard/EditNews/EditNews";
 import { PostNews } from "../PostNews/PostNews";
 import { AllNews } from "../Dashboard/AllNews/Allnews";
 import { Users } from "../Dashboard/Users/Users";
-
 export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
    const [allUser, setAllUser] = useState([]);
    const [fetchedNews, setFetchedNews] = useState([]);
+   //const [Review, setReview] = useState([]);
    const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
    const [displaying, setDisplaying] = useState(JSON.parse(localStorage.getItem('displaying')) || {
     dashboardView: true,
@@ -49,17 +49,26 @@ export const NewsContext = (props) => {
 
     //FETCH NEWS FROM DATABASE
     const newsStorage = collection(db, 'news');
-    useEffect(() => {
-      const getNews = async () => {
-        try {
-          const newsData = await getDocs(newsStorage);
-          setFetchedNews(newsData.docs.map((doc) => ({...doc.data(), id: doc.id})));
-        } catch (error) {
-          alert(error)
-        }
-      }
-      getNews();
-    }, [])
+   
+useEffect(() => {
+  const getNews = async () => {
+    try {
+      const newsData = await getDocs(newsStorage);
+
+      // Sort the documents based on the createTime in descending order
+      const sortedNews = newsData.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id, createTime: doc.createTime })) // Include createTime in the mapped data
+        .sort((a, b) => b.createTime - a.createTime);
+
+      setFetchedNews(sortedNews);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  getNews();
+}, []);
+
     //console.log(fullNews)
     const [subscriptionDetails, setSubscriptionDetails] = useState(JSON.parse(localStorage.getItem('subscriptionDetails')) || {})
    /* const [newsHeadline, setNewsHeadline] = useState(localStorage.getItem('newsHeadline') || '')*/
@@ -141,19 +150,24 @@ export const NewsContext = (props) => {
     useEffect(() => {
       //FETCHING USERS FROM DATABASE
       const userStorage = collection(db, 'users');
+
       const getUser = async () => {
         try {
-            const user = await getDocs(userStorage)
-            setAllUser(user.docs.map((doc) => ({...doc.data(), id: doc.id})));
-           // const filterUser = allUser.filter(user => {
-             //   return user.email === signedInUser?.email
-            //});
-           // setUserInfo(filterUser);
+          const userSnapshot = await getDocs(userStorage);
+          
+          // Sort the documents based on the createTime in descending order
+          const sortedUsers = userSnapshot.docs
+            .map((doc) => ({ ...doc.data(), id: doc.id }))
+            .sort((a, b) => b.createTime - a.createTime);
+          
+          setAllUser(sortedUsers);
         } catch (error) {
-            console.log(error);
+          console.log(error);
         }
-        }
-        getUser();
+      };
+      
+      getUser();
+      
       /* localStorage.setItem('fullNews', JSON.stringify(fullNews));*/
       localStorage.setItem('displaying', JSON.stringify(displaying))
       localStorage.setItem('article', JSON.stringify(article));
@@ -167,7 +181,7 @@ export const NewsContext = (props) => {
    }, [subscriptionDetails, article, account, displaying, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,  signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )
