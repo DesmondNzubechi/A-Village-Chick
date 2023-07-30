@@ -37,7 +37,7 @@ const [logoutB, setLogoutB] = useState(false);
         prevIc: true
     });
     const [sideLinkState, setSideLinkState] = useState({
-        text: 'text-[10px]',
+        text: 'text-[8px]',
         display: 'flex-col'
     });
 
@@ -52,7 +52,7 @@ const [logoutB, setLogoutB] = useState(false);
           {/*  <img className="max-w-[50px]" src={logo} alt="" />*/}
           <div >
             {sideLinks.prevIc && <GrPrevious  onClick={() => {
-                  setSideLinkState({text: 'text-[10px]', display: 'flex-col'});
+                  setSideLinkState({text: 'text-[8px]', display: 'flex-col'});
                 setSideLinks({
                     nextIc: true,
                     prevIc: false
@@ -95,7 +95,7 @@ const [logoutB, setLogoutB] = useState(false);
 
              <div className="bg-white z-[100] shadow-2xl rounded-[15px]  bottom-0 p-1 md:p-5 fixed top-[70px] left-0 h-[100%]">
              <div>
-                <ul className="flex flex-col px-[5px] pt-[20px] gap-[20px]">
+                <ul className="flex flex-col px-[4px] pt-[20px] gap-[20px]">
                     <li ><Link onClick={() => setDisplaying({
                         dashboardView: true,
                         editNews: false,

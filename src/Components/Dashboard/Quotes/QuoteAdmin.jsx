@@ -26,7 +26,7 @@ export const AdminQuote = () => {
       }
     } 
     getReviews()
- }, [Review])
+ }, [])
     const [currentReview, setCurrentReview] = useState(0);
     console.log(Review
         )
