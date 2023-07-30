@@ -29,7 +29,7 @@ import { Pages } from "./pages/Pages";
 import { EditAbout } from "../../Pages/About/EditAbout";
 import { EditContact } from "../../Pages/Contact/EditContact";
 import { EditHome } from "../EditHome/EditHome";
-
+import { EditNewsPage } from "../EditNewsPage/EditNewsPage";
 
 export const Admindashboard = () => {
   const {displaying, setDisplaying, allUser} = useContext(Context);
@@ -316,7 +316,7 @@ const [logoutB, setLogoutB] = useState(false);
                { displaying.editAbout && <EditAbout/>}
                { displaying.editContact && <EditContact/>}
                { displaying.editHome && <EditHome/>}
-
+               {displaying.editNewsPage && <EditNewsPage/>}
               
               </div>
             </div>
