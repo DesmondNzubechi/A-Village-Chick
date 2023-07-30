@@ -8,8 +8,13 @@ import { Context } from "../../Context/Context";
 import { useContext } from "react";
 import 'react-quill/dist/quill.snow.css';
 import { doc } from "firebase/firestore";
-export const EditNews = () => {
+import { ClipLoader, FadeLoader, MoonLoader, RotateLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
+export const EditNews = () => {
+  const [spinC, setSpinC] = useState(false);
+  const [fileType, setFileType] = useState('image');
   //const [contents, setContents] = useState('');
 //IMAGE INFO
 const {displaying, setDisplaying, editNews, setEditNews} = useContext(Context);
@@ -30,6 +35,7 @@ const currentDate = new Date();
   ///NEWS CONTENTS
   const [newsContents, setNewsContents] = useState({
     newsImg: [],
+    newsVideo: [],
     newsHeadline: editNews.newsHeadline,
     newsOverview: '',
     fullNews: ''
@@ -38,22 +44,37 @@ const currentDate = new Date();
 
 
   const UpdateNewsImg = async () => {
-   if (imgInfo.imgName === '') {
-    alert('select img first');
-    return;
-   }
-    const folderRef = ref(storage,  'newsImg')
-    try {
-      const imgRef = ref(folderRef, imgInfo.imgName)
-    const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
-    const url = await getDownloadURL(imgUpload.ref);
-    setNewsContents({...newsContents, newsImg: [url]});
-    alert('sup')
-    } catch (error) {
-      alert(error)
+    if (imgInfo.imgName === '') {
+      if (fileType === 'image') {
+        const noti = () => toast('Please select image to be uploaded');
+        noti();
+      } else {
+        const noti = () => toast('Please select Video to be uploaded');
+        noti();
+      }
+     return;
     }
-
-  }
+     const folderRef = ref(storage,  'newsImg')
+     try {
+       const imgRef = ref(folderRef, imgInfo.imgName)
+     const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
+     const url = await getDownloadURL(imgUpload.ref);
+     if (fileType === 'video') {
+       setEditNews({...editNews, newsVideo: url});
+       const noti = () => toast('Video Successfully Updated');
+       noti();
+     } else {
+       setEditNews({...editNews, newsImg:  url});
+       const noti = () => toast('Image Successfully Updated');
+      noti();
+     }
+ 
+     } catch (error) {
+       const noti = () => toast(error);
+       noti()
+     }
+ 
+   }
 useEffect(() => {
   localStorage.setItem('newsContents', JSON.stringify(newsContents));
 }, [newsContents])
@@ -61,31 +82,58 @@ useEffect(() => {
 
   const updateNews = async (newsId) => {
 
-    if (newsContents.newsImg.length === 0) {
+    if (editNews.newsImg?.length === 0 ) {
       const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
       if (!shouldProceed) {
         return; // Function will stop if user clicks 'No'
       }
     }
+
+    if ( editNews.newsVideo?.length === 0) {
+      const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
+      if (!shouldProceed) {
+        return; // Function will stop if user clicks 'No'
+      }
+    }
+    setSpinC(true);
       const newsRef = doc(db, 'news', newsId);
       try {
-         await updateDoc(newsRef, {
-          newsImg: editNews.newsImg,
-          newsHeadline: editNews.newsHeadline,
-          newsOverview: editNews.newsOverview,
-          fullNews:  editNews.fullNews,
-          date: fullDate,
-         })
-          alert('su');
+        if (fileType === 'video') {
+          await updateDoc(newsRef, {
+            newsVideo: editNews.newsVideo,
+            newsHeadline: editNews.newsHeadline,
+            newsOverview: editNews.newsOverview,
+            fullNews:  editNews.fullNews,
+            date: fullDate,
+            createTime: new Date().getTime(),
+           })
+        } else {
+          await updateDoc(newsRef, {
+            newsImg: editNews.newsImg,
+            newsHeadline: editNews.newsHeadline,
+            newsOverview: editNews.newsOverview,
+            fullNews:  editNews.fullNews,
+            date: fullDate,
+            createTime: new Date().getTime(),
+           })
+        }
+         const noti = () => toast('News Successfully Update');
+         noti();
+        setSpinC(false)
       } catch (error) {
           console.log(error);
-          alert(error)
+          const noti = () => toast(error);
+        noti();
       }
   }
 
 
     return(
         <div on className="py-[20px] shadow rounded-[30px] m-[20px] px-[40px] font-poppins justify-center bg-gray-50 overflow-x-hidden flex flex-row ">
+           {spinC && <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><RotateLoader className="relative z-[600]" color="#36d7b7"
+           size={30}
+           width={10}
+            /></div> }
             <div className="grid grid-cols-1 gap-5">
               <div className="flex flex-col gap-5 md:flex-row  ">
                 <div className="flex flex-col gap-0 ">
@@ -97,7 +145,10 @@ useEffect(() => {
                     <input value={editNews.newsOverview} onChange={(e) => setEditNews({...editNews, newsOverview: e.target.value })} type="text" className="p-4 bg-transparent capitalize text-[20px] outline-0 shadow rounded  w-full " name="headline" placeholder="News overview" id="" />
                 </div>
                 <div className="flex flex-col gap-0 ">
-                    <label className="capitalize font-[600] text-[17px] " htmlFor="headline">news image:</label>
+                <select onChange={(e) => setFileType(e.target.value)} className="rounded outline-0 p-1" name="" id="">
+                      <option value="image">News Image</option>
+                      <option value="video">News Video</option>
+                    </select>
                     <input onChange={(e) => {
                       setImgInfo({
                         imgFile: e.target.files[0],

@@ -23,7 +23,7 @@ import { AllNews } from "./AllNews/Allnews";
 import { EditNews } from "./EditNews/EditNews";
 import { useContext } from "react";
 import { Context } from "../Context/Context";
-
+import { AdminProfile } from "./AdminProfile/AdminProfile";
 
 
 
@@ -39,10 +39,10 @@ const [logoutB, setLogoutB] = useState(false);
      const [sideLinkState, setSideLinkState] = useState('hidden');
 
     return(
-        <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[70px] bottom-0 "
+        <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "
         >
           <div className="flex flex-row items-center justify-center">
-          <div className="absolute  flex justify-between top-0 w-full right-0 left-0 pr-5 pt-5 pl-2 bg-transparent z-[150]">
+          <div className="fixed  flex justify-between top-0 w-full right-0 left-0 pr-5 pt-5 pl-2 bg-white shadow z-[150]">
             <div className="flex gap-2 items-center" >
           {/*  <img className="max-w-[50px]" src={logo} alt="" />*/}
           <div >
@@ -52,26 +52,38 @@ const [logoutB, setLogoutB] = useState(false);
                     nextIc: true,
                     prevIc: false
                 })
-            }} className={`bg-slate-50  p-1 rounded-[2px] text-[30px] md:text-[40px]`}/>}
+            }} className={`  p-1 rounded-[2px] text-[40px] md:text-[40px]`}/>}
 
              {sideLinks.nextIc && <AiOutlineMenu onClick={() => {
                 setSideLinkState('flex');
                 setSideLinks({nextIc:false, prevIc:true,  })
-            }} className={`bg-slate-50  p-1 rounded-[2px] text-[30px] md:text-[40px]`}/>}
+            }} className={`  p-1 rounded-[2px] text-[40px] md:text-[40px]`}/>}
             </div>
-            <h1 className="text-slate-900 md:flex hidden uppercase text-[30px] font-bold">Blogging</h1>
+            <h1 className="text-slate-900 md:flex font-poppins hidden uppercase text-[30px] font-bold">Blogging</h1>
            
             </div>
+           
+                <h1 className="uppercase font-poppins text-slate-500 self-center font-bold text-[15px] md:text-[20px]">Admin dashboard</h1>
+           
            <div className="flex flex-row gap-1">
-            <button onClick={() => setDisplaying(<UserProfile/>)} className="flex items-center text-slate-50 gap-2 md:text-[20px] bg-green-500 text-[15px]  p-2 h-fit rounded ">Profile <FaUserCircle/></button>
-            <button className="flex items-center text-slate-50 gap-2 md:text-[20px] bg-yellow-500 text-[15px]  p-2 h-fit rounded ">Logout <AiOutlineLogout/></button>
+            <button onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                        adminPro: true,
+                    })} className="flex items-center text-slate-700 gap-2 md:text-[20px]  text-[15px]  p-2 h-fit rounded ">Hi, Admin <FaUserCircle className="text-[40px]"/></button>
+           {/* <button className="flex items-center text-slate-50 gap-2 md:text-[20px] bg-yellow-500 text-[15px]  p-2 h-fit rounded ">Logout <AiOutlineLogout/></button>*/}
            </div>
           </div>
 
 
              <div className="bg-white z-[100] shadow-2xl rounded-[15px]  bottom-0 p-1 md:p-5 fixed top-[70px] left-0 h-[100%]">
              <div>
-                <ul className="flex flex-col px-[5px] pt-[100px] gap-[30px]">
+                <ul className="flex flex-col px-[5px] pt-[20px] gap-[30px]">
                     <li ><Link onClick={() => setDisplaying({
                         dashboardView: true,
                         editNews: false,
@@ -80,7 +92,16 @@ const [logoutB, setLogoutB] = useState(false);
                         users: false,
                         addReview: false,
                         addQuote: false,
-                    })}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className="text-slate-600 text-[17px] md:text-[30px] " />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins font-semibold   `}>Dashboard</span> </Link></li>
+                        adminPro: false,
+                        dashboardViewColor: 'text-green-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                    })}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className={` ${displaying.dashboardViewColor} text-[17px] md:text-[30px] `} />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins    `}>Dashboard</span> </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -89,7 +110,16 @@ const [logoutB, setLogoutB] = useState(false);
                         users: false,
                         addReview: false,
                         addQuote: false,
-                    })}className="flex-row flex items-center gap-x-2  "><BsNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Post News</span> </Link></li>
+                        adminPro: false,
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-green-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                    })}className="flex-row flex items-center gap-x-2  "><BsNewspaper className={` ${displaying.postNewsColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Post News</span> </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -98,7 +128,16 @@ const [logoutB, setLogoutB] = useState(false);
                         users: false,
                         addReview: false,
                         addQuote: false,
-                    })} className="flex-row flex items-center gap-x-2  "><FaNewspaper className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>All News</span> </Link></li>
+                        adminPro: false,
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-green-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                    })} className="flex-row flex items-center gap-x-2  "><FaNewspaper className={` ${displaying.allNewsColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>All News</span> </Link></li>
                     
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
@@ -108,7 +147,16 @@ const [logoutB, setLogoutB] = useState(false);
                         users: false,
                         addReview: true,
                         addQuote: false,
-                    })}  className="flex-row flex items-center gap-x-2  "><MdReviews className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Reviews</span>  </Link></li>
+                        adminPro: false,
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-green-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                    })}  className="flex-row flex items-center gap-x-2  "><MdReviews className={` ${displaying.addReviewColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Reviews</span>  </Link></li>
                     <li><Link onClick={() => setDisplaying({
                          dashboardView: false,
                          editNews: false,
@@ -117,7 +165,16 @@ const [logoutB, setLogoutB] = useState(false);
                          users: false,
                          addReview: false,
                          addQuote: true,
-                    })} className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Quotes</span>  </Link></li>
+                         adminPro: false,
+                         dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-green-500',
+                        adminProColor: 'text-slate-500',
+                    })} className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className={` ${displaying.addQuoteColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Quotes</span>  </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -126,8 +183,36 @@ const [logoutB, setLogoutB] = useState(false);
                         users: true,
                         addReview: false,
                         addQuote: false,
-                         })} className="flex-row flex items-center gap-x-2  "><FaUsers className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Users</span> </Link></li>
-                    <li><Link className="flex-row flex items-center gap-x-2  "><FaUserCircle className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins font-semibold   `}>Profile</span> </Link></li>
+                        adminPro: false,
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-green-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                         })} className="flex-row flex items-center gap-x-2  "><FaUsers className={` ${displaying.usersColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Users</span> </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                        adminPro: true,
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-green-500',
+                         })} className="flex-row flex items-center gap-x-2  "><FaUserCircle className={` ${displaying.adminProColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Profile</span> </Link></li>
+                    <li><Link  className="flex-row flex items-center gap-x-2  "><AiOutlineLogout className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Logout</span> </Link></li>
+                   
                 </ul>
             </div>
             </div>
@@ -142,7 +227,7 @@ const [logoutB, setLogoutB] = useState(false);
                {  displaying.users && <Users/>}
              {   displaying.addReview && <AddReview/>}
                { displaying.addQuote && <AddQuotes/>}
-               {/* displaying.allNews && <AllNews/>*/}
+               { displaying.adminPro && <AdminProfile/>}
 
               
               </div>

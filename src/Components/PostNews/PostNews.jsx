@@ -5,8 +5,11 @@ import { useState } from "react";
 import ReactQuill from "react-quill";
 import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
 import { serverTimestamp, Timestamp } from "firebase/firestore";
-
+import { ClipLoader, FadeLoader, MoonLoader, RotateLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 export const PostNews = () => {
+  const [spinC, setSpinC] = useState(false);
   //const [contents, setContents] = useState('');
 //IMAGE INFO
 const [imgInfo, setImgInfo] = useState({
@@ -34,10 +37,16 @@ const currentDate = new Date();
   console.log(newsContents)
 
   const uploadNewsImg = async () => {
-   if (imgInfo.imgName === '') {
-    alert('select img first');
-    return;
-   }
+    if (imgInfo.imgName === '') {
+      if (fileType === 'image') {
+        const noti = () => toast('Please select image to be uploaded');
+        noti();
+      } else {
+        const noti = () => toast('Please select Video to be uploaded');
+        noti();
+      }
+     return;
+    }
     const folderRef = ref(storage,  'newsImg')
     try {
       const imgRef = ref(folderRef, imgInfo.imgName)
@@ -45,13 +54,17 @@ const currentDate = new Date();
     const url = await getDownloadURL(imgUpload.ref);
     if (fileType === 'video') {
       setNewsContents({...newsContents, newsVideo: [...newsContents.newsVideo, url]});
+      const noti = () => toast('Video Successfully Uploaded');
+      noti();
     } else {
       setNewsContents({...newsContents, newsImg: [...newsContents.newsImg, url]});
+      const noti = () => toast('Image Successfully Uploaded');
+     noti();
     }
 
-    alert('sup')
     } catch (error) {
-      alert(error)
+      const noti = () => toast(error);
+      noti()
     }
 
   }
@@ -61,13 +74,18 @@ useEffect(() => {
 
 
   const postNews = async () => {
-
-    if (newsContents.newsImg.length === 0) {
-      const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
+      if (newsContents.newsImg.length === 0 && newsContents.newsVideo.length === 0 || newsContents.fullNews === '' || newsContents.newsHeadline === '' || newsContents.newsOverview === '') {
+        const noti = () => toast('Please fill the provided input field');
+        noti();
+        return;
+      }
+    if (newsContents.newsImg.length === 0 && newsContents.newsVideo.length === 0) {
+      const shouldProceed = window.confirm("You have not uploaded Image or Video, Do you want to proceed");
       if (!shouldProceed) {
         return; // Function will stop if user clicks 'No'
       }
     }
+    setSpinC(true)
       const newsRef = collection(db, 'news');
       try {
         if (fileType === 'video') {
@@ -89,7 +107,9 @@ useEffect(() => {
             createTime: new Date().getTime(),
            })
         }
-          alert('su');
+        setSpinC(false);
+        const noti = () => toast('News Successfully Uploaded');
+        noti();
       } catch (error) {
           console.log(error);
           alert(error)
@@ -99,6 +119,10 @@ useEffect(() => {
 
     return(
         <div on className="py-[20px] shadow rounded-[30px] m-[20px] px-[40px] font-poppins justify-center bg-gray-50 overflow-x-hidden flex flex-row ">
+           {spinC && <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><RotateLoader className="relative z-[600]" color="#36d7b7"
+           size={30}
+           width={10}
+            /></div> }
             <div className="grid grid-cols-1 gap-5">
               <div className="flex flex-col gap-5 md:flex-row  ">
                 <div className="flex flex-col gap-0 ">
@@ -135,19 +159,21 @@ useEffect(() => {
         onChange={(e) => {
           setNewsContents({...newsContents, fullNews: e})
         }}
+        placeholder="Full contents of the article"
         modules={{
           toolbar: {
             container: [
-              ['bold', 'italic', 'underline', 'strike'], // Basic formatting button
+              ['bold', 'italic', 'underline', 'strike', ], // Basic formatting button
+              ['script'],
               [{ 'font': [] }],
               [{ 'align': [] }],
               [{ 'color': [] }, { 'background': [] }],    
-              ['blockquote', 'code-block'],
-              [{ 'size': ['small', false, 'large', 'huge'] }],  
+              ['blockquote', 'code-block',   ],
+              [{ 'size': ['small', false,  'large', 'huge'] }],  
               [{ header: 1 }, { header: 2 }], // Header formatting buttons
               [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
-             ['link',  'image', 'video'], // Link and media buttons
-             ['uppercase', 'capitalize', 'lowercase'] ,
+             ['link',  'image', 'Formula',  'video'], // Link and media buttons
+             ['uppercase', 'capitalize',  'lowercase'] ,
             ], 
             },
           }}

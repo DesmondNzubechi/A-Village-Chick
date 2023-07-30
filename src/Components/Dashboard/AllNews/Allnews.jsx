@@ -6,6 +6,8 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { EditNews } from "../EditNews/EditNews";
 import { db } from "../../Config/Firebase";
 import fileExtension from  "file-extension";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AllNews = () => {
     
@@ -16,13 +18,15 @@ export const AllNews = () => {
     const deleteConfirmation = confirm('Are you sure you want to delete this news, Kindly note that you can\'t undo this action after being processed')
 if(!deleteConfirmation) {
    return;
-}
+} 
 try {
     const newsIn = doc(db, 'news', id);
     await deleteDoc(newsIn);
-    alert('suff')
+    const noti = () => toast('News Deleted Successfully');
+    noti();
 } catch (error) {
-    alert(error);
+    const noti = () => toast(error);
+    noti();
 }
 };
 

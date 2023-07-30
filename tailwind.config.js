@@ -16,6 +16,7 @@ export default {
         'Tp' : 'rgba(0, 0, 0, .8)',
         'spin' : 'rgba(0, 0, 0, .96)',
         'bgT'  : 'rgba(0, 0, 0, .3)',
+        'tpr'  : 'rgba(250, 250, 250, .8)',
       }
     },
   },

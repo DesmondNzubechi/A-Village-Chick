@@ -20,6 +20,7 @@ import { PostNews } from './Components/PostNews/PostNews'
 import { AddReview } from './Components/Reviews/AddReview'
 import {UserProfile} from './Components/Account/Profile'
 import { Admindashboard } from './Components/Dashboard/Admin'
+import { ToastContainer } from 'react-toastify'
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -43,6 +44,10 @@ function App() {
       <Route path={`/blog/${subscriptionDetails.headline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>
+    <ToastContainer
+    className='relative z-[1000]'
+    autoClose={2000}
+    />
     </BrowserRouter>
    
     </>

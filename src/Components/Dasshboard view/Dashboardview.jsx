@@ -22,7 +22,25 @@ export const DashboardView = () => {
 
       </div>
     </div>*/}
-             <div className="flex flex-col items-center md:flex-row justify-center gap-2">
+             <div className="grid grid-cols-1 md:grid-cols-3 py-[50px] items-center md:flex-row justify-center gap-5">
+                <div className="text-center bg-gray-50 shadow  px-[50px] rounded py-[10px] flex flex-col items-center">
+                    <FaUsers className=" text-[50px] "/>
+                  <h1 className="uppercase font-bold ">Total Users</h1>
+                  <p className="text-[20px] font-semibold ">{allUser.length}</p>
+                </div>
+
+                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
+                    <BsNewspaper className=" text-[50px] "/>
+                  <h1 className="uppercase font-bold ">Total News</h1>
+                  <p className="text-[20px] font-semibold ">{fetchedNews.length}</p>
+                </div>
+
+                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
+                    <MdPictureAsPdf className=" text-[50px] "/>
+                  <h1 className="uppercase font-bold ">Available Book</h1>
+                  <p className="text-[20px] font-semibold ">1</p>
+                </div>
+
                 <div className="text-center bg-gray-50  px-[50px] rounded py-[10px] flex flex-col items-center">
                     <FaUsers className=" text-[50px] "/>
                   <h1 className="uppercase font-bold ">Total Users</h1>
@@ -41,7 +59,7 @@ export const DashboardView = () => {
                   <p className="text-[20px] font-semibold ">1</p>
                 </div>
              </div>
-             <Users/>
+            
 {/*
              <div className="flex flex-row font-poppins justify-center items-center">
               <div className="flex flex-col p-3 shadow-xl gap-3">

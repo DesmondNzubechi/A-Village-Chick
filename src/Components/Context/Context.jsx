@@ -17,13 +17,22 @@ export const NewsContext = (props) => {
    //const [Review, setReview] = useState([]);
    const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
    const [displaying, setDisplaying] = useState(JSON.parse(localStorage.getItem('displaying')) || {
-    dashboardView: true,
+    dashboardView: false,
     editNews: false,
-    postNews: false,
+    postNews: true,
     allNews: false,
     users: false,
     addReview: false,
     addQuote: false,
+    adminPro: false,
+    dashboardViewColor: 'text-slate-500',
+    editNewsColor: 'text-slate-500',
+    postNewsColor: 'text-green-500',
+    allNewsColor: 'text-slate-500',
+    usersColor: 'text-slate-500',
+    addReviewColor: 'text-slate-500',
+    addQuoteColor: 'text-slate-500',
+    adminProColor: 'text-slate-500',
    });
    const [spin, setSpin] = useState(false);
    const [errorMessage, setErrorMessage] = useState('');
