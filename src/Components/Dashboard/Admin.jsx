@@ -36,12 +36,12 @@ const [logoutB, setLogoutB] = useState(false);
         nextIc: false,
         prevIc: true
     });
-    const [sideLinkState, setSideLinkState] = useState(localStorage.getItem('sideLinkState') || 'flex');
+    const [sideLinkState, setSideLinkState] = useState({
+        text: 'text-[10px]',
+        display: 'flex-col'
+    });
 
-    useEffect(() => {
-        localStorage.setItem('sideLinks', JSON.stringify(sideLinks));
-        localStorage.setItem('sideLinkState',sideLinkState);
-    }, [])
+
 
     return(
         <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "
@@ -52,7 +52,7 @@ const [logoutB, setLogoutB] = useState(false);
           {/*  <img className="max-w-[50px]" src={logo} alt="" />*/}
           <div >
             {sideLinks.prevIc && <GrPrevious  onClick={() => {
-                setSideLinkState('hidden');
+                  setSideLinkState({text: 'text-[10px]', display: 'flex-col'});
                 setSideLinks({
                     nextIc: true,
                     prevIc: false
@@ -60,7 +60,7 @@ const [logoutB, setLogoutB] = useState(false);
             }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
 
              {sideLinks.nextIc && <GrNext onClick={() => {
-                setSideLinkState('flex');
+                setSideLinkState({text: 'text-[20px]', display: 'flex-row'});
                 setSideLinks({nextIc:false, prevIc:true,  })
             }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
             </div>
@@ -95,7 +95,7 @@ const [logoutB, setLogoutB] = useState(false);
 
              <div className="bg-white z-[100] shadow-2xl rounded-[15px]  bottom-0 p-1 md:p-5 fixed top-[70px] left-0 h-[100%]">
              <div>
-                <ul className="flex flex-col px-[5px] pt-[20px] gap-[30px]">
+                <ul className="flex flex-col px-[5px] pt-[20px] gap-[20px]">
                     <li ><Link onClick={() => setDisplaying({
                         dashboardView: true,
                         editNews: false,
@@ -113,7 +113,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
-                    })}  className="flex-row   flex items-center gap-x-2  "> <AiFillDashboard className={` ${displaying.dashboardViewColor} text-[17px] md:text-[30px] `} />  <span className={`text-[15px] md:text-[20px]  ${sideLinkState}  text-slate-700 font-poppins    `}>Dashboard</span> </Link></li>
+                    })}  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}> <AiFillDashboard className={` ${displaying.dashboardViewColor} text-[17px] md:text-[30px] `} />   <span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Dashboard</span> </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -131,7 +131,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
-                    })}className="flex-row flex items-center gap-x-2  "><BsNewspaper className={` ${displaying.postNewsColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Post News</span> </Link></li>
+                    })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><BsNewspaper className={` ${displaying.postNewsColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Post News</span> </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -149,7 +149,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
-                    })} className="flex-row flex items-center gap-x-2  "><FaNewspaper className={` ${displaying.allNewsColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>All News</span> </Link></li>
+                    })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><FaNewspaper className={` ${displaying.allNewsColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>All News</span> </Link></li>
                     
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
@@ -168,7 +168,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-green-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
-                    })}  className="flex-row flex items-center gap-x-2  "><MdReviews className={` ${displaying.addReviewColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Reviews</span>  </Link></li>
+                    })}  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><MdReviews className={` ${displaying.addReviewColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Reviews</span>  </Link></li>
                     <li><Link onClick={() => setDisplaying({
                          dashboardView: false,
                          editNews: false,
@@ -186,7 +186,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-green-500',
                         adminProColor: 'text-slate-500',
-                    })} className="flex-row flex items-center gap-x-2  "><BsFillChatQuoteFill className={` ${displaying.addQuoteColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Quotes</span>  </Link></li>
+                    })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><BsFillChatQuoteFill className={` ${displaying.addQuoteColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Quotes</span>  </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -204,7 +204,7 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
-                         })} className="flex-row flex items-center gap-x-2  "><FaUsers className={` ${displaying.usersColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Users</span> </Link></li>
+                         })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><FaUsers className={` ${displaying.usersColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Users</span> </Link></li>
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
                         editNews: false,
@@ -222,8 +222,8 @@ const [logoutB, setLogoutB] = useState(false);
                         addReviewColor: 'text-slate-500',
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-green-500',
-                         })} className="flex-row flex items-center gap-x-2  "><FaUserCircle className={` ${displaying.adminProColor} text-[17px] md:text-[30px] `}/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Profile</span> </Link></li>
-                    <li><Link  className="flex-row flex items-center gap-x-2  "><AiOutlineLogout className="text-slate-600 text-[17px] md:text-[30px] "/><span className={`text-[15px] md:text-[20px]  ${sideLinkState} text-slate-700 font-poppins    `}>Logout</span> </Link></li>
+                         })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><FaUserCircle className={` ${displaying.adminProColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Profile</span> </Link></li>
+                    <li><Link  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><AiOutlineLogout className="text-slate-600 text-[17px] md:text-[30px] "/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Logout</span> </Link></li>
                    
                 </ul>
             </div>
