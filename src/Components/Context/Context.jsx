@@ -138,7 +138,7 @@ useEffect(() => {
       }
     } 
     getQuote()
- }, [Review])
+ }, [])
 
     //REGISTERING NEW USER
     const SignUpNewUser = async () => {
