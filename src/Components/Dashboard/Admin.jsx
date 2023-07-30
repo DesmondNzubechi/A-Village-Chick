@@ -32,11 +32,16 @@ import { AdminProfile } from "./AdminProfile/AdminProfile";
 export const Admindashboard = () => {
   const {displaying, setDisplaying, allUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
-    const [sideLinks, setSideLinks] = useState({
-        nextIc: true,
-        prevIc: false
+    const [sideLinks, setSideLinks] = useState( {
+        nextIc: false,
+        prevIc: true
     });
-     const [sideLinkState, setSideLinkState] = useState('hidden');
+    const [sideLinkState, setSideLinkState] = useState(localStorage.getItem('sideLinkState') || 'flex');
+
+    useEffect(() => {
+        localStorage.setItem('sideLinks', JSON.stringify(sideLinks));
+        localStorage.setItem('sideLinkState',sideLinkState);
+    }, [])
 
     return(
         <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "
@@ -46,18 +51,18 @@ const [logoutB, setLogoutB] = useState(false);
             <div className="flex gap-2 items-center" >
           {/*  <img className="max-w-[50px]" src={logo} alt="" />*/}
           <div >
-            {sideLinks.prevIc && <HiXMark  onClick={() => {
+            {sideLinks.prevIc && <GrPrevious  onClick={() => {
                 setSideLinkState('hidden');
                 setSideLinks({
                     nextIc: true,
                     prevIc: false
                 })
-            }} className={`  p-1 rounded-[2px] text-[40px] md:text-[40px]`}/>}
+            }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
 
-             {sideLinks.nextIc && <AiOutlineMenu onClick={() => {
+             {sideLinks.nextIc && <GrNext onClick={() => {
                 setSideLinkState('flex');
                 setSideLinks({nextIc:false, prevIc:true,  })
-            }} className={`  p-1 rounded-[2px] text-[40px] md:text-[40px]`}/>}
+            }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
             </div>
             <h1 className="text-slate-900 md:flex font-poppins hidden uppercase text-[30px] font-bold">Blogging</h1>
            
@@ -75,7 +80,14 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: false,
                         addQuote: false,
                         adminPro: true,
-                    })} className="flex items-center text-slate-700 gap-2 md:text-[20px]  text-[15px]  p-2 h-fit rounded ">Hi, Admin <FaUserCircle className="text-[40px]"/></button>
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-green-500',})} className="flex items-center text-slate-700 gap-2 md:text-[20px]  text-[15px]  p-2 h-fit rounded ">Hi, Admin <FaUserCircle className={` ${displaying.adminProColor} text-[40px]`}/></button>
            {/* <button className="flex items-center text-slate-50 gap-2 md:text-[20px] bg-yellow-500 text-[15px]  p-2 h-fit rounded ">Logout <AiOutlineLogout/></button>*/}
            </div>
           </div>

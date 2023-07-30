@@ -12,22 +12,24 @@ export const Context = createContext();
 
 export const NewsContext = (props) => {
    //const navigate = useNavigate();
+   const [Review, setReview] = useState([]);
+   const [quote, setQuote] = useState([]);
    const [allUser, setAllUser] = useState([]);
    const [fetchedNews, setFetchedNews] = useState([]);
    //const [Review, setReview] = useState([]);
    const [editNews, setEditNews] = useState(JSON.parse(localStorage.getItem('editNews')) || {});
    const [displaying, setDisplaying] = useState(JSON.parse(localStorage.getItem('displaying')) || {
-    dashboardView: false,
+    dashboardView: true,
     editNews: false,
-    postNews: true,
+    postNews: false,
     allNews: false,
     users: false,
     addReview: false,
     addQuote: false,
     adminPro: false,
-    dashboardViewColor: 'text-slate-500',
+    dashboardViewColor: 'text-green-500',
     editNewsColor: 'text-slate-500',
-    postNewsColor: 'text-green-500',
+    postNewsColor: 'text-slate-500',
     allNewsColor: 'text-slate-500',
     usersColor: 'text-slate-500',
     addReviewColor: 'text-slate-500',
@@ -110,7 +112,33 @@ useEffect(() => {
       }
     }
 
-    
+   useEffect(() => {
+    const reviewStorage = collection(db, 'reviews');
+    const getReviews = async () => {
+      try {
+        const reviewData = await getDocs(reviewStorage);
+        const allReview = reviewData.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        setReview(allReview);
+       
+      } catch (error) {
+        alert(error)
+      }
+    } 
+    getReviews()
+
+    const quoteStorage = collection(db, 'quotes');
+    const getQuote = async () => {
+      try {
+        const quoteData = await getDocs(quoteStorage);
+        const allquote = quoteData.docs.map((doc) => ({...doc.data(), id:doc.id}))
+        setQuote(allquote);
+       
+      } catch (error) {
+        
+      }
+    } 
+    getQuote()
+ }, [Review])
 
     //REGISTERING NEW USER
     const SignUpNewUser = async () => {
@@ -190,7 +218,7 @@ useEffect(() => {
    }, [subscriptionDetails, article, account, displaying, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
     {props.children}
     </Context.Provider>
     )

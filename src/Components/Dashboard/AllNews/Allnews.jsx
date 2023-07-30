@@ -8,7 +8,7 @@ import { db } from "../../Config/Firebase";
 import fileExtension from  "file-extension";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { ClipLoader, FadeLoader, MoonLoader, RotateLoader } from "react-spinners";
 export const AllNews = () => {
     
     const {fetchedNews, editNews, displaying, setDisplaying, setEditNews, Subscribe} = useContext(Context)
@@ -35,11 +35,19 @@ try {
         <div>
             <h1 className="text-center uppercase text-[30px] underline  mb-[20px] font-bold">all news</h1>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {fetchedNews.length === 0  && <div className="py-[40px] md:ml-[70px] text-center w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">< ClipLoader className="relative z-[600]" color="black"
+           size={70}
+           width={10}
+            /></div> } 
              {fetchedNews.map(news => {
               
                 return  <div className="flex flex-col p-3 shadow-xl gap-3">
               
-             
+                 {!news?.newsImg && news?.newsVideo && <div className="py-[40px] md:ml-[70px] text-center w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">< MoonLoader className="relative z-[600]" color="#36d7b7"
+           size={30}
+           width={10}
+            /></div>
+}
                   {news?.newsVideo && <video className="rounded w-[300px] h-[200px]" controls>
     <source  src={news.newsVideo} type="video/mp4" />
                         </video>}

@@ -8,8 +8,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Config/Firebase";
 import { data } from "autoprefixer";
 import { BlogContent } from "../../Pages/Blog/post";
-
-
+import { BlogHeroSection } from "../../Pages/Blog/BlogHeroSection";
+import { BlogJourney } from "../../Pages/Blog/Journey";
 export const getStarted = [ 
   ...BlogContent,
   /*{
@@ -32,7 +32,7 @@ export const getStarted = [
   },*/
 ]
 
-export const GetStarted = () => {
+export const MainBlog = () => {
   const {Subscribe, fetchedNews } = useContext(Context);
   const allNews  = [ ...fetchedNews ];
   //const newsStorage = collection(db, 'news');
@@ -51,7 +51,8 @@ export const GetStarted = () => {
     return(
       
       <div className="overflow-x-hidden">
-        <div  
+        <BlogHeroSection/>
+       {/* <div  
         style={{ backgroundImage: `url(${backgroundImage})` }}
       className={`min-h-[70vh] font-poppins relative after:left-0 after:right-0 after:absolute after:top-0 after:h-full  bg-center flex items-center after:w-full after:bg-bgT pt-[50px]  px-[30px] bg-cover z-[1]  `}>
         <div data-aos='zoom-in-up' className="relative z-[1] py-[50px] ">
@@ -61,12 +62,13 @@ export const GetStarted = () => {
         </div>
       </div>
       <div>
-      </div>
+      </div>*/
+    }
       <div className="py-[50px] p-[40px] ">
-        <div className="text-center font-poppins flex-col gap-[60px] flex-col py-[50px]  ">
+       {/* <div className="text-center font-poppins flex-col gap-[60px] flex-col py-[50px]  ">
         <p className="capitalize ">Ready to begin?</p>
         <h1 className=" font-bold md:leading-[60px] leading-[50px] text-[40px] ">Choose a path that feels right for you</h1>
-        </div>
+  </div>*/}
        <div className="grid lg:grid-cols-3 gap-[50px] md:grid-cols-2 grid-cols-1 ">
         {
         allNews.map(get => {
@@ -89,6 +91,7 @@ export const GetStarted = () => {
         }
        </div>
       </div>
+      <BlogJourney/>
     </div>
     )
 }

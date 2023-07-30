@@ -7,8 +7,10 @@ import { Users } from "../Dashboard/Users/Users";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../Context/Context";
+import {BsFillChatQuoteFill} from 'react-icons/bs';
+import { MdReviews} from 'react-icons/md';
 export const DashboardView = () => {
-  const {allUser, fetchedNews} = useContext(Context);
+  const {allUser, fetchedNews , Review, quote} = useContext(Context);
     return( 
         <div className="flex overflow-x-hidden flex-col gap-[50px]">
             {/*<div>
@@ -22,42 +24,31 @@ export const DashboardView = () => {
 
       </div>
     </div>*/}
-             <div className="grid grid-cols-1 md:grid-cols-3 py-[50px] items-center md:flex-row justify-center gap-5">
-                <div className="text-center bg-gray-50 shadow  px-[50px] rounded py-[10px] flex flex-col items-center">
+             <div className="grid grid-cols-1 md:grid-cols-2 py-[50px] items-center md:flex-row justify-center gap-5">
+                <div className="text-center bg-gradient-to-r  py-[25px] md:min-w-[300px] from-gray-200 to-gray-200 gap-2 px-[50px] rounded py-[10px] flex flex-col items-center">
                     <FaUsers className=" text-[50px] "/>
                   <h1 className="uppercase font-bold ">Total Users</h1>
                   <p className="text-[20px] font-semibold ">{allUser.length}</p>
                 </div>
 
-                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
+                <div className="text-center bg-gradient-to-r  gap-2 py-[25px] md:min-w-[300px] from-gray-200 to-gray-200 px-[50px] rounded py-[10px] flex flex-col items-center">
                     <BsNewspaper className=" text-[50px] "/>
-                  <h1 className="uppercase font-bold ">Total News</h1>
+                  <h1 className="uppercase font-bold ">Total Post</h1>
                   <p className="text-[20px] font-semibold ">{fetchedNews.length}</p>
                 </div>
 
-                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
-                    <MdPictureAsPdf className=" text-[50px] "/>
-                  <h1 className="uppercase font-bold ">Available Book</h1>
-                  <p className="text-[20px] font-semibold ">1</p>
+                <div className="text-center bg-gradient-to-r  py-[25px] md:min-w-[300px] from-gray-200 to-gray-200 px-[50px] gap-2 rounded py-[10px] flex flex-col items-center">
+                    <BsFillChatQuoteFill className=" text-[50px] "/>
+                  <h1 className="uppercase font-bold ">Total Quote</h1>
+                  <p className="text-[20px] font-semibold ">{quote.length}</p>
                 </div>
 
-                <div className="text-center bg-gray-50  px-[50px] rounded py-[10px] flex flex-col items-center">
+                <div className="text-center bg-gradient-to-r  py-[25px] md:min-w-[300px] from-gray-200 to-gray-200 gap-2 px-[50px] rounded py-[10px] flex flex-col items-center">
                     <FaUsers className=" text-[50px] "/>
-                  <h1 className="uppercase font-bold ">Total Users</h1>
-                  <p className="text-[20px] font-semibold ">{allUser.length}</p>
+                  <h1 className="uppercase font-bold ">Total Review</h1>
+                  <p className="text-[20px] font-semibold ">{Review.length}</p>
                 </div>
 
-                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
-                    <BsNewspaper className=" text-[50px] "/>
-                  <h1 className="uppercase font-bold ">Total News</h1>
-                  <p className="text-[20px] font-semibold ">{fetchedNews.length}</p>
-                </div>
-
-                <div className="text-center bg-gray-50  px-[50px] rounded  py-[10px] flex flex-col items-center">
-                    <MdPictureAsPdf className=" text-[50px] "/>
-                  <h1 className="uppercase font-bold ">Available Book</h1>
-                  <p className="text-[20px] font-semibold ">1</p>
-                </div>
              </div>
             
 {/*

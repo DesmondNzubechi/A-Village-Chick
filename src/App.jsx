@@ -11,7 +11,7 @@ import { ContactUs } from './Pages/Contact/Contact'
 import { FullNewsDetail } from './Components/Fullnews/Fullnews'
 import { useContext } from 'react'
 import { Context } from './Components/Context/Context'
-import { GetStarted } from './Components/Get started/GetStarted'
+import { MainBlog } from './Components/MainBlog/MainBlog'
 import { Subscribe } from './Components/Subscribe/Subscribe'
 import { ScrollToTop } from './Components/ScrollTop/Scrolltop'
 import { SignUp } from './Components/Account/Signup'
@@ -37,7 +37,7 @@ function App() {
      {/* <Route path='/blog' element={<Blog/>} />*/}
       <Route path='/about' element={<About/>} />
       <Route path='/contact' element={<ContactUs/>} />
-      <Route path='/blog' element={<GetStarted/>} />
+      <Route path='/blog' element={<MainBlog/>} />
       <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
       <Route path='/admin' element={<Admindashboard/>} />

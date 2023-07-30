@@ -5,7 +5,6 @@ import AboutImg from "../../assets/images/session.avif";
 import { Link } from "react-router-dom";
 // Import MoreNews and getStarted components if they are defined
 // import { MoreNews } from "../MoreNews/MoreNews";
-import { getStarted } from "../Get started/GetStarted";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import DOMPurify from "dompurify";
