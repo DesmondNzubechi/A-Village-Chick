@@ -8,6 +8,7 @@ import {HiXMark} from 'react-icons/hi2';
 import {MdBedroomParent} from 'react-icons/md';
 import {BsFillHouseAddFill} from 'react-icons/bs';
 import {CgProfile} from 'react-icons/cg';
+import {SiPowerpages} from 'react-icons/si';
 import {GrNext, GrPrevious} from 'react-icons/gr';
 import { useState } from "react";
 import {FaUserCircle, FaNewspaper,FaWarehouse} from 'react-icons/fa';
@@ -24,9 +25,10 @@ import { EditNews } from "./EditNews/EditNews";
 import { useContext } from "react";
 import { Context } from "../Context/Context";
 import { AdminProfile } from "./AdminProfile/AdminProfile";
-
-
-
+import { Pages } from "./pages/Pages";
+import { EditAbout } from "../../Pages/About/EditAbout";
+import { EditContact } from "../../Pages/Contact/EditContact";
+import { EditHome } from "../EditHome/EditHome";
 
 
 export const Admindashboard = () => {
@@ -77,9 +79,15 @@ const [logoutB, setLogoutB] = useState(false);
                         postNews: false,
                         allNews: false,
                         users: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
                         addReview: false,
                         addQuote: false,
                         adminPro: true,
+                        editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-green-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -105,6 +113,12 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: false,
                         addQuote: false,
                         adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-green-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -123,6 +137,12 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: false,
                         addQuote: false,
                         adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-green-500',
@@ -136,11 +156,41 @@ const [logoutB, setLogoutB] = useState(false);
                         dashboardView: false,
                         editNews: false,
                         postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                        adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: true,
+                        pagesColor: 'text-green-500',
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                    })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><SiPowerpages className={` ${displaying.pagesColor} text-[17px] md:text-[30px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Pages</span> </Link></li>
+                    <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
                         allNews: true,
                         users: false,
                         addReview: false,
                         addQuote: false,
                         adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -160,6 +210,12 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: true,
                         addQuote: false,
                         adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -178,6 +234,12 @@ const [logoutB, setLogoutB] = useState(false);
                          addReview: false,
                          addQuote: true,
                          adminPro: false,
+                         editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                         pages: false,
+                         pagesColor: 'text-slate-500',
                          dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -196,6 +258,12 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: false,
                         addQuote: false,
                         adminPro: false,
+                        editHome: false,
+                         editAbout: false,
+                         editContact: false,
+                         editNewsPage: false,
+                        pages: false,
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -214,6 +282,10 @@ const [logoutB, setLogoutB] = useState(false);
                         addReview: false,
                         addQuote: false,
                         adminPro: true,
+                        editHome: false,
+                        editNewsPage: false,
+                         editAbout: false,
+                         editContact: false,
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -240,6 +312,10 @@ const [logoutB, setLogoutB] = useState(false);
              {   displaying.addReview && <AddReview/>}
                { displaying.addQuote && <AddQuotes/>}
                { displaying.adminPro && <AdminProfile/>}
+               { displaying.pages && <Pages/>}
+               { displaying.editAbout && <EditAbout/>}
+               { displaying.editContact && <EditContact/>}
+               { displaying.editHome && <EditHome/>}
 
               
               </div>

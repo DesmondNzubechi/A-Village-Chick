@@ -3,7 +3,7 @@ import heroImg from '../../assets/images/session.avif';
 import { Link } from "react-router-dom";
 
 export const Motivation = () => {
-    return(
+    return( 
         <div className="bg-white p-[40px]" style={{ clipPath: 'polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)' }}>
               <div  
         style={{ backgroundImage: `url(${heroImg})` }}

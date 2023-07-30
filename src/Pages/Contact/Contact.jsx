@@ -1,10 +1,10 @@
 import React from "react";
-
+import { EditContact } from "./EditContact";
 
 export const ContactUs = () => {
     return(
-        <div className=" font-poppins">
-            <div className="flex md:flex-row md:items-center flex-col gap-[40px] justify-around py-[200px] px-[40px]  ">
+        <div className=" px-[40px]  font-poppins">
+            <div className="flex md:flex-row md:items-center flex-col gap-[40px] justify-around pb-[100px] pt-[200px]  ">
                 <div>
                     <h1 className="text-[30px] font-bold my-[20px] ">Get in touch with us</h1>
                     <p className="max-w-[800px] md:text-[20px] ">If you have any questions or comments, please contact us via email or phone. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
