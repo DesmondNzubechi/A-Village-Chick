@@ -11,11 +11,11 @@ export const ContactUs = () => {
                 </div>
                 <div className="fle flex-col gap-2">
                     <span>
-                        <h1 className="text-[25px] font-semibold ">Email</h1>
-                    <a className="text-slate-700" href="tel:+234 756 0293 862">+234 756 0293 862</a>
+                        <h1 className="text-[25px] font-semibold ">Phone</h1>
+                    <a className="text-slate-700" href="tel:+2347560293862">+2347560293862</a>
                     </span>
                    <span>
-                    <h1 className="text-[25px]  font-semibold  ">Phone</h1>
+                    <h1 className="text-[25px]  font-semibold  ">Email</h1>
                      <a className="text-slate-700" href="mailto:someone@gmail.com">Someone@gmail.com</a>
                    </span>
                 </div>

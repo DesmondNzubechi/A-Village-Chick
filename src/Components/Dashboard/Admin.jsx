@@ -33,8 +33,8 @@ export const Admindashboard = () => {
   const {displaying, setDisplaying, allUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
     const [sideLinks, setSideLinks] = useState( {
-        nextIc: false,
-        prevIc: true
+        nextIc: true,
+        prevIc: false
     });
     const [sideLinkState, setSideLinkState] = useState({
         text: 'text-[8px]',

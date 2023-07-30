@@ -73,7 +73,7 @@ useEffect(() => {
 
       setFetchedNews(sortedNews);
     } catch (error) {
-      alert(error);
+     
     }
   };
 
@@ -121,7 +121,7 @@ useEffect(() => {
         setReview(allReview);
        
       } catch (error) {
-        alert(error)
+       
       }
     } 
     getReviews()
