@@ -63,14 +63,15 @@ export const Quote = () => {
          }
      }
     return(
+        !Reviewed?.name &&
         <div className="px-[40px] flex justify-center font-poppins py-[100px]">
             <div>
-            <h1 className="font-bold text-center text-[20px] capitalize md:text-[30px] ">What people say about us</h1>
+            <h1 className="font-bold text-center text-[20px] capitalize md:text-[30px] ">Quotes</h1>
    <div className="flex justify-center items-center gap-[20px] ">
     <GrPrevious onClick={prevReview} className="hover:bg-slate-500  text-white border p-2 rounded text-[50px] "/>
     <div className="text-center flex flex-col gap-[30px] ">
     <div>
-        <p className="font-[600] my-[10px] text-[17px] md:text-[20px] ">~ {Reviewed?.name} </p>
+        <p className="font-[600] my-[10px] text-[17px] md:text-[20px] ">{Reviewed?.name} </p>
         <p className="max-w-[700px] text-[12px] md:text-[18px]">" { Reviewed?.quote } "</p>
 
         <p className="font-[600] my-[10px] text-[17px] md:text-[20px] ">~ {Reviewed?.quoter} </p>
