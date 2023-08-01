@@ -218,7 +218,7 @@ useEffect(() => {
         </div>
         </div>
         </div>
-        <div >
+        <div>
               <div  
        style={{ backgroundImage: `url(${!data?.overviewBg? heroImg:  data.overviewBg})`}}
       className={`min-h-[30vh] relative after:left-0 text-center after:right-0 after:absolute after:top-0 after:h-full justify-center bg-center flex items-cente=r after:w-full after:bg-bgT pt-[50px]  px-[30px] bg-cover z-[1]  `}>
@@ -342,9 +342,9 @@ useEffect(() => {
                 </div>
                 <div className="flex items-center flex-col gap-1">
                 <div className="flex flex-row gap-5">
-                    <a href="http://"><AiOutlineInstagram/> </a>
-                    <a href="http://"> <BsFacebook/></a>
-                    <a href="http://"> <AiFillTwitterCircle/></a>
+                    <a href={`${data?.social1}`}><AiOutlineInstagram/> </a>
+                    <a href={`${data?.social2}`}> <BsFacebook/></a>
+                    <a href={`${data?.social3}`}> <AiFillTwitterCircle/></a>
                 </div>
                 <input onChange={(e) => {
                             setHomeDatas([ {
