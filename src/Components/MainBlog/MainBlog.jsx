@@ -10,6 +10,7 @@ import { data } from "autoprefixer";
 import { BlogContent } from "../../Pages/Blog/post";
 import { BlogHeroSection } from "../../Pages/Blog/BlogHeroSection";
 import { BlogJourney } from "../../Pages/Blog/Journey";
+
 export const getStarted = [ 
   ...BlogContent,
   /*{
@@ -35,6 +36,7 @@ export const getStarted = [
 export const MainBlog = () => {
   const {Subscribe, fetchedNews } = useContext(Context);
   const allNews  = [ ...fetchedNews ];
+  
   //const newsStorage = collection(db, 'news');
   /*useEffect(() => {
     const getNews = async () => {
