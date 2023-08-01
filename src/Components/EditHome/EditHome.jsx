@@ -1,11 +1,169 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { db, storage } from "../Config/Firebase";
+import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 import heroImg from '../../assets/images/heroImg.avif';
 import { Link } from "react-router-dom";
 import {AiOutlineInstagram, AiFillTwitterCircle} from 'react-icons/ai';
 import {BsFacebook} from 'react-icons/bs';
+import ReactQuill from "react-quill";
+import { ref, getDownloadURL, listAll, uploadBytes } from "firebase/storage";
+import { Context } from "../Context/Context";
+import { useContext } from "react";
+import 'react-quill/dist/quill.snow.css';
+import { doc } from "firebase/firestore";
+import { ClipLoader, FadeLoader, MoonLoader, RotateLoader } from "react-spinners";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const EditHome = () => {
+     const [spinC, setSpinC] = useState(false);
+  const [fileType, setFileType] = useState('image');
+  const [homeDatas, setHomeDatas] = useState([]);
+  //const [contents, setContents] = useState('');
+  console.log(homeDatas)
+//IMAGE INFO
+const {displaying, setDisplaying, editNews, setEditNews} = useContext(Context);
+const [imgInfo, setImgInfo] = useState({
+  heroBg: [],
+  overviewBg: [],
+  heroImgName: '',
+ overviewImgName: '',
+})
+
+const currentDate = new Date();
+    const options = {
+        year: 'numeric',
+        month: 'long', // 'short' for abbreviated name, 'long' for full name
+        day: 'numeric',
+        weekday: 'long', // 'short' for abbreviated name, 'long' for full name
+      };
+      const fullDate = currentDate.toLocaleString(undefined, options);
+
+  ///NEWS CONTENTS
+  const [newsContents, setNewsContents] = useState({
+    newsImg: [],
+    newsVideo: [],
+    newsHeadline: editNews.newsHeadline,
+    newsOverview: '',
+    fullNews: ''
+  })
+
+
+  const UpdateHeroBg = async () => {
+    if (imgInfo.heroImgName === '') {
+        const noti = () => toast('Please select background image to be uploaded');
+        noti();
+     return;
+    }
+     const folderRef = ref(storage,  'newsImg')
+     try {
+       const imgRef = ref(folderRef, imgInfo.imgName)
+     const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
+     const url = await getDownloadURL(imgUpload.ref);
+    
+       setHomeDatas({...homeDatas, heroBg:  url});
+       const noti = () => toast('Background Image Successfully Updated');
+      noti();
+ 
+     } catch (error) {
+       const noti = () => toast(error);
+       noti()
+     }
+ 
+   }
+
+
+   
+  const UpdateoverViewBg = async () => {
+    if (imgInfo.overviewImgName === '') {
+        const noti = () => toast('Please select background image to be uploaded');
+        noti();
+     return;
+    }
+     const folderRef = ref(storage,  'newsImg')
+     try {
+       const imgRef = ref(folderRef, imgInfo.imgName)
+     const imgUpload =  await uploadBytes(imgRef, imgInfo.imgFile);
+     const url = await getDownloadURL(imgUpload.ref);
+    
+       setHomeDatas({...homeDatas, overviewBg:  url});
+       const noti = () => toast('Background Image Successfully Updated');
+      noti();
+ 
+     } catch (error) {
+       const noti = () => toast(error);
+       noti()
+     }
+ 
+   }
+
+   const homeRef = collection(db, 'homepage');
+useEffect(() => {
+
+    const getHome = async () => {
+        try {
+            const homeContent = await getDocs(homeRef)
+            const homeData = homeContent.docs.map((doc) => ({ ...doc.data(), id: doc.id, createTime: fullDate }));
+            setHomeDatas(homeData);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    getHome();
+  localStorage.setItem('newsContents', JSON.stringify(newsContents));
+}, [newsContents])
+
+
+  const updateNews = async (newsId) => {
+
+    if (editNews.newsImg?.length === 0 ) {
+      const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
+      if (!shouldProceed) {
+        return; // Function will stop if user clicks 'No'
+      }
+    }
+
+    if ( editNews.newsVideo?.length === 0) {
+      const shouldProceed = window.confirm("newsImg is empty. Do you want to proceed with the execution of the function?");
+      if (!shouldProceed) {
+        return; // Function will stop if user clicks 'No'
+      }
+    }
+    setSpinC(true);
+      const newsRef = doc(db, 'news', newsId);
+      try {
+        if (fileType === 'video') {
+          await updateDoc(newsRef, {
+            newsVideo: editNews.newsVideo,
+            newsHeadline: editNews.newsHeadline,
+            newsOverview: editNews.newsOverview,
+            fullNews:  editNews.fullNews,
+            date: fullDate,
+            createTime: new Date().getTime(),
+           })
+        } else {
+          await updateDoc(newsRef, {
+            newsImg: editNews.newsImg,
+            newsHeadline: editNews.newsHeadline,
+            newsOverview: editNews.newsOverview,
+            fullNews:  editNews.fullNews,
+            date: fullDate,
+            createTime: new Date().getTime(),
+           })
+        }
+         const noti = () => toast('News Successfully Update');
+         noti();
+        setSpinC(false)
+      } catch (error) {
+          console.log(error);
+          const noti = () => toast(error);
+        noti();
+      }
+  }
+
+
     return(
         <div className="flex justify-center px-[50px]">
             <div>
@@ -26,13 +184,20 @@ export const EditHome = () => {
         <div className="p-[40px] md:pl-[100px] flex justify-center font-poppins">
                 <form className="grid grid-col-1 gap-5 md:grid-cols-2">
                     <div className="flex flex-col gap-3">
-                        <textarea placeholder="Write up..." className="border h-full outline-0 p-2   rounded" name="" id="" cols="30" rows="10">
+                        <textarea  value={homeDatas[0]?.heroText} placeholder="Write up..." className="border h-full outline-0 p-2   rounded" name="" id="" cols="30" rows="10">
                         </textarea>
                     </div>
                     <div className="flex  flex-col gap-2">
                     <div>
                         <label className="text-slate-700 text-[20px] " htmlFor="">Background Image</label>
-                        <input  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[15px]  rounded" type="file" />
+                        <input onChange={(e) => {
+                      setImgInfo({
+                        ...imgInfo,
+                        heroBg: e.target.files[0],
+                        heroImgName: e.target.files[0].name,
+                      });
+                    }} accept="image/*"  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[15px]  rounded" type="file" />
+                     <button onClick={UpdateHeroBg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">upload image</button>
                     </div>
                     <div>
                         <input placeholder="Button Name"  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[20px]  rounded" type="text" />
@@ -69,7 +234,14 @@ export const EditHome = () => {
                     <div className="flex  flex-col gap-2">
                     <div>
                         <label className="text-slate-700 text-[20px] " htmlFor="">Background Image</label>
-                        <input  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[15px]  rounded" type="file" />
+                        <input onChange={(e) => {
+                      setImgInfo({
+                        ...imgInfo,
+                        overviewBg: e.target.files[0],
+                        overviewImgName: e.target.files[0].name,
+                      });
+                    }}  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[15px]  rounded" type="file" />
+                     <button onClick={ UpdateoverViewBg} type="button" className="w-fit capitalize hover:bg-slate-900 hover:text-slate-50  p-1 rounded bg-green-500 ">upload image</button>
                     </div>
                     <input placeholder="Paragraph Text"  className="border file:bg-transparent file:border-0 outline-0 p-2  w-full text-[20px]  rounded" type="text" />
                     <div>
