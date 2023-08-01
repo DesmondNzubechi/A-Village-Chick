@@ -77,7 +77,7 @@ useEffect(() => {
                         <p className="italic text-[20px] ">{fullDate} </p>
                     </div>
                     <div className="flex items-center flex-row gap-3">
-                        <p>Hi,</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{userInfo.map(user => {return <p>{user.username}</p> })}</h1>
+                        <p>Hi,</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{userInfo?.map(user => {return <p>{user.username} {signedInUser?.email}</p> })} </h1>
                     </div>
                 {/* <div className="flex flex-row gap-3">
                    <span className=" text-[18px] md:text-[25px]">Firstname:</span>  <p className=" text-[18px] md:text-[25px]">Desmond</p>

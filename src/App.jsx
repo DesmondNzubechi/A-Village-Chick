@@ -21,6 +21,7 @@ import { AddReview } from './Components/Reviews/AddReview'
 import {UserProfile} from './Components/Account/Profile'
 import { Admindashboard } from './Components/Dashboard/Admin'
 import { ToastContainer } from 'react-toastify'
+
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -40,7 +41,7 @@ function App() {
       <Route path='/blog' element={<MainBlog/>} />
       <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
-      <Route path='/admin' element={<Admindashboard/>} />
+      <Route path='/admin-dashboard' element={<Admindashboard/>} />
       <Route path={`/blog/${subscriptionDetails.headline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>

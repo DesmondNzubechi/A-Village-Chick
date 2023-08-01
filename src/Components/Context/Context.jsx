@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
 import { DashboardView } from "../Dasshboard view/Dashboardview";
 import { EditNews } from "../Dashboard/EditNews/EditNews";
@@ -11,6 +11,7 @@ import { Users } from "../Dashboard/Users/Users";
 export const Context = createContext();
 
 export const NewsContext = (props) => {
+
    //const navigate = useNavigate();
    const [Review, setReview] = useState([]);
    const [quote, setQuote] = useState([]);
@@ -99,18 +100,31 @@ useEffect(() => {
     }
 
     console.log(article)
+
+ 
  const [signedInUser, setSignedInUser] = useState({});
 ///LODIN USER
     const SignIn = async () => {
       setSpin(true);
       try {
         await signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password);
-        setSpin(false);
-        setAccount({
-          login: false,
-          signup: false,
-          account: true,
-        })
+        if (loginInputs.email === 'admin1@gmail.com') {
+          navig('/admin-dashboard')
+          setSpin(false);
+          setAccount({
+            login: false,
+            signup: false,
+            account: false,
+          })
+        } else {
+          setSpin(false);
+          setAccount({
+            login: false,
+            signup: false,
+            account: true,
+          })
+        }
+     
       } catch (error) {
         setSpin(false);
         setErrorMessage(error.message);

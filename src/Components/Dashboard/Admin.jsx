@@ -8,7 +8,7 @@ import {HiXMark} from 'react-icons/hi2';
 import {MdBedroomParent} from 'react-icons/md';
 import {BsFillHouseAddFill} from 'react-icons/bs';
 import {CgProfile} from 'react-icons/cg';
-import {SiPowerpages} from 'react-icons/si';
+import {SiPowerpages} from 'react-icons/si'; 
 import {GrNext, GrPrevious} from 'react-icons/gr';
 import { useState } from "react";
 import {FaUserCircle, FaNewspaper,FaWarehouse} from 'react-icons/fa';
@@ -30,7 +30,8 @@ import { EditAbout } from "../../Pages/About/EditAbout";
 import { EditContact } from "../../Pages/Contact/EditContact";
 import { EditHome } from "../EditHome/EditHome";
 import { EditNewsPage } from "../EditNewsPage/EditNewsPage";
-
+import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 export const Admindashboard = () => {
   const {displaying, setDisplaying, allUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
@@ -43,7 +44,7 @@ const [logoutB, setLogoutB] = useState(false);
         display: 'flex-col'
     });
 
-
+const navi = useNavigate();
 
     return(
         <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "

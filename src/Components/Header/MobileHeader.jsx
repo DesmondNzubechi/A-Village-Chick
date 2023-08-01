@@ -69,7 +69,7 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                 account: true,
             })
         }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
-         <Link  className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Dashboard</Link>
+        {signedInUser?.email === 'admin1@gmail.com' && <Link to='/admin-dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Dashboard</Link>}
                         </li>
                         </ul>
         <div className="flex flex-row items-center">
