@@ -41,7 +41,7 @@ function App() {
       <Route path='/blog' element={<MainBlog/>} />
       <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
-      <Route path='/admin-dashboard' element={<Admindashboard/>} />
+      <Route path='/dashboard' element={<Admindashboard/>} />
       <Route path={`/blog/${subscriptionDetails.newsHeadline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>
