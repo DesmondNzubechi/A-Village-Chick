@@ -44,12 +44,21 @@ export const Pages = () => {
                     users: false,
                     addReview: false,
                     addQuote: false,
-                    adminPro: false,
+                    adminPro: false, 
                     pages: false,
+                    pagesColor: 'text-green-500',
                     editHome: false,
                     editAbout: true,
                     editNewsPage: false,
                     editContact: false,
+                    dashboardViewColor: 'text-slate-500',
+                    editNewsColor: 'text-slate-500',
+                    postNewsColor: 'text-slate-500',
+                    allNewsColor: 'text-slate-500',
+                    usersColor: 'text-slate-500',
+                    addReviewColor: 'text-slate-500',
+                    addQuoteColor: 'text-slate-500',
+                    adminProColor: 'text-slate-500',
                 })
             }
                 break;
@@ -68,6 +77,15 @@ export const Pages = () => {
                         editNewsPage: false,
                         editAbout: false,
                         editContact: true,
+                        pagesColor: 'text-green-500',
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
                     })
                 }
           break;
@@ -86,6 +104,15 @@ export const Pages = () => {
                 editAbout: false,
                 editNewsPage: true,
                 editContact: false,
+                pagesColor: 'text-green-500',
+                dashboardViewColor: 'text-slate-500',
+                editNewsColor: 'text-slate-500',
+                postNewsColor: 'text-slate-500',
+                allNewsColor: 'text-slate-500',
+                usersColor: 'text-slate-500',
+                addReviewColor: 'text-slate-500',
+                addQuoteColor: 'text-slate-500',
+                adminProColor: 'text-slate-500',
             })
           }
           break;
@@ -104,6 +131,15 @@ export const Pages = () => {
                 editAbout: false,
                 editNewsPage: false,
                 editContact: false,
+                pagesColor: 'text-green-500',
+                dashboardViewColor: 'text-slate-500',
+                editNewsColor: 'text-slate-500',
+                postNewsColor: 'text-slate-500',
+                allNewsColor: 'text-slate-500',
+                usersColor: 'text-slate-500',
+                addReviewColor: 'text-slate-500',
+                addQuoteColor: 'text-slate-500',
+                adminProColor: 'text-slate-500',
             })
           }
             default:

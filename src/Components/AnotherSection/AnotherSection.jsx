@@ -9,7 +9,7 @@ export const AnotherSection = () => {
 
     return(
         <div style={{ clipPath: 'polygon(100% 15%, 100% 100%, 0% 100%, 0% 0%)' }}>
-       <div className="grid md:grid-cols-4 py-[50px] grid-cols-2 bg-slate-400">
+       <div className="grid md:grid-cols-4 py-[50px] grid-cols-2 bg-slate-800">
         {
             logos.map(img => {
                 return <img src={img} alt="" />

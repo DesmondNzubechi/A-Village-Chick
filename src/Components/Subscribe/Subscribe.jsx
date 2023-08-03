@@ -66,7 +66,7 @@ export const Subscribe = () => {
                    {/* <h1 className="font-bold text-[10px] md:max-w-[300px] capitalize ">{news.headline}</h1>*/}
                    {/* <p>{news.date}</p>}
                     {/* Wrap Subscribe function call inside an arrow function */}
-                  <Link to={`/blog/${news.headline}`} onClick={() => Subscribe(news)} className="text-slate-50 bg-slate-900 rounded-[3px] hover:bg-slate-500 w-fit p-1  text-[10px] font-bold my-1">
+                  <Link to={`/blog/${news.newsHeadline}`} onClick={() => Subscribe(news)} className="text-slate-50 bg-slate-900 rounded-[3px] hover:bg-slate-500 w-fit p-1  text-[10px] font-bold my-1">
                       Read More...
               </Link>
                   </div>

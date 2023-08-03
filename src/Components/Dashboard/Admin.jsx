@@ -73,7 +73,7 @@ const navi = useNavigate();
            
             </div>
            
-                <h1 className="capitalize font-poppins text-slate-500 self-center font-bold text-[12px] md:text-[15px]">Admin dashboard</h1>
+                <h1 className="capitalize font-poppins text-slate-500 self-center font-bold text-[12px] md:text-[15px]">dashboard</h1>
            
            <div className="flex flex-row gap-1">
             <button onClick={() => setDisplaying({
@@ -90,7 +90,7 @@ const navi = useNavigate();
                         adminPro: true,
                         editNewsPage: false,
                         pages: false,
-                        pagesColor: 'text-green-500',
+                        pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',
@@ -292,6 +292,7 @@ const navi = useNavigate();
                         editNewsPage: false,
                          editAbout: false,
                          editContact: false,
+                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
                         postNewsColor: 'text-slate-500',

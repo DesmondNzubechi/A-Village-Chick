@@ -77,7 +77,7 @@ console.log(allUser)
                     <div>
                         <p className="italic text-[20px] ">{fullDate} </p>
                     </div>
-                    <div className="flex items-center flex-row gap-3">
+                    <div className="flex items-center flex-col gap-1">
                         <p>Welcome</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{signedInUser?.email}</h1>
                     </div>
                 {/* <div className="flex flex-row gap-3">
@@ -90,12 +90,12 @@ console.log(allUser)
                    <span className=" text-[18px] md:text-[25px]">Email:</span>  <p className=" text-[18px] md:text-[25px]">Nzubechukwu@gmail.com</p>
                 </div>*/}
                 <div className="flex flex-row gap-4">
-                <button onClick={() => {
+               {/* <button onClick={() => {
                     setProfile({
                         mainPro:false,
                         editPro: true,
                     })
-                }} className="bg-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Edit Profile</button>
+                }} className="bg-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Edit Profile</button>*/}
                  <button onClick={resetPassword} className="bg-slate-300 text-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Reset password</button>
                 </div>
 

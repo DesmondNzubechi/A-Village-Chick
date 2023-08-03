@@ -11,14 +11,14 @@ export default {
         'instrument': ['Instrument Serif', 'serif'],
         'serif': ['Nanum Myeongjo', 'serif'],
        // 'poppins' : ['Poppins', 'sans-serif'],
-        'courier' : ['Courier Prime', 'monospace'],
-         'poppins': ['Spectral', 'serif']
-      },
+        'poppins' : ['Courier Prime', 'monospace'],
+         'spectral': ['Spectral', 'serif']
+      }, 
       colors:{
         'Terracotta' : '#945D60',
-        'Herb' : '#626E60',
+        'slate-800' : '#626E60',
         'Chilli' : '#AF473C',
-        'Charcoal': '#3C3C3C',
+        'slate-900': '#3C3C3C',
         'Tp' : 'rgba(0, 0, 0, .8)',
         'spin' : 'rgba(0, 0, 0, .96)',
         'bgT'  : 'rgba(0, 0, 0, .3)',

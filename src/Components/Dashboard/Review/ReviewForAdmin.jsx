@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {GrNext, GrPrevious} from 'react-icons/gr';
 import { db } from "../../Config/Firebase";
-import { getDoc, getDocs, deleteDoc } from "firebase/firestore";
+import { getDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { collection } from "firebase/firestore";
 import { useContext } from "react";
 import { Context } from "../../Context/Context";
 import { ClipLoader, FadeLoader, MoonLoader, RotateLoader } from "react-spinners";
-
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AdminReview = () => {
    
@@ -20,7 +21,7 @@ export const AdminReview = () => {
         setReview(allReview);
        
       } catch (error) {
-        alert(error)
+    console.log(error);
       }
     } 
     getReviews()
@@ -55,10 +56,10 @@ export const AdminReview = () => {
         const noti = () => toast('Review Deleted successful');
         noti();
     } catch (error) {
-        const noti = () => toast(error);
-        noti();
+        alert(error)
     }
     };
+
     return(
         <div className="px-[40px] flex justify-center font-poppins py-[100px]">
         {   !Reviewed?.id  && <div className="py-[40px] md:ml-[70px] text-center w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center">< ClipLoader className="relative z-[600]" color="#36d7b7"
@@ -76,7 +77,7 @@ export const AdminReview = () => {
 
         <p className="font-[600] my-[10px] text-[17px] md:text-[20px] ">~ {Reviewed?.name} </p>
         <p className="text-[12px] my-2 italic">Review added on {Reviewed.date}</p>
-        <button onClick={() => deleteDoc(Reviewed.id)} className="bg-red-300 p-1 hover:bg-red-500 rounded text-slate-900">Delete Review</button>
+        <button onClick={() => deleteReview(Reviewed.id)} className="bg-red-300 p-1 hover:bg-red-500 rounded text-slate-900">Delete Review</button>
     </div>
     </div>
     <GrNext onClick={nextReview} className=" text-white hover:bg-slate-500 border p-2 rounded text-[50px] "/>
