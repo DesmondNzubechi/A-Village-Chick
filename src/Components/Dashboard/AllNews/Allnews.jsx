@@ -73,7 +73,7 @@ try {
                          addQuote: false,
                     })
                  }} className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-slate-700  bg-gray-100 ">Edit </Link>
-                 <Link key={news.date} to={`/blog/${news?.headline}`} onClick={() => Subscribe(news)} className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-green-500 bg-green-100 ">View</Link>
+                 <Link key={news.date} to={`/blog/${news?.newsHeadline}`} onClick={() => Subscribe(news)} className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-green-500 bg-green-100 ">View</Link>
                  <Link onClick={() => deleteNews(news.id)} className="px-3 py-1 text-slate-700 hover:text-white rounded font-[600] hover:bg-red-500 bg-red-100 ">Delete</Link>
                 </div>
                </div>

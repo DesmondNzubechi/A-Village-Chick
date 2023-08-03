@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate, } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
 import { DashboardView } from "../Dasshboard view/Dashboardview";
 import { EditNews } from "../Dashboard/EditNews/EditNews";
@@ -11,7 +11,7 @@ import { Users } from "../Dashboard/Users/Users";
 export const Context = createContext();
 
 export const NewsContext = (props) => {
- 
+ const navis = useNavigate();
    //const navigate = useNavigate();
    const [Review, setReview] = useState([]);
    const [quote, setQuote] = useState([]);
@@ -193,7 +193,7 @@ useEffect(() => {
     const SignUserOut = async () => {
       try {
         await signOut(auth);
-        useNavigate('/')
+        navis('/')
         setAccount({
           login: true,
           signup: false,
