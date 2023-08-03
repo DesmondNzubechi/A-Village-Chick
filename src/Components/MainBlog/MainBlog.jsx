@@ -74,7 +74,7 @@ export const MainBlog = () => {
        <div className="grid lg:grid-cols-3 gap-[50px] md:grid-cols-2 grid-cols-1 ">
         {
         allNews.map(get => {
-          return (<div><Link key={get.getStartedHeading} to={`/blog/${get?.headline}`} onClick={() => Subscribe(get)} className="flex font-poppins items-start flex-col h-full gap-5">
+          return (<div><Link key={get.getStartedHeading} to={`/blog/${get?.newsHeadline}`} onClick={() => Subscribe(get)} className="flex font-poppins items-start flex-col h-full gap-2">
            
             
             {get?.newsVideo && <video className="rounded  md:max-w-[400px] h-full " controls>
@@ -84,8 +84,8 @@ export const MainBlog = () => {
                 
                   {get?.newsImg  &&  <img src={get.newsImg} alt="" className="rounded  md:max-w-[400px] h-full " />}
             <p className="text-center text-[15px] md:text-[17px] "> {get.date} </p>
-            <h1 className="font-bold text-[15px] md:text-[17px] capitalize ">{get.headline}</h1>
-            <p className=" text-[15px] md:text-[17px] ">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,</p>
+            <h1 className="font-bold text-[15px] md:text-[17px] capitalize ">{get.newsHeadline}</h1>
+            <p className=" text-[15px] md:text-[17px] ">{get.newsOverview}</p>
             <button className="text-[20px] font-poppins bg-slate-900 p-1 text-slate-50 rounded-[1px] hover:bg-slate-800">Readmore</button>
           </Link>
           </div>)

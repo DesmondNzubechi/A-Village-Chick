@@ -55,8 +55,9 @@ useEffect(() => {
     localStorage.setItem('profile', JSON.stringify(profile));
     getUser();
 }, [])
+console.log(allUser)
     return(
-        account.account && signedInUser &&
+        account.account && signedInUser && signedInUser?.email !== 'admin1@gmail.com' &&
         <div className="flex flex-row font-poppins itmes-center bg-Tp fixed top-0 bottom-0 w-full z-[100] ">
             <div>
               {profile.mainPro &&  <div className="bg-slate-50 flex py-[40px] px-[20px] items-center flex-col gap-5 absolute justify-center top-0 right-0 lg:w-[30%] md:w-[50%] w-full h-full ">
@@ -77,7 +78,7 @@ useEffect(() => {
                         <p className="italic text-[20px] ">{fullDate} </p>
                     </div>
                     <div className="flex items-center flex-row gap-3">
-                        <p>Hi,</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{userInfo?.map(user => {return <p>{user.username} {signedInUser?.email}</p> })} </h1>
+                        <p>Welcome</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{signedInUser?.email}</h1>
                     </div>
                 {/* <div className="flex flex-row gap-3">
                    <span className=" text-[18px] md:text-[25px]">Firstname:</span>  <p className=" text-[18px] md:text-[25px]">Desmond</p>

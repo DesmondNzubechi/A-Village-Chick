@@ -24,7 +24,7 @@ const [sideLink, setSideLink] = useState('left-[-1000px]');
 
 const {setAccount, account, signedInUser} = useContext(Context);
   return(
-    <div className="flex md:hidden z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0  px-[20px] py-[10px] justify-between bg-black">
+    <div className="flex md:hidden z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0  px-[20px] py-[10px] justify-between bg-[#3c3c3c]">
         <div>
             <Link to='/' className=" relative z-[5] font-poppins uppercase text-[30px]  max-w-[70px] rounded-[50px]"><h1>Blogging</h1></Link>
         </div>
@@ -58,7 +58,7 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                 signup: false,
             })
         }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Login</Link>}
-         {signedInUser && <Link onClick={() => {
+         {signedInUser && signedInUser?.email !== 'admin1@gmail.com' && <Link onClick={() => {
             setIcons({
                 hideicon: false,
                 showIcon: true,

@@ -42,7 +42,7 @@ function App() {
       <Route path='/post-news' element={<PostNews/>} />
       <Route path={`/News/${article?.headline}`} element={<FullNewsDetail/>} />
       <Route path='/admin-dashboard' element={<Admindashboard/>} />
-      <Route path={`/blog/${subscriptionDetails.headline}`} element={<Subscribe/>} />
+      <Route path={`/blog/${subscriptionDetails.newsHeadline}`} element={<Subscribe/>} />
     </Routes>
     <Footer/>
     <ToastContainer

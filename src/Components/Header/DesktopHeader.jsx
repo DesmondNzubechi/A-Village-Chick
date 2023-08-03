@@ -15,7 +15,7 @@ export const DesktopHeader = () => {
   const {account, setAccount, signedInUser} = useContext(Context);
 
   return(
-    <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-slate-900">
+    <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-[#3c3c3c]">
          <div>
             <Link to='/' className=" relative z-[5]  max-w-[70px] rounded-[50px]"><h1 className=" font-poppins text-[30px] font-bold uppercase ">Blogging</h1></Link>
         </div>
@@ -38,7 +38,7 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                         account:false
                     })
                   }} className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>}
-                        {signedInUser && <Link onClick={() => {
+                        {signedInUser && signedInUser?.email !== 'admin1@gmail.com' &&<Link onClick={() => {
                     setAccount({
                         login: false,
                         signup: false,

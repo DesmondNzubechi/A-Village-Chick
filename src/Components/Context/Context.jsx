@@ -11,7 +11,7 @@ import { Users } from "../Dashboard/Users/Users";
 export const Context = createContext();
 
 export const NewsContext = (props) => {
-
+ 
    //const navigate = useNavigate();
    const [Review, setReview] = useState([]);
    const [quote, setQuote] = useState([]);
@@ -109,7 +109,6 @@ useEffect(() => {
       try {
         await signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password);
         if (loginInputs.email === 'admin1@gmail.com') {
-          navig('/admin-dashboard')
           setSpin(false);
           setAccount({
             login: false,
@@ -189,10 +188,12 @@ useEffect(() => {
       }
     }
 
+
     //SIGNOUT USER
     const SignUserOut = async () => {
       try {
         await signOut(auth);
+        useNavigate('/')
         setAccount({
           login: true,
           signup: false,
@@ -240,7 +241,7 @@ useEffect(() => {
     return(
     <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
     {props.children}
-    </Context.Provider>
+    </Context.Provider> 
     )
 }
 

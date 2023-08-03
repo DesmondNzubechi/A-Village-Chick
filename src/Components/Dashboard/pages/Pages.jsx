@@ -115,13 +115,13 @@ export const Pages = () => {
             <div className="grid grid-cols-1 gap-[50px] md:grid-cols-3">
                 {pages.map(page => {
                     return  <div className="flex  p-4 shadow-2xl rounded flex-col gap-1 items-center">
-                    <h1 className="font-bold uppercase">{page.pageName}</h1>
+                    <h1 className="font-bold text-[12px] uppercase">{page.pageName}</h1>
                     <div >
                     <img className="max-w-[300px] max-h-[100px] " src={page.pic} alt="" />
                     </div>
                     <div className="flex w-full gap-3">
-                      <Link to={page.pageLink} className="bg-slate-100 text-[20px]  hover:bg-slate-700 hover:text-slate-50 text-center p-1 w-full">View</Link>
-                      <button onClick={() => displayPage(page)} className="bg-slate-100 text-[20px] text-slate-700  text-center hover:bg-slate-700 hover:text-slate-50 p-1 w-full">Edit</button>
+                      <Link to={page.pageLink} className="bg-slate-100 text-[15px]  hover:bg-slate-700 hover:text-slate-50 text-center p-1 w-full">View</Link>
+                      <button onClick={() => displayPage(page)} className="bg-slate-100 text-[15px] text-slate-700  text-center hover:bg-slate-700 hover:text-slate-50 p-1 w-full">Edit</button>
                     </div>
                   </div>
                 })}
