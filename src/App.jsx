@@ -27,7 +27,8 @@ function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
    
-    <NewsContext>
+   
+    <>
     <DesktopHeader/> 
     <MobileHeader/>
     <SignUp/>
@@ -50,7 +51,7 @@ function App() {
     className='relative z-[1000]'
     autoClose={2000}
     />
-    </NewsContext>
+  </>
    
   )
 }

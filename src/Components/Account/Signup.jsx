@@ -17,7 +17,7 @@ export const SignUp = () => {
                 })
             }
         }} className="py-[100px] flex-row z-[70] bg-Tp h-full fixed flex justify-center items-center top-0 w-full px-[40px] ">
-            { spin &&  <div className="fixed bg-spin w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><PulseLoader color="#36d7b7"
+            { spin &&  <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><PulseLoader color="#36d7b7"
            size={50}
             /></div> }
           <form action=""  className="flex flex-col items-center justify-center  bg-white font-poppins rounded p-[50px] relative gap-5">
