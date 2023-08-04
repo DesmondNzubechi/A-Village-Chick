@@ -115,6 +115,7 @@ useEffect(() => {
             signup: false,
             account: false,
           })
+          navis('/dashboard')
         } else {
           setSpin(false);
           setAccount({
@@ -193,7 +194,7 @@ useEffect(() => {
     const SignUserOut = async () => {
       try {
         await signOut(auth);
-       // navis('/');
+       navis('/');
         setAccount({ 
           login: true,
           signup: false,
