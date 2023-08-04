@@ -12,7 +12,7 @@ export const Login = () => {
             if (e.target.tagName === 'SPAN') {
                 setAccount({
                     login: false,
-                    signup: false,
+                    signup: false, 
                     account: false
                 })
             }

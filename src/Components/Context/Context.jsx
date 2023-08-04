@@ -192,6 +192,12 @@ useEffect(() => {
 
     //SIGNOUT USER
     const SignUserOut = async () => {
+    const loggingOut = confirm('Are You Sure That You Want To Log Out??');
+
+    if (!loggingOut) {
+      return;
+    }
+
       try {
         await signOut(auth);
        navis('/');

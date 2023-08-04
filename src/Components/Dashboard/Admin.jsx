@@ -62,12 +62,12 @@ const navi = useNavigate();
                     nextIc: true,
                     prevIc: false
                 })
-            }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
+            }} className={`  p-1  hover:bg-slate-300 rounded-full bg-slate-100 text-[40px] md:text-[40px]`}/>}
 
              {sideLinks.nextIc && <GrNext onClick={() => {
                 setSideLinkState({text: 'text-[20px]', display: 'flex-row'});
                 setSideLinks({nextIc:false, prevIc:true,  })
-            }} className={`  p-1 rounded-[2px] bg-slate-100 text-[40px] md:text-[40px]`}/>}
+            }} className={`  p-1 rounded-full hover:bg-slate-300 bg-slate-100 text-[40px] md:text-[40px]`}/>}
             </div>
             <h1 className="text-slate-900 md:flex font-poppins hidden uppercase text-[20px] font-bold">Blogging</h1>
            
