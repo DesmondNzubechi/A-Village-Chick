@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
-import { useNavigate, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
 import { DashboardView } from "../Dasshboard view/Dashboardview";
 import { EditNews } from "../Dashboard/EditNews/EditNews";
@@ -193,8 +193,8 @@ useEffect(() => {
     const SignUserOut = async () => {
       try {
         await signOut(auth);
-        navis('/')
-        setAccount({
+       // navis('/');
+        setAccount({ 
           login: true,
           signup: false,
           account: false,

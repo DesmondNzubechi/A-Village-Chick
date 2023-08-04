@@ -21,12 +21,13 @@ import { AddReview } from './Components/Reviews/AddReview'
 import {UserProfile} from './Components/Account/Profile'
 import { Admindashboard } from './Components/Dashboard/Admin'
 import { ToastContainer } from 'react-toastify'
+import { NewsContext } from './Components/Context/Context'
 
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
-    <>
-    <BrowserRouter>
+   
+    <NewsContext>
     <DesktopHeader/> 
     <MobileHeader/>
     <SignUp/>
@@ -49,9 +50,8 @@ function App() {
     className='relative z-[1000]'
     autoClose={2000}
     />
-    </BrowserRouter>
+    </NewsContext>
    
-    </>
   )
 }
 
