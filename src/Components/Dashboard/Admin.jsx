@@ -48,7 +48,7 @@ const [logoutB, setLogoutB] = useState(false);
 const navi = useNavigate();
 
     return(
-        signedInUser.email !== 'admin1@gmail.com' ? navi('/') :
+       // signedInUser.email !== 'admin1@gmail.com' ? navi('/') :
         <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "
         >
           <div className="flex flex-row items-center justify-center">
