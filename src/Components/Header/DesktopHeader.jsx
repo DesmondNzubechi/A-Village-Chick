@@ -17,7 +17,7 @@ export const DesktopHeader = () => {
   return(
     <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-[#3c3c3c]">
          <div>
-            <Link to='/' className=" relative z-[5]  max-w-[70px] rounded-[50px]"><h1 className=" font-poppins text-[30px] font-bold uppercase ">Blogging</h1></Link>
+            <Link to='/' className=" relative z-[5]  max-w-[70px] rounded-[50px]"><h1 className=" font-poppins text-[30px] font-bold uppercase ">A Village Chick</h1></Link>
         </div>
                     <ul className={`flex gap-5  font-fonty  transition delay-150 duration-1000 ease-in-out  px-[20px] items-center flex-row `}>
                         {

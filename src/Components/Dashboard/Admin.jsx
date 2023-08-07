@@ -69,7 +69,7 @@ const navi = useNavigate();
                 setSideLinks({nextIc:false, prevIc:true,  })
             }} className={`  p-1 rounded-full hover:bg-slate-300 bg-slate-100 text-[40px] md:text-[40px]`}/>}
             </div>
-            <h1 className="text-slate-900 md:flex font-poppins hidden uppercase text-[20px] font-bold">Blogging</h1>
+            <h1 className="text-slate-900 md:flex font-poppins hidden uppercase text-[20px] font-bold">A Village Chick</h1>
            
             </div>
            
