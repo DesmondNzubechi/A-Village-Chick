@@ -33,6 +33,8 @@ export const NewsContext = (props) => {
     editAbout: false,
     editContact: false,
     editNewsPage: false,
+    subPage: false,
+    subPageColor: 'text-slate-500',
     pagesColor: 'text-slate-500',
     dashboardViewColor: 'text-green-500',
     editNewsColor: 'text-slate-500',

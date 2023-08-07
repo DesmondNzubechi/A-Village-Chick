@@ -32,7 +32,10 @@ import { EditHome } from "../EditHome/EditHome";
 import { EditNewsPage } from "../EditNewsPage/EditNewsPage";
 import {AiFillHome} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
+import {FaUserFriends} from 'react-icons/fa';
+import { Subscribers } from "./Subscribers/Subscribers";
+
+
 export const Admindashboard = () => {
   const {displaying, setDisplaying, allUser, SignUserOut, signedInUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
@@ -90,6 +93,8 @@ const navi = useNavigate();
                         adminPro: true,
                         editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -121,6 +126,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-green-500',
                         editNewsColor: 'text-slate-500',
@@ -131,7 +138,31 @@ const navi = useNavigate();
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-slate-500',
                     })}  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}> <AiFillDashboard className={` ${displaying.dashboardViewColor} text-[17px] md:text-[20px] `} />   <span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Dashboard</span> </Link></li>
-                     <li><Link to='/' className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><AiFillHome className={` text-slate-500 text-[17px] md:text-[20px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Home</span> </Link></li>
+                     <li><Link onClick={() => setDisplaying({
+                        dashboardView: false,
+                        editNews: false,
+                        postNews: false,
+                        allNews: false,
+                        users: false,
+                        addReview: false,
+                        addQuote: false,
+                        adminPro: false,
+                        editHome: false,
+                        editNewsPage: false,
+                         editAbout: false,
+                         editContact: false,
+                         subPage: true,
+                         subPageColor: 'text-green-500',
+                         pagesColor: 'text-slate-500',
+                        dashboardViewColor: 'text-slate-500',
+                        editNewsColor: 'text-slate-500',
+                        postNewsColor: 'text-slate-500',
+                        allNewsColor: 'text-slate-500',
+                        usersColor: 'text-slate-500',
+                        addReviewColor: 'text-slate-500',
+                        addQuoteColor: 'text-slate-500',
+                        adminProColor: 'text-slate-500',
+                         })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><FaUserFriends className={` ${displaying.subPageColor} text-[17px] md:text-[20px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Subscribers</span> </Link></li>
                     
                     <li><Link onClick={() => setDisplaying({
                         dashboardView: false,
@@ -147,6 +178,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -171,6 +204,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: true,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-green-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -195,6 +230,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -220,6 +257,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -244,6 +283,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                          pages: false,
+                         subPage: false,
+                         subPageColor: 'text-slate-500',
                          pagesColor: 'text-slate-500',
                          dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -269,6 +310,8 @@ const navi = useNavigate();
                          editContact: false,
                          editNewsPage: false,
                         pages: false,
+                        subPage: false,
+                        subPageColor: 'text-slate-500',
                         pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -292,6 +335,8 @@ const navi = useNavigate();
                         editNewsPage: false,
                          editAbout: false,
                          editContact: false,
+                         subPage: false,
+                         subPageColor: 'text-slate-500',
                          pagesColor: 'text-slate-500',
                         dashboardViewColor: 'text-slate-500',
                         editNewsColor: 'text-slate-500',
@@ -324,6 +369,7 @@ const navi = useNavigate();
                { displaying.editContact && <EditContact/>}
                { displaying.editHome && <EditHome/>}
                {displaying.editNewsPage && <EditNewsPage/>}
+               {displaying.subPage && <Subscribers/>}
               
               </div>
             </div>
