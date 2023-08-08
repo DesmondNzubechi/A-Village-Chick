@@ -5,7 +5,7 @@ import { Context } from "../../Context/Context";
 import { useContext } from "react";
 
 export const AdminProfile = () => {
-    const { account, setAccount, signedInUser , SignUserOut} = useContext(Context);
+    const {signedInUser} = useContext(Context);
     const resetPassword = async () => {
         const confirmResetPassword = confirm('Are You Sure You wan To Reset Your Password?');
         if (!confirmResetPassword) {
@@ -46,7 +46,7 @@ export const AdminProfile = () => {
                     </div>
                     </div>
                 <div className="flex flex-row gap-4">
-                 <button  className="bg-slate-300 text-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Reset password</button>
+                 <button type="button" onClick={resetPassword}  className="bg-slate-300 text-slate-900 text-slate-50 hover:bg-green-500 p-2 shadow-2xl text-[15px] rounded ">Reset password</button>
                 </div>
 
                 </div>
