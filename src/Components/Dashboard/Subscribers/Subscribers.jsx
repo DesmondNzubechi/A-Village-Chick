@@ -50,7 +50,6 @@ export const Subscribers = () => {
 
     useEffect(() => {
         const subStore = collection(db, 'subscribers');
-
         const fetchSubscribers = async () => {
             try {
                 const getSubscribers = await getDocs(subStore);

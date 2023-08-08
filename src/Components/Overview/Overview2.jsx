@@ -11,7 +11,7 @@ export const Overview2 = () => {
   const theOverView = fetchedNews[3];
 
     return(
-        <Link key={theOverView?.id} to={`/blog/${theOverView?.headline}`} onClick={() => Subscribe(theOverView)} className="  py-[50px] min-h-[100vh] ">
+        <Link key={theOverView?.id} to={`/blog/${theOverView?.newsHeadline}`} onClick={() => Subscribe(theOverView)} className="  py-[50px] min-h-[100vh] ">
 <div className="flex flex-col font-poppins md:flex-row-reverse justify-around items-center gap-5">
 <div data-aos='fade-up' data-aos-duration='1000' className="  flex flex-col gap-5 ">
         <img src={!theOverView?.newsImg ? HeroImg : theOverView?.newsImg } alt="" className="rounded" srcSet="" />

@@ -10,7 +10,7 @@ export const Overview1 = () => {
 
   const theOverView = fetchedNews[0];
     return(
-        <Link key={theOverView?.id} to={`/blog/${theOverView?.headline}`} onClick={() => Subscribe(theOverView)}  className=" items-center flex-row flex py-[50px] min-h-[100vh] ">
+        <Link key={theOverView?.id} to={`/blog/${theOverView?.newsHeadline}`} onClick={() => Subscribe(theOverView)}  className=" items-center flex-row flex py-[50px] min-h-[100vh] ">
 <div className="flex flex-col md:flex-row justify-around items-center gap-5">
 <div data-aos='fade-up' data-aos-duration='1000' className="  flex flex-col gap-5 ">
 <h1 className="text-slate-900 capitalize md:hidden md:text-[45px] leading-[45px] md:leading-[50px] text-[40px]   font-poppins">{theOverView?.newsHeadline}</h1>
