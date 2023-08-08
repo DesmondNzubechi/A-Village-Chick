@@ -1,7 +1,24 @@
 import React from "react";
-
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../Config/Firebase";
+import { Context } from "../../Context/Context";
+import { useContext } from "react";
 
 export const AdminProfile = () => {
+    const { account, setAccount, signedInUser , SignUserOut} = useContext(Context);
+    const resetPassword = async () => {
+        const confirmResetPassword = confirm('Are You Sure You wan To Reset Your Password?');
+        if (!confirmResetPassword) {
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, signedInUser?.email);
+            alert('Check Your Email For Reset Password Link');
+        } catch (error) {
+            alert(error)
+        }
+      }
+
     const currentDate = new Date();
     const options = {
         year: 'numeric',
@@ -25,7 +42,7 @@ export const AdminProfile = () => {
                         <p>Name:</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">Admin</h1>
                         </div>
                         <div className="flex items-center flex-row gap-3">
-                        <p>Email:</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">Admin@gmail.com</h1>
+                        <p>Email:</p> <h1 className="uppercase font-bold text-[20px] md:text-[25px] ">{signedInUser?.email}</h1>
                     </div>
                     </div>
                 <div className="flex flex-row gap-4">

@@ -31,7 +31,7 @@ export const UserProfile = () => {
         const confirmResetPassword = confirm('Are You Sure You wan To Reset Your Password?');
         if (!confirmResetPassword) {
             return;
-        }
+        } 
         try {
             await sendPasswordResetEmail(auth, signedInUser.email);
             alert('Check Your Email For Reset Password Link');
