@@ -38,14 +38,14 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                         account:false
                     })
                   }} className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>}
-                        {signedInUser && signedInUser?.email !== 'admin1@gmail.com' &&<Link onClick={() => {
+                        {signedInUser && signedInUser?.email !== 'avillagechick10@gmail.com' &&<Link onClick={() => {
                     setAccount({
                         login: false,
                         signup: false,
                         account:true
                     })
                   }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
-                {signedInUser?.email === 'admin1@gmail.com' &&  <Link  to='dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
+                {signedInUser?.email === 'avillagechick10@gmail.com' &&  <Link  to='dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
                         </li>
                         </ul>
     </div>

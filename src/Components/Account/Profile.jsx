@@ -57,7 +57,7 @@ useEffect(() => {
 }, [])
 console.log(allUser)
     return(
-        account.account && signedInUser && signedInUser?.email !== 'admin1@gmail.com' &&
+        account.account && signedInUser && signedInUser?.email !== 'avillagechick10@gmail.com' &&
         <div className="flex flex-row font-poppins itmes-center bg-Tp fixed top-0 bottom-0 w-full z-[100] ">
             <div>
               {profile.mainPro &&  <div className="bg-slate-50 flex py-[40px] px-[20px] items-center flex-col gap-5 absolute justify-center top-0 right-0 lg:w-[30%] md:w-[50%] w-full h-full ">
