@@ -22,7 +22,7 @@ const [icons, setIcons] = useState({
 });
 const [sideLink, setSideLink] = useState('left-[-1000px]');
 
-const {setAccount, account, checkIt, signedInUser} = useContext(Context);
+const {setAccount, account, signedInUser} = useContext(Context);
   return(
     <div className="flex md:hidden z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0  px-[20px] py-[10px] justify-between bg-[#3c3c3c]">
         <div>
@@ -69,7 +69,7 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                 account: true,
             })
         }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
-        {signedInUser?.email === checkIt && <Link to='/dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
+        {signedInUser?.email === 'avillagechick10@gmail.com' && <Link to='/dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
                         </li>
                         </ul>
         <div className="flex flex-row items-center">

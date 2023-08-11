@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
-import { yeah } from "../../assets/useless/goback/goback/useless/okay";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
@@ -14,7 +13,6 @@ export const Context = createContext();
 export const NewsContext = (props) => {
  const navis = useNavigate();
    //const navigate = useNavigate();
-   const checkIt = yeah;
    const [Review, setReview] = useState([]);
    const [quote, setQuote] = useState([]);
    const [allUser, setAllUser] = useState([]);
@@ -250,7 +248,7 @@ useEffect(() => {
    }, [subscriptionDetails, article, account, displaying, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, checkIt, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
     {props.children}
     </Context.Provider> 
     )

@@ -12,7 +12,7 @@ export const Navlink = [
 ]
 
 export const DesktopHeader = () => {
-  const {account, setAccount, checkIt, signedInUser} = useContext(Context);
+  const {account, setAccount, signedInUser} = useContext(Context);
 
   return(
     <div className="hidden md:flex z-[10] flex-row text-slate-50 fixed top-0 w-full left-0 right-0 items-center  px-[50px] py-[30px] justify-between bg-[#3c3c3c]">
@@ -38,14 +38,14 @@ return isActive ? {fontStyle: 'underline', borderBottom : '2px solid white' , fo
                         account:false
                     })
                   }} className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >Log In</Link>}
-                        {signedInUser && signedInUser?.email !== checkIt &&<Link onClick={() => {
+                        {signedInUser && signedInUser?.email !== 'avillagechick10@gmail.com' &&<Link onClick={() => {
                     setAccount({
                         login: false,
                         signup: false,
                         account:true
                     })
                   }} to='/' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Account</Link>}
-                {signedInUser?.email === checkIt &&  <Link  to='dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
+                {signedInUser?.email === 'avillagechick10@gmail.com' &&  <Link  to='dashboard' className=" border p-2 hover:bg-slate-200 rounded-[2px] hover:text-slate-900 text-[22px] font-poppins " >My Dashboard</Link>}
                         </li>
                         </ul>
     </div>
