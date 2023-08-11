@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { fi } from "../../assets/useless/goback/goback/useless/okay";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getStorage} from 'firebase/storage';
@@ -11,7 +12,7 @@ import {getFirestore} from '@firebase/firestore';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBYymTQCkMxpnITxKjWCzZyvqHRvtvKEVg",
+  apiKey: fi,
   authDomain: "africa-bloging.firebaseapp.com",
   projectId: "africa-bloging",
   storageBucket: "africa-bloging.appspot.com",
