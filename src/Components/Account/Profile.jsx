@@ -8,8 +8,9 @@ import { collection, doc,  getDocs } from "firebase/firestore";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../Config/Firebase";
 import { data } from "autoprefixer";
+
 export const UserProfile = () => {
-    const { account, setAccount, signedInUser , SignUserOut} = useContext(Context);
+    const { account, setAccount, yeah, logOut, setLogOut, signedInUser , SignUserOut} = useContext(Context);
     const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')) || {
         mainPro: true,
         editPro: false,
@@ -57,12 +58,12 @@ useEffect(() => {
 }, [])
 console.log(allUser)
     return(
-        account.account && signedInUser && signedInUser?.email !== 'avillagechick10@gmail.com' &&
+        account.account && signedInUser && signedInUser?.email !== yeah &&
         <div className="flex flex-row font-poppins itmes-center bg-Tp fixed top-0 bottom-0 w-full z-[100] ">
             <div>
               {profile.mainPro &&  <div className="bg-slate-50 flex py-[40px] px-[20px] items-center flex-col gap-5 absolute justify-center top-0 right-0 lg:w-[30%] md:w-[50%] w-full h-full ">
                     <div>
-                    <button onClick={() => SignUserOut()} className="flex absolute right-[55px] p top-[3px] items-center  text-slate-900 gap-1 hover:text-red-500 md:text-[20px] font-[550]  text-[15px]  p-2 px-[5px] h-fit rounded ">Logout<AiOutlineLogout/></button>
+                    <button onClick={() => setLogOut(true)} className="flex absolute right-[55px] p top-[3px] items-center  text-slate-900 gap-1 hover:text-red-500 md:text-[20px] font-[550]  text-[15px]  p-2 px-[5px] h-fit rounded ">Logout<AiOutlineLogout/></button>
                     <p onClick={() => {
                     setAccount({
                         login: false,

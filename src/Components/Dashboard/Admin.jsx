@@ -37,7 +37,7 @@ import { Subscribers } from "./Subscribers/Subscribers";
 
 
 export const Admindashboard = () => {
-  const {displaying,  setDisplaying, allUser, SignUserOut, signedInUser} = useContext(Context);
+  const {displaying,  setDisplaying, logOut, setLogOut,  yeah, allUser, SignUserOut, signedInUser} = useContext(Context);
 const [logoutB, setLogoutB] = useState(false);
     const [sideLinks, setSideLinks] = useState( {
         nextIc: true,
@@ -51,7 +51,7 @@ const [logoutB, setLogoutB] = useState(false);
 const navi = useNavigate();
 
     return(
-       signedInUser.email !== 'avillagechick10@gmail.com' ? navi('/') :
+       signedInUser.email !==  yeah ? navi('/') :
         <div className=" z-[100] bg-white  min-h-[100vh] overflow-x-hidden fixed overflow-y-auto w-full left-0 right-0 top-0 pb-[100px] pt-[100px] bottom-0 "
         >
           <div className="flex flex-row items-center justify-center">
@@ -347,7 +347,7 @@ const navi = useNavigate();
                         addQuoteColor: 'text-slate-500',
                         adminProColor: 'text-green-500',
                          })} className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><FaUserCircle className={` ${displaying.adminProColor} text-[17px] md:text-[20px] `}/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Profile</span> </Link></li>
-                    <li><Link onClick={SignUserOut}  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><AiOutlineLogout className="text-slate-600 text-[17px] md:text-[20px] "/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Logout</span> </Link></li>
+                    <li><Link onClick={() => setLogOut(true)}  className={` ${sideLinkState.display} flex  items-center gap-x-2  `}><AiOutlineLogout className="text-slate-600 text-[17px] md:text-[20px] "/><span className={` ${sideLinkState.text}    text-slate-700 font-poppins    `}>Logout</span> </Link></li>
                    
                 </ul>
             </div>

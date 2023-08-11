@@ -22,7 +22,7 @@ import {UserProfile} from './Components/Account/Profile'
 import { Admindashboard } from './Components/Dashboard/Admin'
 import { ToastContainer } from 'react-toastify'
 import { NewsContext } from './Components/Context/Context'
-
+import { LogOut } from './Components/Account/logout'
 function App() {
   const {subscriptionDetails, article, /*fullNews*/} = useContext(Context);
   return (
@@ -33,6 +33,7 @@ function App() {
     <MobileHeader/>
     <SignUp/>
     <Login/>
+    <LogOut/>
     <UserProfile/>
     <ScrollToTop/>
     <Routes>

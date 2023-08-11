@@ -1,5 +1,4 @@
 import React from "react";
-impo
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../Config/Firebase";
 import { Context } from "../../Context/Context";

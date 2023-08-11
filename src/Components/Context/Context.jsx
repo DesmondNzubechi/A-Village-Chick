@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { auth, db } from "../Config/Firebase";
+import { yeah } from "../../assets/useless/goback/goback/useless/okay";
+import { fi } from "../../assets/useless/goback/goback/useless/okay";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addDoc, getDocs, collection } from "firebase/firestore";
@@ -13,6 +15,7 @@ export const Context = createContext();
 export const NewsContext = (props) => {
  const navis = useNavigate();
    //const navigate = useNavigate();
+   const [logOut, setLogOut] = useState(false);
    const [Review, setReview] = useState([]);
    const [quote, setQuote] = useState([]);
    const [allUser, setAllUser] = useState([]);
@@ -110,7 +113,7 @@ useEffect(() => {
       setSpin(true);
       try {
         await signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password);
-        if (loginInputs.email === 'admin1@gmail.com') {
+        if (loginInputs.email === yeah) {
           setSpin(false);
           setAccount({
             login: false,
@@ -194,15 +197,11 @@ useEffect(() => {
 
     //SIGNOUT USER
     const SignUserOut = async () => {
-    const loggingOut = confirm('Are You Sure That You Want To Log Out??');
-
-    if (!loggingOut) {
-      return;
-    }
-
+      
       try {
         await signOut(auth);
        navis('/');
+       setLogOut(false);
         setAccount({ 
           login: true,
           signup: false,
@@ -248,7 +247,7 @@ useEffect(() => {
    }, [subscriptionDetails, article, account, displaying, signedInUser])
 
     return(
-    <Context.Provider value={{readMoreClicked, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
+    <Context.Provider value={{readMoreClicked, fi, yeah, allUser, errorMessage, spin, setSpin, setSignUpInput, signUpInputs, SignUpNewUser, SignIn, loginInputs, setLoginInputs, account, setAccount, article, /*setFullNews, */subscriptionDetails, Subscribe, logOut, setLogOut, editNews, displaying, setDisplaying, setEditNews, SignUserOut, fetchedNews,   signedInUser, Review, quote /*fullNews*/}}>
     {props.children}
     </Context.Provider> 
     )
