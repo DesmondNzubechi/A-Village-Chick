@@ -8,7 +8,7 @@ import { useContext } from "react";
 export const Overview2 = () => {
   const {Subscribe, fetchedNews } = useContext(Context);
 
-  const theOverView = fetchedNews[3];
+  const theOverView = fetchedNews[1];
 
     return(
         <Link key={theOverView?.id} to={`/blog/${theOverView?.newsHeadline}`} onClick={() => Subscribe(theOverView)} className="  py-[50px] min-h-[100vh] ">
