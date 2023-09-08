@@ -33,7 +33,7 @@ const heroData = homeDatas[0];
         <div heroData-aos='zoom-in-up' className="relative z-[1] py-[50px] max-w-[900px]">
         <h1 className="font-semibold capitalize md:leading-[60px] leading-[45px] text-slate-50 text-[30px] mb-[30px] md:text-[50px] ">{!heroData?.heroText ? 'Homeownership often comes with a sense of pride and belonging to a neighborhood.' : heroData?.heroText}</h1>
        
-        <Link to={`/${heroData?.heroBtnLink}`} className="capitalize my-[50px] text-[20px] bg-slate-900  text-slate-50 rounded hover:bg-slate-800 p-2 ">{!heroData?.heroBtn ? 'read news...' : heroData?.heroBtn}</Link>
+        <Link to={`/${heroData?.heroBtnLink}`} className="capitalize my-[50px] text-[20px] bg-slate-900  text-slate-50  hover:bg-slate-800 p-2 ">{!heroData?.heroBtn ? 'read news...' : heroData?.heroBtn}</Link>
 {/*<p className="text-slate-200 font-fonty text-[17px] ">Homeownership often comes with a sense of pride and belonging to a neighborhood. You have the opportunity to engage with your neighbors, participate in local activities, and contribute to the overall well-being of the community.</p>*/}
         </div>
 

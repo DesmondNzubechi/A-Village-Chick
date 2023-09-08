@@ -10,8 +10,8 @@ export default {
         'fonty': ['Foldit', 'cursive'],
         'instrument': ['Instrument Serif', 'serif'],
         'serif': ['Nanum Myeongjo', 'serif'],
-       // 'poppins' : ['Poppins', 'sans-serif'],
-        'poppins' : ['Courier Prime', 'monospace'],
+       'poppins' : ['Poppins', 'sans-serif'],
+      //  'poppins' : ['Courier Prime', 'monospace'],
          'spectral': ['Spectral', 'serif']
       }, 
       colors:{

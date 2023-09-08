@@ -82,9 +82,10 @@ export const EditContact = () => {
             <div className="   font-poppins">
             <div className="flex md:flex-row md:items-center flex-col gap-[40px] justify-around pb-[10px] pt-[5px]  ">
                 <div>
-                    <h1 className="text-[30px] font-bold my-[20px] ">{!contactCt?.contactHeader ? 'Get in touch with us' : contactCt?.contactHeader }</h1>
+                            <h1 className="text-[30px] font-bold my-[20px] ">krj {!contactCt?.contactHeader ? 'Get in touch with us' : contactCt?.contactHeader}</h1>
+                            
                     <p className="max-w-[800px] md:text-[20px] ">{!contactCt?.contactText ? ' If you have any questions or comments, please contact us via email or phone. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'  : contactCt?.contactText } </p>
-                </div>
+                        </div>
                 <div className="fle flex-col gap-2">
                     <span>
                         <h1 className="text-[25px] font-semibold ">{!contactCt?.phoneLabel ? ' Phone'  : contactCt?.phoneLabel } </h1>
